@@ -22,7 +22,7 @@ RUN apt-get update \
     && apt-get -y install git iproute2 procps lsb-release \
     #
     # Install C++ tools
-    && apt-get -y install build-essential cmake cppcheck valgrind \
+    && apt-get -y install build-essential cmake cppcheck valgrind libcurl4-openssl-dev\
     #
     # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.
     && groupadd --gid $USER_GID $USERNAME \

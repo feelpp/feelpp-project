@@ -1,5 +1,7 @@
 FROM feelpp/feelpp:latest
 
+USER root
+
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -8,8 +10,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 # will be updated to match your local UID/GID (when using the dockerFile property).
 # See https://aka.ms/vscode-remote/containers/non-root-user for details.
 ARG USERNAME=vscode
-ARG USER_UID=1000
+ARG USER_UID=1001
 ARG USER_GID=$USER_UID
+
 
 # Configure apt and install packages
 RUN apt-get update \

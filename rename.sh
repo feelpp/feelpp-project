@@ -4,7 +4,7 @@ in_default_projectname="project"
 read -p "What is the name of the project ? [$in_default_projectname]: " projectname
 projectname=${projectname:-$in_default_projectname}
 
-in_default_titlename="${projectname^}"
+in_default_titlename="$projectname"
 read -p "What is the title of the project? [$in_default_titlename]" projecttitle
 projecttitle=${projecttitle:-$in_default_titlename}
 
@@ -13,15 +13,16 @@ read -p "What is the short name of the project? []" shortprojectname
 shortprojectname=${shortprojectname:-$in_default_shortname}
 
 in_default_appname="myapp"
-read -p "What is the name of the first application? [$in_default_myapp]" appname
+read -p "What is the name of the first application? [$in_default_appname]" appname
 appname=${appname:-$in_default_appname}
 
 echo "     project name: $projectname"
 echo "    project title: $projecttitle"
 echo "project shortname: $shortprojectname" 
 echo "         app name: $appname"
-echo "Do you wish to rename this project?"
-select yn in "Yes" "No"; do
+PS3="Do you wish to rename this project?"
+select yn in Yes No
+do
     case $yn in
         Yes ) echo "Ok lets go!"; break;;
         No ) exit;;
@@ -37,8 +38,10 @@ files=( "README.adoc" "CMakeFiles.txt" "src/CMakeLists.txt"
         "site-dev.yml" "docs/antora.yml" "docs/ROOT/index.adoc" 
         ".github/workflows/ci.yml" ".github/workflows/release.yml" )
 for i in "${files[@]}"
+do
     echo "processing renaming in $i ...."
     perl -077pi.bak -e 's/myproject/$ENV{'projectname'}/sg' $i
+    perl -077pi.bak -e 's/MyProject/$ENV{'projecttitle'}/sg' $i
     if test -z "$shortprojectname"; then
         perl -077pi.bak -e 's/set\\(PROJECT_SHORTNAME \"\"\\)/set(PROJECT_SHORTNAME "$ENV{'shortprojectname'}")/sg' $i
     fi    

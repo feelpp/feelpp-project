@@ -41,6 +41,7 @@ RUN apt-get update \
            libmongoc-dev\
            libmongoclient-dev           \
            libglew-dev\
+           npm \
     #\
     # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.\
     && groupadd --gid $USER_GID $USERNAME \
@@ -57,3 +58,5 @@ RUN apt-get update \
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
+
+RUN npm i -g @antora/cli@2.2 @antora/site-generator-default@2.2; 

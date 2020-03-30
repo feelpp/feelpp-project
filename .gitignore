@@ -1,4 +1,6 @@
 build/
+docs/public/
+docs/cache/
 *.bak
 # Prerequisites
 *.d

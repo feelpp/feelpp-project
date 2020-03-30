@@ -19,6 +19,8 @@ jobs:
       - name: Changelog Generator
         id: changelog
         uses: timfallmk/github-changelog-generator-action@0.0.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Build
         env:

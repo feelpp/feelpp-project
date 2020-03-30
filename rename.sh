@@ -34,7 +34,7 @@ export projecttitle
 export shortprojectname
 export appname
 
-files=( "README.adoc" "CMakeFiles.txt" "src/CMakeLists.txt" 
+files=( "README.adoc" "CMakeFiles.txt" "src/CMakeLists.txt" "src/.tests.myapp" 
         "site-dev.yml" "docs/antora.yml" "docs/ROOT/index.adoc" 
         ".github/workflows/ci.yml" ".github/workflows/release.yml" )
 for i in "${files[@]}"

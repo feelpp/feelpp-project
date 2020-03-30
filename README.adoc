@@ -1,3 +1,4 @@
 :feelpp: Feel++
-= {feelpp} Project
-{feelpp} Template Project
+= {feelpp} myproject 
+
+This is a {feelpp} Template Project.

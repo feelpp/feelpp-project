@@ -1,6 +1,6 @@
-= Swimmer
+= MyProject
 
 == Introduction
 
-== Contexte
+== Context
 

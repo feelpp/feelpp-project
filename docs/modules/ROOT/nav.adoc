@@ -1,0 +1,3 @@
+.Project
+* Outline of the project
+** xref:README.adoc[Introduction]

@@ -1,0 +1,36 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+    - name: Build MyProject
+      run: |
+        mkdir build && cd build
+        CXX=clang++-8 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./install
+        make -j3
+        make install
+    - name: Check build
+      run: |
+        mkdir check && cd check
+        mpirun --bind-to core --mca btl vader,self -np 4 ../bin/feelpp_p_myapp 
+      working-directory: build/install
+    - name: Package
+      run: |
+        make package
+        mkdir artifact && cp myproject*.tar.gz artifact
+        ls -l artifact
+        tar tzvf myproject*.tar.gz
+      working-directory: build
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: MyProject-${{ runner.os }} 
+        # Directory containing files to upload
+        path: build/install/

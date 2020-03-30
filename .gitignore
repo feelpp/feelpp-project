@@ -1,5 +1,5 @@
 build/
-
+*.bak
 # Prerequisites
 *.d
 

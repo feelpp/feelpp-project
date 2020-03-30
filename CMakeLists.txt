@@ -23,8 +23,8 @@
 #
 
 cmake_minimum_required(VERSION 3.12)
-project(project VERSION 0.1.0)
-set(PROJECT_SHORTNAME "")
+project(myproject VERSION 0.1.0)
+set(PROJECT_SHORTNAME "p")
 
 if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR} )
   find_package(Feel++ PATHS ${FEELPP_DIR}/share/feelpp/feel/cmake/modules $ENV{FEELPP_DIR}/share/feelpp/feel/cmake/modules /usr/share/feelpp/feel/cmake/modules /usr/local/share/feelpp/feel/cmake/modules )
@@ -41,9 +41,6 @@ if ( NOT TARGET check )
   add_custom_target(check)
 endif()
 
-
-# header files are accessed from toplevel directory of swimmer
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/)
 
 add_subdirectory( src )
 

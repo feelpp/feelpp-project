@@ -8,7 +8,7 @@ in_default_titlename="${projectname^}"
 read -p "What is the title of the project? [$in_default_titlename]" projecttitle
 projecttitle=${projecttitle:-$in_default_titlename}
 
-in_default_shortname=""
+in_default_shortname="p"
 read -p "What is the short name of the project? []" shortprojectname
 shortprojectname=${shortprojectname:-$in_default_shortname}
 
@@ -33,13 +33,19 @@ export projecttitle
 export shortprojectname
 export appname
 
-perl -077pi.bak -e 's/myproject/$ENV{'projectname'}/sg' CMakeLists.txt
-if test -z "$shortprojectname"; then
-    perl -077pi.bak -e 's/set\\(PROJECT_SHORTNAME \"\"\\)/set(PROJECT_SHORTNAME "$ENV{'shortprojectname'}")/sg' CMakeLists.txt
-fi    
-perl -077pi.bak -e 's/myapp/$ENV{'appname'}/sg' $PWD/src/CMakeLists.txt
-
-perl -077pi.bak -e 's/myproject/$ENV{'projectname'}/sg' README.adoc
+files=( "README.adoc" "CMakeFiles.txt" "src/CMakeLists.txt" 
+        "site-dev.yml" "docs/antora.yml" "docs/ROOT/index.adoc" 
+        ".github/workflows/ci.yml" ".github/workflows/release.yml" )
+for i in "${files[@]}"
+    echo "processing renaming in $i ...."
+    perl -077pi.bak -e 's/myproject/$ENV{'projectname'}/sg' $i
+    if test -z "$shortprojectname"; then
+        perl -077pi.bak -e 's/set\\(PROJECT_SHORTNAME \"\"\\)/set(PROJECT_SHORTNAME "$ENV{'shortprojectname'}")/sg' $i
+    fi    
+    perl -077pi.bak -e 's/myapp/$ENV{'appname'}/sg' $i
+done
 
 git mv src/.tests.myapp  src/.tests.$appname
+
+git status
 

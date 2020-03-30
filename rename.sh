@@ -34,7 +34,7 @@ export projecttitle
 export shortprojectname
 export appname
 
-files=( "README.adoc" "CMakeFiles.txt" "src/CMakeLists.txt" "src/.tests.myapp" 
+files=( "README.adoc" "CMakeLists.txt" "src/CMakeLists.txt" "src/.tests.myapp" 
         "site-dev.yml" "docs/antora.yml" "docs/ROOT/index.adoc" 
         ".github/workflows/ci.yml" ".github/workflows/release.yml" )
 for i in "${files[@]}"
@@ -43,7 +43,7 @@ do
     perl -077pi.bak -e 's/myproject/$ENV{'projectname'}/sg' $i
     perl -077pi.bak -e 's/MyProject/$ENV{'projecttitle'}/sg' $i
     if test -z "$shortprojectname"; then
-        perl -077pi.bak -e 's/set\\(PROJECT_SHORTNAME \"\"\\)/set(PROJECT_SHORTNAME "$ENV{'shortprojectname'}")/sg' $i
+        perl -077pi.bak -e 's/set\\(PROJECT_SHORTNAME \"p\"\\)/set(PROJECT_SHORTNAME "$ENV{'shortprojectname'}")/sg' $i
     fi    
     perl -077pi.bak -e 's/myapp/$ENV{'appname'}/sg' $i
 done

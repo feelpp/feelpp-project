@@ -16,11 +16,11 @@ jobs:
         with:
           lfs: true
 
-      - name: Changelog Generator
-        id: changelog
-        uses: timfallmk/github-changelog-generator-action@0.0.2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Changelog Generator
+#        id: changelog
+#        uses: timfallmk/github-changelog-generator-action@0.0.2
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Build
         env:
@@ -33,7 +33,9 @@ jobs:
           make install
           make package
           mkdir artifact && cp myproject*.tar.gz artifact
-          echo ${{ steps.changelog.outputs.changelog }} > artifact/CHANGELOG.md
+          github_changelog_generator -u feelpp -p feelpp-project 
+          cp CHANGELOG.md artifact
+#          echo ${{ steps.changelog.outputs.changelog }} > artifact/CHANGELOG.md
           
       - name: Upload artifacts
         uses: actions/upload-artifact@v1

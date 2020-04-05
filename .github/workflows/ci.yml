@@ -27,10 +27,10 @@ jobs:
         ls -l artifact
         tar tzvf myproject*.tar.gz
       working-directory: build
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        # Artifact name
-        name: MyProject-${{ runner.os }} 
-        # Directory containing files to upload
-        path: build/install/
+#    - name: Upload artifact
+#      uses: actions/upload-artifact@v1.0.0
+#      with:
+#        # Artifact name
+#        name: MyProject-${{ runner.os }} 
+#        # Directory containing files to upload
+#        path: build/install/

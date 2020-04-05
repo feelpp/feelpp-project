@@ -1,6 +1,6 @@
 = Contribution Guide
 :uri-org: https://github.com/feelpp
-:uri-repo: {uri-org}/feelpp
+:uri-repo: {uri-org}/feelpp-project
 :uri-www: http://www.feelpp.org
 :uri-project: http://docs.feelpp.org/
 :uri-docs: {uri-project}

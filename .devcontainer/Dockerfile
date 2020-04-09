@@ -33,6 +33,10 @@ RUN apt-get update \
     && apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
     && chmod 0440 /etc/sudoers.d/$USERNAME \
+    # add github ssh key
+    && mkdir ~vscode/.ssh/ \
+    && ssh-keyscan github.com >> ~vscode/.ssh/known_hosts \
+    && chown -R vscode.$USER_GID ~vscode/.ssh \
     #
     # Clean up
     && apt-get autoremove -y \

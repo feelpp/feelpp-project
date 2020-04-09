@@ -1,4 +1,6 @@
 FROM feelpp/feelpp:latest
+# OR if toolboxes are required
+# FROM feelpp/feelpp-toolboxes:latest
 
 USER root
 
@@ -22,26 +24,7 @@ RUN apt-get update \
     && apt-get -y install git iproute2 procps lsb-release \
     #\
     # Install C++ tools\
-        && apt-get -y install build-essential cmake cppcheck valgrind libcurl4-openssl-dev libgsl-dev python3 python3-dev python3-setuptools python3-sympy \
-	       libboost1.67-all-dev \
-           libcln-dev\
-           petsc-dev\
-           slepc-dev\
-           libhdf5-openmpi-dev\
-           libnlopt-dev\
-           libgsl-dev\
-           libnetcdf-dev libgl2ps-dev libglu1-mesa-dev libsm-dev libxt-dev\
-           libfftw3-mpi-dev\
-	       libxml2-dev\
-	       libgmsh-dev\
-	       libtbb-dev\
-	       libann-dev libglpk-dev\
-           libbz2-dev\
-           libbson-dev\
-           libmongoc-dev\
-           libmongoclient-dev           \
-           libglew-dev\
-           npm \
+        && apt-get -y install build-essential npm \
     #\
     # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.\
     && groupadd --gid $USER_GID $USERNAME \

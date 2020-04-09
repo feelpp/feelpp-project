@@ -1,4 +1,4 @@
-build/
+build*/
 docs/public/
 docs/cache/
 *.bak

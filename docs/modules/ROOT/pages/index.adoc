@@ -3,56 +3,14 @@
 This is a {feelpp} Template Project. 
 It serves as a template for {feelpp} projects.
 
-== Features
+The features include
 
-=== Renaming the project 
+* xref:cmake.adoc[cmake environment]
+* xref:antora.adoc[antora environment]
+* xref:vscode.adoc[vscode integration]
 
-The script rename.sh renames the project. 
-You have to answer a few questions to setup a new project out of this template.
 
-=== Cmake environment
 
-The CMakeLists.txt is setup with {feelpp}.
-A sample {feelpp} application is available in `src`.
 
-* cpack is configured
-* ctest is configured
 
-=== Antora environment
 
-Antora is our static website generator. 
-We use it to generate the documentation of the project and upload it to docs.feelpp.org[{feelpp} docs] website.
-
-.To generate the documentation
-----
-cd docs
-antora site.yml
-----
-
-.To visualizethe documentation
-----
-# from topevel directory
-node-srv docs/public
-# from docs/
-node-srv docs
-----
-
-=== github actions
-
-Github actions are setup to 
-
-* build the documentation using Antora and upload them to docs.feelpp.org[{feelpp} docs] upon any change in the repo.
-* build a sample {feelpp} code
-
-=== VSCode Integration using Docker Container
-
-The Docker image can be set from `feelpp/feelpp` or `feelpp/feelpp-toolboxes`, simply edit `.devcontainer/Dockerfile` and choose the image you want.
-
-`ssh-keyscan` is used on `github.com` to register the public key of github in $HOME/.ssh/known_hosts and avoid having git auth issues the first time we log into the container and push/pull to/from github.
-
-The following extensions are installed in Docker:
-
-* cpptools
-* cmaketools
-* cmake
-* asciidoctor-vscode

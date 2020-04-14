@@ -1,3 +1,2 @@
-.MyProject
-* Outline of the project
-** xref:README.adoc[Introduction]
+* {feelpp} project
+** xref:index.adoc[Introduction]

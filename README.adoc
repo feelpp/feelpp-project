@@ -3,14 +3,4 @@
 
 image:https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
 
-This is a {feelpp} Template Project. It serves as a template for {feelpp} projects.
-
-== Features
-
-* script rename.sh to rename the project
-* cmake environment
-** cpack configuration
-** ctest configuration
-* antora environment
-* github actions
-* vscode integration using container
+The documentation is link:docs/modules/ROOT/index.adoc[here].

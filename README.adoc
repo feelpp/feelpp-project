@@ -1,5 +1,5 @@
 :feelpp: Feel++
-= {feelpp} myproject 
+= {feelpp} Project Template
 
 image:https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
 

@@ -24,7 +24,7 @@ RUN apt-get update \
     && apt-get -y install git iproute2 procps lsb-release \
     #\
     # Install C++ tools\
-        && apt-get -y install build-essential npm \
+        && apt-get -y install build-essential npm git-lfs\
     #\
     # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user.\
     && groupadd --gid $USER_GID $USERNAME \

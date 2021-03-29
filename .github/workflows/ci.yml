@@ -24,13 +24,13 @@ jobs:
       name: install
       run: |
         sudo apt -y update 
-        sudo apt -yq install npm ython3-pandas python3-pip
+        sudo apt -yq install npm python3-pandas python3-pip
     - name: Build
       run: echo "Hi!"
 
   build_code:
     needs: activate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     name: Build, Install, Package code
     steps:
     - 
@@ -38,10 +38,12 @@ jobs:
       with:
         lfs: true
     - 
-      name: Update feelpp
-      run: |
-        sudo apt update
-        sudo apt --reinstall install -y libfeelpp1 libfeelpp-dev feelpp-tools python3-feelpp python3-mpi4py
+      name: Install feelpp
+      uses: feelpp/action-install-feelpp@v1
+      with:
+        dist: ubuntu
+        flavor: focal
+        install: libfeelpp1 feelpp-tools libfeelpp-dev libfeelpp-toolboxes1-all-dev feelpp-toolboxes
     - 
       name: Build MyProject
       run: |

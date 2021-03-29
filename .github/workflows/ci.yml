@@ -55,7 +55,7 @@ jobs:
     - 
       name: Check build
       run: |
-        mpirun --bind-to core --mca btl vader,self -np 4 install/bin/feelpp_p_myapp 
+        mpirun --bind-to core --mca btl vader,self -np 4 --oversubscribe install/bin/feelpp_p_myapp 
       working-directory: build/
     - 
       name: Package

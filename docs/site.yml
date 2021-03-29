@@ -4,7 +4,7 @@ site:
   start_page: myproject:ROOT:index.adoc
 content:
   sources:
-  - url: ..
+  - url: https://github.com/feelpp/feelpp-project
     branches: master
     start_path: docs
 ui:

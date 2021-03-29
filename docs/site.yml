@@ -1,7 +1,7 @@
 site:
   title: Project // Docs
-#  url: ../
-#  start_page: myproject:ROOT:index.adoc
+  url: https://feelpp.github.io/feelpp-project/
+  start_page: myproject:ROOT:index.adoc
 content:
   sources:
   - url: ..
@@ -17,7 +17,7 @@ output:
   
 asciidoc:
   attributes:
-    project_version: 0.108
+    project_version: 0.109
     deploymentRoot: ""
     numbered: true
     allow-uri-read: true

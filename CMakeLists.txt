@@ -3,7 +3,7 @@
 #  Author(s): Christophe Prud'homme <christophe.prudhomme@feelpp.org>
 #       Date: 2020-06-03
 #
-#  Copyright (C) 2020 Cemosis
+#  Copyright (C) 2020-present Cemosis
 #
 # Distributed under the GPL(GNU Public License):
 # This program is free software; you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 #
 #
 cmake_minimum_required(VERSION 3.15.0)
-project(myproject VERSION 2.0.0)
+project(myproject VERSION 1.0.0)
 set(EXTRA_VERSION "")
 set(PROJECT_SHORTNAME "p")
 
@@ -87,7 +87,11 @@ set(CPACK_SOURCE_GENERATOR "TGZ")
 
 set(CPACK_DEBIAN_PACKAGE_NAME "${PROJECT_NAME}")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_CONTACT}")
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "libfeelpp1 (>= 0.109)")
+if ( USE_FEELPP_TOOLBOXES )
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libfeelpp1 (>= 0.109)") # add depends with relevant toolbox lib
+else()
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libfeelpp1 (>= 0.109)")
+endif()
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION_SUMMARY "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}")
 set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION}")
 set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")

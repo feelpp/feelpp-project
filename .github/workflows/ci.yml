@@ -11,7 +11,19 @@ jobs:
       !startsWith(github.event.head_commit.message, 'Release ') &&
       !contains(github.event.head_commit.message, 'ci skip')
     steps:
-    - run: echo ok go
+    - name: Install credentials
+      run: echo https://$GITHUB_OAUTH:@github.com > $HOME/.git-credentials
+      env:
+        GITHUB_OAUTH: ${{ secrets.DOCS_GITHUB_KEY }}
+    - name: Build
+      run: npm run build
+      working-directory: docs
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: docs/public # The folder the action should deploy.
 
   build_docs:
     needs: activate

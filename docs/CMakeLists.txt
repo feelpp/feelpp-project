@@ -4,6 +4,8 @@ set(ANTORA_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/public")
 
 find_program (npm NAMES npm)
 
+if ( NPM_FOUND )
+
 add_custom_command(OUTPUT "${ANTORA_OUTPUT_DIR}" ALL
     COMMENT "Building documentation... "
     COMMAND "${npm}" run antora 
@@ -13,3 +15,6 @@ add_custom_command(OUTPUT "${ANTORA_OUTPUT_DIR}" ALL
 add_custom_target(doc ALL DEPENDS "${ANTORA_OUTPUT_DIR}")
 
 install(DIRECTORY "${ANTORA_OUTPUT_DIR}/" DESTINATION ${APPLICATION_DOC_DIR} OPTIONAL)
+else()
+    message(STATUS "npm is not installed, can use antora ")
+endif()

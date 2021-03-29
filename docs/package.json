@@ -27,8 +27,8 @@
       "linkcheck": "broken-link-checker --filter-level 3 --recursive --verbose"
     },
     "dependencies": {
-      "@antora/cli": "^2.2",
-      "@antora/site-generator-default": "^2.2"
+      "@antora/cli": "^2.3.4",
+      "@antora/site-generator-default": "^2.3.4"
     },
     "devDependencies": {
       "broken-link-checker": "^0.7.8",

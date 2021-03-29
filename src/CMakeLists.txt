@@ -22,5 +22,7 @@
 #
 #
 feelpp_add_application(myapp SRCS main.cpp TESTS INSTALL)
-feelpp_add_application(update-toolbox SRCS update-toolbox.cpp LINK_LIBRARIES Feelpp::feelpp_toolbox_electric_lib TESTS)
-feelpp_add_testcase(test-cases)
+if ( USE_FEELPP_TOOLBOXES )
+    feelpp_add_application(update-toolbox SRCS update-toolbox.cpp LINK_LIBRARIES Feelpp::feelpp_toolbox_electric_lib TESTS)
+    feelpp_add_testcase(test-cases)
+endif()

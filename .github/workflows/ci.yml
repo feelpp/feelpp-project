@@ -16,7 +16,9 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.DOCS_GITHUB_KEY }}
     - name: Build
-      run: npm run build
+      run: |
+        npm install
+        npm run antora
       working-directory: docs
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0

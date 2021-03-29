@@ -50,7 +50,7 @@ jobs:
         lfs: true
     - 
       name: Install feelpp
-      uses: feelpp/action-install-feelpp@v1
+      uses: feelpp/action-install-feelpp@v1.1
       with:
         dist: ubuntu
         flavor: focal
@@ -87,7 +87,7 @@ jobs:
     name: Check Build, Install, Run
     steps:
     - name: Install feelpp
-      uses: feelpp/action-install-feelpp@main
+      uses: feelpp/action-install-feelpp@v1.1
       with:
           repo: deb https://dl.bintray.com/feelpp/ubuntu focal latest
     - name: Download 

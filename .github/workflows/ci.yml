@@ -66,7 +66,7 @@ jobs:
     - 
       name: Check build
       run: |
-        mpirun --mca btl vader,self -np 2 --oversubscribe  install/bin/feelpp_p_myapp 
+        ctest 
       working-directory: build/
     - 
       name: Package
@@ -89,7 +89,9 @@ jobs:
     - name: Install feelpp
       uses: feelpp/action-install-feelpp@v1.1
       with:
-          repo: deb https://dl.bintray.com/feelpp/ubuntu focal latest
+        dist: ubuntu
+        flavor: focal
+        install: libfeelpp1 feelpp-tools libfeelpp-dev libfeelpp-toolboxes1-all-dev feelpp-toolboxes
     - name: Download 
       uses: actions/download-artifact@v2
       with:

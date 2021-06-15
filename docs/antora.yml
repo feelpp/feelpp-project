@@ -1,6 +1,6 @@
 name: myproject
 title: Feel++ MyProject
 version: '1.0.0'
-start_page: ROOT/index.adoc
+start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/nav.adoc

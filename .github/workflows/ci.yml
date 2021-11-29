@@ -3,14 +3,24 @@ name: CI
 on: [push]
 
 jobs:
+  activate:
+    runs-on: ubuntu-latest
+    if: |
+      github.repository == 'feelpp/feelpp-project' &&
+      !startsWith(github.event.head_commit.message, 'Release ') &&
+      !contains(github.event.head_commit.message, 'ci skip')
+    steps:
+    - run: echo ok go
+
   build_docs:
     runs-on: ubuntu-latest
     container: feelpp/feelpp-project
-    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    
     steps:
     - uses: actions/checkout@v2
     - name: Build
       run: echo "Hi!"
+      
   build_code:
     runs-on: ubuntu-latest
     container: feelpp/feelpp-project

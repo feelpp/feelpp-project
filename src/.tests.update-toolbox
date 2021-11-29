@@ -1,0 +1,1 @@
+update-1 --config-file ${CMAKE_CURRENT_SOURCE_DIR}/test-cases/2d.cfg

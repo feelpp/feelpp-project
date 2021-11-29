@@ -1,24 +1,23 @@
 site:
   title: Project // Docs
-#  url: ../
-#  start_page: myproject:ROOT:index.adoc
+  url: https://feelpp.github.io/feelpp-project/
+  start_page: myproject:ROOT:index.adoc
 content:
   sources:
-  - url: ..
+  - url: https://github.com/feelpp/feelpp-project
     branches: master
     start_path: docs
 ui:
   bundle:
-    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    url: https://gitlab.com/feelpp/antora-ui-default/-/jobs/artifacts/feelpp/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
-  supplemental_files: supplemental-ui
 output:
   clean: true
   dir: public
   
 asciidoc:
   attributes:
-    project_version: 0.108
+    project_version: 0.109
     deploymentRoot: ""
     numbered: true
     allow-uri-read: true

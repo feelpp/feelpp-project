@@ -3,7 +3,7 @@
 #  Author(s): Christophe Prud'homme <christophe.prudhomme@feelpp.org>
 #       Date: 2020-06-03
 #
-#  Copyright (C) 2020 Cemosis
+#  Copyright (C) 2020-present Cemosis
 #
 # Distributed under the GPL(GNU Public License):
 # This program is free software; you can redistribute it and/or modify
@@ -21,10 +21,18 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 #
-
-cmake_minimum_required(VERSION 3.12)
-project(myproject VERSION 0.1.0)
+cmake_minimum_required(VERSION 3.15.0)
+project(myproject VERSION 1.0.0)
+set(EXTRA_VERSION "")
 set(PROJECT_SHORTNAME "p")
+
+include(GNUInstallDirs)
+
+if (POLICY CMP0077)
+  cmake_policy(SET CMP0077 NEW)
+  set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
+endif()
+
 
 OPTION(USE_FEELPP_TOOLBOXES "Enable Feel++ Toolboxes" OFF)
 
@@ -59,7 +67,38 @@ list(APPEND CPACK_SOURCE_IGNORE_FILES
   .travis.yml
   .appveyor.yml
   )
-set(CPACK_SOURCE_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}")
-set(CPACK_GENERATOR "TGZ")
+
+set(CPACK_PACKAGE_NAME "${PROJECT_NAME}-${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}${EXTRA_VERSION}")
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION}${EXTRA_VERSION}")
+SET(CPACK_PACKAGE_FILE_NAME "${PROJECT_NAME}-${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}${EXTRA_VERSION}-${CMAKE_SYSTEM_NAME}")
+set(CPACK_PACKAGE_DIRECTORY "${PROJECT_BINARY_DIR}/assets")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Cemosis Holo3 Polymap Service")
+set(CPACK_PACKAGE_DESCRIPTION "Cemosis Holo3 provides a web service for surface reconstruction for the Polymap device.")
+set(CPACK_PACKAGE_VENDOR "Cemosis")
+set(CPACK_PACKAGE_CONTACT "Christophe Prud'homme <christophe.prudhomme@cemosis.fr>")
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+
+
+set(CPACK_GENERATOR "TGZ;DEB")
 set(CPACK_SOURCE_GENERATOR "TGZ")
+
+
+set(CPACK_DEBIAN_PACKAGE_NAME "${PROJECT_NAME}")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_CONTACT}")
+if ( USE_FEELPP_TOOLBOXES )
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libfeelpp1 (>= 0.109)") # add depends with relevant toolbox lib
+else()
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libfeelpp1 (>= 0.109)")
+endif()
+set(CPACK_DEBIAN_PACKAGE_DESCRIPTION_SUMMARY "${CPACK_PACKAGE_DESCRIPTION_SUMMARY}")
+set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION}")
+set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+set(CPACK_DEBIAN_PACKAGE_SECTION "science")
+set(CPACK_DEBIAN_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}${EXTRA_VERSION}")
+set(CPACK_DEBIAN_ARCHITECTURE "${CMAKE_SYSTEM_PROCESSOR}")
+#set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_SOURCE_DIR}/cmake/debian/postinst")
+  
 include(CPack)
+

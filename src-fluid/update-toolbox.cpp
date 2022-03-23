@@ -37,8 +37,9 @@ int main(int argc, char** argv)
                         auto v = Vh->element();
                         auto q = Wh->element();
                         // retrieve current approximate
-                        auto u = data.fieldVelocity();
-                        auto p = data.fieldPressure();
+                        auto U = data.currentSolution();
+                        auto u = fluid->functionSpaceVelocity()->element( U, 0 );
+                        auto p = fluid->functionSpacePressure()->element( U, 1 );
 
                         // create a linear form from the vector on the function space
                         auto f = form1( _test=Vh, _vector=F );
@@ -61,8 +62,8 @@ int main(int argc, char** argv)
                         auto q = Wh->element();
                         // retrieve current approximate
                         auto U = data.currentSolution();
-                        auto u = U(0_c); // data.fieldVelocity();
-                        auto p = U(1_c); // data.fieldPressure();
+                        auto u = fluid->functionSpaceVelocity()->element( U, 0 );
+                        auto p = fluid->functionSpacePressure()->element( U, 1 );
 
                         // create a bilinear form from the matrix on the function space
                         auto a = form2( _test=Vh, _trial=Vh );
@@ -88,7 +89,8 @@ int main(int argc, char** argv)
                         auto Vh = fluid->functionSpaceVelocity();
                         auto v = Vh->element();
                         // retrieve current approximate
-                        auto u = data.fieldVelocity();
+                        auto U = data.currentSolution();
+                        auto u = fluid->functionSpaceVelocity()->element( U, 0 );
 
                         // create a linear form from the vector on the function space
                         auto f = form1( _test=Vh, _vector=F);
@@ -106,7 +108,8 @@ int main(int argc, char** argv)
                         auto Vh = fluid->functionSpaceVelocity();
                         auto v = Vh->element();
                         // retrieve current approximate
-                        auto u = data.fieldVelocity();
+                        auto U = data.currentSolution();
+                        auto u = fluid->functionSpaceVelocity()->element( U, 0 );
 
                         // create a bilinear form from the matrix on the function space
                         auto a = form2( _test=Vh, _trial=Vh, _matrix=A);

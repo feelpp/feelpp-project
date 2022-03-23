@@ -30,19 +30,21 @@ int main(int argc, char** argv)
                         if( buildCstPart )
                             return;
                         // retrieve matrix and vector already assemble
-                        sparse_matrix_ptrtype& A = data.matrix();
                         vector_ptrtype& F = data.rhs();
                         // retrieve space and create a test function
                         auto Vh = fluid->functionSpaceVelocity();
+                        auto Wh = fluid->functionSpacePressure();
                         auto v = Vh->element();
+                        auto q = Wh->element();
                         // retrieve current approximate
                         auto u = data.fieldVelocity();
+                        auto p = data.fieldPressure();
 
                         // create a linear form from the vector on the function space
-                        auto f = form1( _test=Vh, _vector=F);
-                        // remove volumic convection term from the linear form
-                        // f += integrate( _range=elements(support(Vh)), _expr=-inner(convection(u,u), id(v)) );
+                        auto f = form1( _test=Vh, _vector=F );
                         // add the term to the linear form
+                        f += integrate( _range=elements(support(Vh)), _expr=2*mu*inner( sym(gradv(u)), sym(grad(v)) ) );
+                        f += integrate( _range=elements(support(Vh)), _expr=-idv(p)*div(v) );
                         f += integrate( _range=elements(support(Vh)), _expr=-inner(idv(u), idv(u))*div(v) );
                     };
         auto mu = [&fluid](FeelModels::ModelAlgebraic::DataUpdateJacobian & data) {
@@ -52,21 +54,27 @@ int main(int argc, char** argv)
                             return;
                         // retrieve matrix and vector already assemble
                         sparse_matrix_ptrtype& A = data.matrix();
-                        vector_ptrtype& F = data.rhs();
                         // retrieve space and create a test function
                         auto Vh = fluid->functionSpaceVelocity();
+                        auto Wh = fluid->functionSpacePressure();
                         auto v = Vh->element();
+                        auto q = Wh->element();
                         // retrieve current approximate
-                        auto u = data.fieldVelocity();
+                        auto U = data.currentSolution();
+                        auto u = U(0_c); // data.fieldVelocity();
+                        auto p = U(1_c); // data.fieldPressure();
 
                         // create a bilinear form from the matrix on the function space
-                        auto a = form2( _test=Vh, _trial=Vh, _matrix=A);
-                        // remove volumic convection terms from the bilinear form
-                        // a += integrate( _range=elements(support(Vh)), _expr=-inner(convection(du,u), id(v)) );
-                        // a += integrate( _range=elements(support(Vh)), _expr=-inner(convection(u,du), id(v)) );
+                        auto a = form2( _test=Vh, _trial=Vh );
                         // add the term to the bilinear form
+                        a += integrate( _range=elements(support(Vh)), _expr=-2*mu*inner( sym(gradt(v)), sym(grad(v)) ) );
+                        a += integrate( _range=elements(support(Vh)), _expr=-idt(q)*div(v) );
+                        a += integrate( _range=elements(support(Wh)), _expr=-id(q)*divt(v) );
                         a += integrate( _range=elements(support(Vh)), _expr=-inner(idt(v), idv(u))*div(v) );
                     };
+        // add the functions to the algebraic factory
+        fluid->algebraicFactory()->addFunctionResidualAssembly(lambda);
+        fluid->algebraicFactory()->setFunctionJacobianAssembly(mu);
     }
     else {
         auto lambda = [&fluid](FeelModels::ModelAlgebraic::DataUpdateResidual & data) {
@@ -75,7 +83,6 @@ int main(int argc, char** argv)
                         if( buildCstPart )
                             return;
                         // retrieve matrix and vector already assemble
-                        sparse_matrix_ptrtype& A = data.matrix();
                         vector_ptrtype& F = data.rhs();
                         // retrieve space and create a test function
                         auto Vh = fluid->functionSpaceVelocity();
@@ -95,7 +102,6 @@ int main(int argc, char** argv)
                             return;
                         // retrieve matrix and vector already assemble
                         sparse_matrix_ptrtype& A = data.matrix();
-                        vector_ptrtype& F = data.rhs();
                         // retrieve space and create a test function
                         auto Vh = fluid->functionSpaceVelocity();
                         auto v = Vh->element();
@@ -107,11 +113,12 @@ int main(int argc, char** argv)
                         // add the term to the bilinear form
                         a += integrate( _range=markedfaces(support(Vh), "Gamma"), _expr=-inner(idt(v), idv(u))*div(v) );
                     }; 
+
+        // add the functions to the algebraic factory
+        fluid->algebraicFactory()->addFunctionResidualAssembly(lambda);
+        fluid->algebraicFactory()->addFunctionJacobianAssembly(mu);
     }
-    // add the functions to the algebraic factory
-    // fluid->algebraicFactory()->addFunctionLinearAssembly(kappa);
-    fluid->algebraicFactory()->addFunctionResidualAssembly(lambda);
-    fluid->algebraicFactory()->addFunctionJacobianAssembly(mu);
+
     // solve the problem
     fluid->solve();
     fluid->exportResults();

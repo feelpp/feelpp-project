@@ -15,6 +15,7 @@
 #include <feel/feelcore/ptreetools.hpp>
 #include <feel/feelcore/utility.hpp>
 #include <feel/feeldiscr/pch.hpp>
+#include <feel/feeldiscr/minmax.hpp>
 #include <feel/feelfilters/exporter.hpp>
 #include <feel/feelfilters/loadmesh.hpp>
 #include <feel/feelvf/form.hpp>
@@ -44,8 +45,9 @@ nl::json summary( Container const& c, bool print = do_print )
     using namespace Feel::vf;
     nl::json j;
     j["size"] = c.size();
-    j["min"] = c.min();
-    j["max"] = c.max();
+    auto r = minmaxelt(_range = elements(support(c.functionSpace())), _element = c);
+    j["min"] = r[0];
+    j["max"] = r[1];
     j["mean"] = mean( _range = elements( c.mesh() ), _expr = idv( c ) );
 
     if (print)
@@ -181,12 +183,6 @@ int runLaplacian( nl::json const& specs )
         e->step(M_bdf->time())->add("u", u);
         e->save();
     }
-
-    
-    // Export
-    
-    
-
     return 0;
 }
 } // namespace Feel
@@ -194,6 +190,7 @@ int runLaplacian( nl::json const& specs )
 int main( int argc, char** argv )
 {
     using namespace Feel;
+    int status;
     try
     {
         Environment env( _argc = argc, _argv = argv,
@@ -204,11 +201,11 @@ int main( int argc, char** argv )
         auto jsonfile = removeComments( readFromFile( Environment::expand( soption( "specs" ) ) ) );
         std::istringstream istr( jsonfile );
         json specs = json::parse( istr );
-        runLaplacian<FEELPP_DIM, FEELPP_ORDER>( specs );
+        return runLaplacian<FEELPP_DIM, FEELPP_ORDER>( specs );
     }
     catch ( ... )
     {
         handleExceptions();
     }
-    return 1;
+    return 0;
 }

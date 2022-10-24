@@ -22,7 +22,7 @@
 #
 #
 cmake_minimum_required(VERSION 3.21.0)
-project(myproject VERSION 1.0.0)
+project(myproject VERSION 1.0.1)
 set(EXTRA_VERSION "")
 set(PROJECT_SHORTNAME "myproject")
 

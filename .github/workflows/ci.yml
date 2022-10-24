@@ -39,46 +39,35 @@ jobs:
 
   build_code:
     needs: activate
-    runs-on: self-hosted
+    runs-on: self-ubuntu-22.04
     name: Build, Install, Package code
     if: "!contains(github.event.head_commit.message, 'code skip')"
     steps:
-    - 
+    - name: Checkout
       uses: actions/checkout@v2.3.4
       with:
         lfs: true
+        recursive: true
     - 
-      name: Install feelpp
-      uses: feelpp/action-install-feelpp@v1.3
-      with:
-        dist: ubuntu
-        flavor: focal
-        install: libfeelpp1 feelpp-tools libfeelpp-dev libfeelpp-toolboxes1-all-dev feelpp-toolboxes
-    - 
-      name: Build MyProject
+      name: Build 
       run: |
-        rm -rf build
-        mkdir build && cd build
-        CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PWD/install ..
-        make -j5
-        make install
+        cmake --preset default
+        cmake --build --preset default
     - 
       name: Check build
       run: |
-        ctest 
-      working-directory: build/
+        ctest --preset default
     - 
       name: Package
       run: |
-        make package
-      working-directory: build
+        cmake --build --preset default -t package
     - name: Upload 
       uses: actions/upload-artifact@v2
       with:
         # Artifact name
         name: feelpp-project-artifacts
         # Directory containing files to upload
-        path: build/assets/myproject-*
+        path: build/default/assets/myproject-*
 
   check:
     needs: build_code
@@ -97,12 +86,12 @@ jobs:
         # Artifact name
         name: feelpp-project-artifacts
         # Directory containing files to upload
-        path: build/assets/
+        path: build/default/assets/
     - name: Display Artifact
       run: ls -R
       working-directory: build/assets
     - name: Install Project
-      run: sudo dpkg -i build/assets/*.deb
+      run: sudo dpkg -i build/default/assets/*.deb
 
   deliver:
     runs-on: ubuntu-20.04

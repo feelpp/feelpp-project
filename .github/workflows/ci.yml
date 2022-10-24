@@ -94,13 +94,25 @@ jobs:
     - uses: actions/checkout@v2.3.4
       with:
         lfs: true
-    
+        recursive: true
     - name: Download 
       uses: actions/download-artifact@v2
       with:
         # Artifact name
         name: feelpp-project-artifacts
         path: artifacts/
+    -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ghcr.io/feelpp/feelpp-project
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
     -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v1.1.0
@@ -119,8 +131,8 @@ jobs:
       uses: docker/build-push-action@v2
       with: 
         context: artifacts
-        repository: feelpp/feelpp-project
-        tags: ghcr.io/feelpp/feelpp-project:latest
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
         file: ./Dockerfile
-        push: true
         

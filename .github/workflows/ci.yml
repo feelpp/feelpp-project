@@ -83,9 +83,7 @@ jobs:
         path: build/default/assets/
     - name: Display Artifact
       run: ls -R
-      working-directory: build/assets
-    - name: Install Project
-      run: sudo dpkg -i build/default/assets/*.deb
+      working-directory: build/default/assets
 
   deliver:
     runs-on: ubuntu-20.04

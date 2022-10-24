@@ -74,12 +74,6 @@ jobs:
     runs-on: ubuntu-20.04
     name: Check Build, Install, Run
     steps:
-    - name: Install feelpp
-      uses: feelpp/action-install-feelpp@v1.1
-      with:
-        dist: ubuntu
-        flavor: focal
-        install: libfeelpp1 feelpp-tools libfeelpp-dev libfeelpp-toolboxes1-all-dev feelpp-toolboxes
     - name: Download 
       uses: actions/download-artifact@v2
       with:

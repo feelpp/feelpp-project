@@ -23,7 +23,7 @@ jobs:
           CHANGELOG_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cmake --preset default
-          cmake --build --preset default -t install
+          cmake --build --preset default 
           cmake --build --preset default -t package
 
 

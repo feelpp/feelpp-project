@@ -19,10 +19,42 @@
 #include <feel/feelfilters/loadmesh.hpp>
 #include <feel/feelvf/form.hpp>
 #include <feel/feelvf/vf.hpp>
-#include <feel/feelvf/bdf.hpp>
+#include <feel/feelts/bdf.hpp>
 
 namespace Feel
 {
+inline const int FEELPP_DIM=2;
+inline const int FEELPP_ORDER=1;
+
+static inline const bool do_print = true;
+static inline const bool dont_print = false;
+
+/**
+ * @brief compute the summary of a container
+ * 
+ * @tparam Container type of the container
+ * @param c container
+ * @param print boolean, true print the summary, false otherwise
+ * @return nl::json json object containing the summary
+ */
+template<typename Container>
+nl::json summary( Container const& c, bool print = do_print )
+{
+    using namespace Feel;
+    using namespace Feel::vf;
+    nl::json j;
+    j["size"] = c.size();
+    j["min"] = c.min();
+    j["max"] = c.max();
+    j["mean"] = mean( _range = elements( c.mesh() ), _expr = idv( c ) );
+
+    if (print)
+    {
+        if (Environment::isMasterRank())        
+            std::cout << j.dump(2) << std::endl;
+    }
+    return j;
+}
 inline Feel::po::options_description
 makeOptions()
 {
@@ -62,9 +94,9 @@ int runLaplacian( nl::json const& specs )
     if ( boption("steady") )
         M_bdf->setSteady();
 
-    for ( auto [key, material] : specs["/Models/laplacian/materials"_json_pointer].items() )
+    for ( auto [key, material] : specs["/Models/laplacian/Materials"_json_pointer].items() )
     {
-        LOG( INFO ) << fmt::format( "material {}", material );
+        LOG( INFO ) << fmt::format( "Material {} found", material );
         std::string mat = fmt::format( "/Materials/{}/k", material.get<std::string>() );
         auto k = specs[nl::json::json_pointer( mat )].get<std::string>();
 
@@ -75,7 +107,7 @@ int runLaplacian( nl::json const& specs )
     // BC Neumann
     if ( specs["/BoundaryConditions/laplacian"_json_pointer].contains( "flux" ) )
     {
-        for ( auto& [bc, value] : specs["/BoundaryConditions/heat/flux"_json_pointer].items() )
+        for ( auto& [bc, value] : specs["/BoundaryConditions/laplacian/flux"_json_pointer].items() )
         {
             LOG( INFO ) << fmt::format( "flux {}: {}", bc, value.dump() );
             auto flux = value["expr"].get<std::string>();
@@ -86,11 +118,11 @@ int runLaplacian( nl::json const& specs )
     }
 
     // BC Robin
-    if ( specs["/BoundaryConditions/laplacian"_json_pointer].contains( "convective_heat_flux" ) )
+    if ( specs["/BoundaryConditions/laplacian"_json_pointer].contains( "convective_laplacian_flux" ) )
     {
-        for ( auto& [bc, value] : specs["/BoundaryConditions/heat/convective_heat_flux"_json_pointer].items() )
+        for ( auto& [bc, value] : specs["/BoundaryConditions/laplacian/convective_laplacian_flux"_json_pointer].items() )
         {
-            LOG( INFO ) << fmt::format( "convective_heat_flux {}: {}", bc, value.dump() );
+            LOG( INFO ) << fmt::format( "convective_laplacian_flux {}: {}", bc, value.dump() );
             auto h = value["h"].get<std::string>();
             auto Text = value["Text"].get<std::string>();
 
@@ -111,13 +143,16 @@ int runLaplacian( nl::json const& specs )
                   << "The final time is " << M_bdf->timeFinal() << "\n"
                   << "BDF order :  " << M_bdf->timeOrder() << "\n" << std::endl;
 
-    // Solve
+    // exporter mesh and fields for visualisation in paraview                  
+    auto e = exporter(_mesh = mesh);
+
+    // time loop
     for ( M_bdf->start(); M_bdf->isFinished()==false; M_bdf->next(u) )
     {
         at = a;
         lt = l;
 
-        for ( auto [key, material] : specs["/Models/laplacian/materials"_json_pointer].items() )
+        for ( auto [key, material] : specs["/Models/laplacian/Materials"_json_pointer].items() )
         {
             std::string matRho = fmt::format( "/Materials/{}/rho", material.get<std::string>() );
             std::string matCp = fmt::format( "/Materials/{}/Cp", material.get<std::string>() );
@@ -129,22 +164,18 @@ int runLaplacian( nl::json const& specs )
         }
 
         at.solve( _rhs = lt, _solution = u );
+        // compute summary 
+        summary(u);
+
+        e->step(M_bdf->time())->addRegions();
+        e->step(M_bdf->time())->add("u", u);
+        e->step(M_bdf->time())->save();
     }
 
-    // compute outputs
-    auto m = mean( _range = elements( mesh ), _expr = idv( u ) );
-    if ( Environment::isMasterRank() )
-    {
-        std::cout << fmt::format( "- mean value: {}", m ) << std::endl;
-        std::cout << fmt::format( "-  min value: {}", u.min() ) << std::endl;
-        std::cout << fmt::format( "-  max value: {}", u.max() ) << std::endl;
-        std::cout << fmt::format( "-  max deviation: {}", u.max() - u.min() ) << std::endl;
-    }
+    
     // Export
-    auto e = exporter( _mesh = mesh );
-    e->addRegions();
-    e->add( "T", v );
-    e->save();
+    
+    
 
     return 0;
 }

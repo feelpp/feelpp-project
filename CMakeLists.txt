@@ -24,7 +24,7 @@
 cmake_minimum_required(VERSION 3.21.0)
 project(myproject VERSION 1.0.0)
 set(EXTRA_VERSION "")
-set(PROJECT_SHORTNAME "p")
+set(PROJECT_SHORTNAME "myproject")
 
 include(GNUInstallDirs)
 
@@ -33,18 +33,12 @@ if (POLICY CMP0077)
   set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 endif()
 
-if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR} )
-  if ( USE_FEELPP_TOOLBOXES )
-    find_package(Feel++ COMPONENTS Toolboxes PATHS ${FEELPP_DIR}/share/feelpp/feel/cmake/modules $ENV{FEELPP_DIR}/share/feelpp/feel/cmake/modules /usr/share/feelpp/feel/cmake/modules /usr/local/share/feelpp/feel/cmake/modules )
-  else()  
-    find_package(Feel++ PATHS ${FEELPP_DIR}/share/feelpp/feel/cmake/modules $ENV{FEELPP_DIR}/share/feelpp/feel/cmake/modules /usr/share/feelpp/feel/cmake/modules /usr/local/share/feelpp/feel/cmake/modules )
-  endif( USE_FEELPP_TOOLBOXES )
-
-  if(NOT FEELPP_FOUND)
-    message(FATAL_ERROR "Feel++ was not found on your system. Make sure to install it and specify the FEELPP_DIR to reference the installation directory.")
-  endif()
-else()
-  include_directories(${CMAKE_SOURCE_DIR}/toolboxes ${CMAKE_BINARY_DIR}/toolboxes)
+find_package(Feel++ COMPONENTS Toolboxes PATHS ${FEELPP_DIR}/share/feelpp/feel/cmake/modules $ENV{FEELPP_DIR}/share/feelpp/feel/cmake/modules /usr/share/feelpp/feel/cmake/modules /usr/local/share/feelpp/feel/cmake/modules )
+if(NOT FEELPP_FOUND)
+  message(FATAL_ERROR "Feel++ was not found on your system. Make sure to install it and specify the FEELPP_DIR to reference the installation directory.")
+endif()
+if ( NOT FEELPP_TOOLBOXES_FOUND )
+  message(WARNING "Feel++ Toolboxes SDK is not found on your system. The toolbox application is now disabled.")
 endif()
 
 enable_testing()
@@ -95,7 +89,7 @@ set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
 set(CPACK_DEBIAN_PACKAGE_SECTION "science")
 set(CPACK_DEBIAN_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}${EXTRA_VERSION}")
 set(CPACK_DEBIAN_ARCHITECTURE "${CMAKE_SYSTEM_PROCESSOR}")
-#set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_SOURCE_DIR}/cmake/debian/postinst")
+# set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_SOURCE_DIR}/cmake/debian/postinst")
   
 include(CPack)
 

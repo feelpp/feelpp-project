@@ -21,8 +21,9 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 #
-feelpp_add_application(myapp SRCS main.cpp TESTS INSTALL)
+feelpp_add_application(laplacian SRCS laplacian.cpp TESTS INSTALL )
 
-feelpp_add_application(update-toolbox SRCS update-toolbox.cpp LINK_LIBRARIES Feelpp::feelpp_toolbox_electric_lib TESTS)
-feelpp_add_testcase(cases)
-
+if ( FEELPP_TOOLBOXES_FOUND )
+    feelpp_add_application(toolbox SRCS toolbox.cpp LINK_LIBRARIES Feelpp::feelpp_toolbox_electric_lib TESTS)
+    feelpp_add_testcase(cases)
+endif()

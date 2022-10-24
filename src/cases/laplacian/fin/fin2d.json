@@ -21,6 +21,14 @@
             }
         }
     },
+    "Spaces": {
+        "laplacian": {
+            "Domain": {
+                //"marker": ["Post"]
+                "levelset": "y<0.50001:y"
+            }
+        }
+    },
     "Materials": {
         "Post": {
             "k": "1", 

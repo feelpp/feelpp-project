@@ -75,8 +75,18 @@ makeOptions()
 template <int Dim = FEELPP_DIM, int Order = FEELPP_ORDER>
 int runLaplacian( nl::json const& specs )
 {
-    auto mesh = loadMesh( _mesh = new Mesh<Simplex<Dim>>, _filename = specs["/Meshes/laplacian/Import/filename"_json_pointer].get<std::string>() );
-    auto Xh = Pch<Order>( mesh );
+    using mesh_t = Mesh<Simplex<Dim>>;
+    auto mesh = loadMesh( _mesh = new mesh_t, _filename = specs["/Meshes/laplacian/Import/filename"_json_pointer].get<std::string>() );
+    Pch_ptrtype<mesh_t, Order> Xh;
+    // define Xh on a marked region 
+    if ( specs["/Spaces/laplacian/Domain"_json_pointer].contains("marker") )
+        Xh = Pch<Order>(mesh, markedelements(mesh, specs["/Spaces/laplacian/Domain/marker"_json_pointer].get<std::vector<std::string>>()));
+    // define Xh via a levelset phi where phi < 0 defines the Domain and phi = 0 the boundary
+    else if (specs["/Spaces/laplacian/Domain"_json_pointer].contains("levelset"))
+        Xh = Pch<Order>(mesh, elements(mesh, expr(specs["/Spaces/laplacian/Domain/levelset"_json_pointer].get<std::string>())));
+    // define Xh on the whole mesh
+    else
+        Xh = Pch<Order>(mesh);
 
     auto u = Xh->element();
     auto v = Xh->element();
@@ -100,7 +110,7 @@ int runLaplacian( nl::json const& specs )
         std::string mat = fmt::format( "/Materials/{}/k", material.get<std::string>() );
         auto k = specs[nl::json::json_pointer( mat )].get<std::string>();
 
-        a += integrate( _range = markedelements( mesh, material.get<std::string>() ), 
+        a += integrate( _range = markedelements( support( Xh ), material.get<std::string>() ), 
                 _expr = M_bdf->polyDerivCoefficient( 0 ) * expr( k ) * gradt( u ) * trans( grad( v ) ) );
     }
 
@@ -112,7 +122,7 @@ int runLaplacian( nl::json const& specs )
             LOG( INFO ) << fmt::format( "flux {}: {}", bc, value.dump() );
             auto flux = value["expr"].get<std::string>();
 
-            l += integrate( _range = markedfaces( mesh, bc ),
+            l += integrate( _range = markedfaces( support( Xh ), bc ),
                     _expr = M_bdf->polyDerivCoefficient( 0 ) * expr( flux ) * id( v ) );
         }
     }
@@ -126,9 +136,9 @@ int runLaplacian( nl::json const& specs )
             auto h = value["h"].get<std::string>();
             auto Text = value["Text"].get<std::string>();
 
-            a += integrate( _range = markedfaces( mesh, bc ),
+            a += integrate( _range = markedfaces( support( Xh ), bc ),
                     _expr = M_bdf->polyDerivCoefficient( 0 ) * expr( h ) * id( v ) * idt( u ) );
-            l += integrate( _range = markedfaces( mesh, bc ),
+            l += integrate( _range = markedfaces( support( Xh ), bc ),
                     _expr = M_bdf->polyDerivCoefficient( 0 ) * expr( h ) * expr( Text ) * id( v ) );
         }
     }
@@ -159,7 +169,7 @@ int runLaplacian( nl::json const& specs )
             auto Rho = specs[nl::json::json_pointer( matRho )].get<std::string>();
             auto Cp = specs[nl::json::json_pointer( matCp )].get<std::string>();
 
-            lt += integrate( _range = markedelements( mesh, material.get<std::string>() ), 
+            lt += integrate( _range = markedelements( support( Xh ), material.get<std::string>() ), 
                     _expr = expr( Rho ) * expr( Cp ) * idv( M_bdf->polyDeriv() ) * id( v ) );
         }
 
@@ -169,7 +179,7 @@ int runLaplacian( nl::json const& specs )
 
         e->step(M_bdf->time())->addRegions();
         e->step(M_bdf->time())->add("u", u);
-        e->step(M_bdf->time())->save();
+        e->save();
     }
 
     

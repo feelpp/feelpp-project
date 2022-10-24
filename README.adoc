@@ -1,6 +1,14 @@
 :feelpp: Feel++
+:cpp: C++
 = {feelpp} Project Template
+Christophe Prud'homme <https://github.com/prudhomm[@prudhomm]>
+v1: 
 
 image:https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
 
-The documentation is link:docs/modules/ROOT/index.adoc[here].
+This repository provides a basic starting point for a {feelpp} application including:
+
+- [x] {cpp} code
+- [x] documentation using asciidoc and antora
+- [x] continuous integration including tests
+- [x] docker image generation and delivery

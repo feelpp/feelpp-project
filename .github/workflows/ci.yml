@@ -62,7 +62,7 @@ jobs:
       run: |
         cmake --build --preset default -t package
     - name: Upload 
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         # Artifact name
         name: feelpp-project-artifacts

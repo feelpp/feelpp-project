@@ -56,7 +56,7 @@ jobs:
         # Artifact name
         name: feelpp-project-artifacts
         # Directory containing files to upload
-        path: build/default/assets/myproject-*
+        path: build/default/assets/feelpp-project-*
 
   check:
     needs: build_code

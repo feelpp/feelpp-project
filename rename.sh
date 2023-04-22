@@ -1,33 +1,76 @@
 #! /bin/bash
 
-in_default_projectname="project"
-read -p "What is the name of the project ? [$in_default_projectname]: " projectname
-projectname=${projectname:-$in_default_projectname}
+create_short_name() {
+    name=$1
+    # Convert the name to lowercase and remove spaces
+    short_name=$(echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/ //g')
 
-in_default_titlename="$projectname"
-read -p "What is the title of the project? [$in_default_titlename]" projecttitle
-projecttitle=${projecttitle:-$in_default_titlename}
+    # Get the first word
+    first_word=$(echo "${short_name%%-*}")
+    #echo "First word: $first_word"
+    # Get the other words and their first letters
+    other_words=$(echo "${short_name}" | tr '-' '\n' | cut -c1 | tr -d '\n')
+    #echo "Other words: $other_words"
+    # Combine the first word and other letters to create a shorter name
+    #shorter_name="${first_word}-${other_words}"
+    shorter_name="${other_words}"
 
-in_default_shortname="p"
-read -p "What is the short name of the project? []" shortprojectname
-shortprojectname=${shortprojectname:-$in_default_shortname}
+    # Print the shorter name
+    return "$shorter_name"
+}
+create_title() {
+    name=$1
+    # Convert the name to lowercase and remove spaces
+    title_name=$(echo "$name" | tr '[:lower:]' '[:upper:]' | sed 's/-/ /g')
 
-in_default_appname="myapp"
-read -p "What is the name of the first application? [$in_default_appname]" appname
-appname=${appname:-$in_default_appname}
+    # Print the shorter name
+    return "$title_name"
+}
+
+# This script is used to rename the project from myproject to something else.
+if [ -z "$1" ]; then
+    echo "Usage: $0 <projectname> <projecttitle> <shortprojectname> <appname>"
+    exit 1
+elif [ "$1" == "-h" -o "$1" == "--help"]; then
+    echo "Usage: $0 <projectname> <projecttitle> <shortprojectname> <appname>"
+    exit 1
+elif [ "$1" == "-r"]; then
+    in_default_projectname="project"
+    read -p "What is the name of the project ? [$in_default_projectname]: " projectname
+    projectname=${projectname:-$in_default_projectname}
+
+    in_default_titlename="$projectname"
+    read -p "What is the title of the project? [$in_default_titlename]" projecttitle
+    projecttitle=${projecttitle:-$in_default_titlename}
+
+    in_default_shortname="p"
+    read -p "What is the short name of the project? []" shortprojectname
+    shortprojectname=${shortprojectname:-$in_default_shortname}
+
+    in_default_appname="myapp"
+    read -p "What is the name of the first application? [$in_default_appname]" appname
+    appname=${appname:-$in_default_appname}
+else
+    projectname=$1
+    projecttitle=create_title($projectname)
+    shortprojectname=create_short_name($projectname)
+    appname="app"
+fi
 
 echo "     project name: $projectname"
 echo "    project title: $projecttitle"
 echo "project shortname: $shortprojectname" 
 echo "         app name: $appname"
-PS3="Do you wish to rename this project?"
-select yn in Yes No
-do
-    case $yn in
-        Yes ) echo "Ok lets go!"; break;;
-        No ) exit;;
-    esac
-done
+if [ "$1" == "-r"]; then
+    PS3="Do you wish to rename this project?"
+    select yn in Yes No
+    do
+        case $yn in
+            Yes ) echo "Ok lets go!"; break;;
+            No ) exit;;
+        esac
+    done
+fi
 
 export projectname
 export projecttitle
@@ -50,5 +93,5 @@ done
 
 git mv src/.tests.myapp  src/.tests.$appname
 
-git status
+
 

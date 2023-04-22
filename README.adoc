@@ -1,6 +1,6 @@
 :feelpp: Feel++
 :cpp: C++
-:project: myproject 
+:project: feelpp-project 
 
 = {feelpp} Project Template
 Christophe Prud'homme <https://github.com/prudhomm[@prudhomm]>

@@ -1,5 +1,5 @@
-= {project
-This is a feelpp} Template Project.    
+= {project_name}
+This is a {feelpp} Template Project.    
 It serves s a template for {feelpp} projects.
 
 {feelpp} is a {cpp} library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend.

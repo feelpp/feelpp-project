@@ -93,9 +93,15 @@ export projecttitle
 export shortprojectname
 export appname
 
-files=( "README.adoc" "CMakeLists.txt" "src/CMakeLists.txt" "src/.tests.laplacian"  "src/.tests.toolbox"
-        "docs/site.yml" "docs/antora.yml" "docs/modules/ROOT/pages/index.adoc" 
-        ".github/workflows/ci.yml" ".github/workflows/release.yml" )
+files=( "README.adoc" "CMakeLists.txt" "src/CMakeLists.txt" 
+        "src/.tests.laplacian"  
+        "src/.tests.toolbox"
+        "docs/site.yml" 
+        "docs/antora.yml" 
+        "docs/package.json"
+        "docs/package-lock.json"
+        "docs/modules/ROOT/pages/index.adoc" 
+        ".github/workflows/ci.yml" )
 for i in "${files[@]}"
 do
     echo "processing renaming in $i ...."

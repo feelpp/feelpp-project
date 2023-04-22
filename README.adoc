@@ -1,8 +1,10 @@
 :feelpp: Feel++
 :cpp: C++
+:project: myproject 
+
 = {feelpp} Project Template
 Christophe Prud'homme <https://github.com/prudhomm[@prudhomm]>
-v1: 
+v2: 
 
 image:https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
 
@@ -12,6 +14,12 @@ This repository provides a basic starting point for a {feelpp} application inclu
 - [x] documentation using asciidoc and antora
 - [x] continuous integration including tests
 - [x] docker image generation and delivery
+
+== Renaming the project
+
+To rename the project, you need to the following script and ansewer the questions:
+
+ $ bash rename.sh 
 
 == Release process
 

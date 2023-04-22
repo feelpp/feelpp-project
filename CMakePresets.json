@@ -13,7 +13,6 @@
             "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/default",
             "cacheVariables": {
-                "CMAKE_CXX_COMPILER": "clang++",
                 "CMAKE_INSTALL_PREFIX" : "${sourceDir}/build/default/install/",
                 "CMAKE_BUILD_TYPE": "Release"
             },
@@ -31,7 +30,6 @@
             "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/install-local",
             "cacheVariables": {
-                "CMAKE_CXX_COMPILER": "clang++",
                 "CMAKE_INSTALL_PREFIX": "/usr/local"
             },
             "vendor": {

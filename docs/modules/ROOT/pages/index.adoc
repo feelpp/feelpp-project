@@ -1,16 +1,36 @@
-= MyProject
+= {project
+This is a feelpp} Template Project.    
+It serves s a template for {feelpp} projects.
 
-This is a {feelpp} Template Project. 
-It serves as a template for {feelpp} projects.
+{feelpp} is a {cpp} library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend.
+{feelpp }is a free software distributed under the terms of the GNU General Public License version 3.
 
-The features include
+== Installation
 
-* xref:cmake.adoc[cmake environment]
-* xref:antora.adoc[antora environment]
-* xref:vscode.adoc[vscode integration]
+The installation procedure is as follows:
 
+[source,bash]
+----
+$ cmake --preset default # <1>
+$ cmake --build --preset default # <2>
+$ cmake --build --preset default -t install # <3>
+$ ctest --preset default # <4>
+$ cmake --build --preset default -t package # <5>
+----
+<1> Configure the project
+<2> Build the project
+<3> Install the project
+<4> Run the tests
+<5> Package the project
 
+== Usage
 
+The project can be used as follows:
+
+=== 
+
+[source,bash]
+----
 
 
 

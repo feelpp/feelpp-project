@@ -9,7 +9,7 @@ content:
     start_path: docs
 ui:
   bundle:
-    url: https://gitlab.com/feelpp/antora-ui-default/-/jobs/artifacts/feelpp/raw/build/ui-bundle.zip?job=bundle-stable
+    url: https://github.com/feelpp/antora-ui/releases/download/v0.3/ui-bundle.zip #https://gitlab.com/feelpp/antora-ui-default/-/jobs/artifacts/feelpp/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
 output:
   clean: true
@@ -17,7 +17,7 @@ output:
   
 asciidoc:
   attributes:
-    project_version: 0.109
+    project_version: 2.0.0
     deploymentRoot: ""
     numbered: true
     allow-uri-read: true

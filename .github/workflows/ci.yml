@@ -1,6 +1,11 @@
 name: CI
 
-on: [push]
+on: 
+  push:
+    branches: 
+      - '**' # Push events on all branches
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10 including semver
 
 jobs:
 
@@ -50,34 +55,28 @@ jobs:
       name: Package
       run: |
         cmake --build --preset default -t package
-    - name: Upload 
+    - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
         # Artifact name
         name: feelpp-project-artifacts
         # Directory containing files to upload
         path: build/default/assets/feelpp-project-*
-
-  check:
-    needs: build_code
-    runs-on: self-ubuntu-22.04
-    name: Check Build, Install, Run
-    steps:
-    - name: Download 
-      uses: actions/download-artifact@v3
+    - name: Release
+      if: startsWith(github.ref ,'refs/tags/v')
+      uses: softprops/action-gh-release@v1
       with:
-        # Artifact name
-        name: feelpp-project-artifacts
-        # Directory containing files to upload
-        path: build/default/assets/
-    - name: Display Artifact
-      run: ls -R
-      working-directory: build/default/assets
-
+        files: build/default/assets/feelpp-project-*
+        draft: false
+        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc')}}
+        name: Release ${{ github.ref_name }}
+        generate_release_notes: true
+        tag_name: ${{ github.ref }}
+        token: ${{ secrets.GITHUB_TOKEN }}
   deliver:
-    runs-on: ubuntu-22.04
-    needs: check
-    name: Docker Build, Tag, Push
+    runs-on: self-ubuntu-22.04
+    needs: build_code
+    name: Build docker, tag and push
 
     steps:
     - uses: actions/checkout@v3

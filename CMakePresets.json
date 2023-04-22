@@ -14,6 +14,8 @@
             "binaryDir": "${sourceDir}/build/default",
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER": "clang++",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_INSTALL_PREFIX" : "${sourceDir}/build/default/install/",
                 "CMAKE_BUILD_TYPE": "Release"
             },
             "vendor": {
@@ -30,25 +32,7 @@
             "generator": "Unix Makefiles",
             "binaryDir": "${sourceDir}/build/install-local",
             "cacheVariables": {
-                "CMAKE_CXX_COMPILER": "clang++",
                 "CMAKE_INSTALL_PREFIX": "/usr/local"
-            },
-            "vendor": {
-                "example.com/ExampleIDE/1.0": {
-                    "autoFormat": true
-                }
-            }
-        },
-        {
-            "name": "install",
-            "inherits": "default",
-            "displayName": "Build and Install in user land",
-            "description": "Build and Install in user land",
-            "generator": "Unix Makefiles",
-            "binaryDir": "${sourceDir}/build/install",
-            "cacheVariables": {
-                "CMAKE_CXX_COMPILER": "clang++",
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/"
             },
             "vendor": {
                 "example.com/ExampleIDE/1.0": {
@@ -69,16 +53,6 @@
             "inherits": "default",
             "targets": [
                 "all","install","package"
-            ]
-        },
-        {
-            "name": "install",
-            "configurePreset": "install",
-            "inherits": "default",
-            "targets": [
-                "all",
-                "install",
-                "package"
             ]
         }
     ],

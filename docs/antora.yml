@@ -1,6 +1,6 @@
-name: template_project
-title: Feel++ Templace Project
-version: '1.0.3'
+name: feelpp_project
+title: Feel++ Project
+version: ~
 start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/nav.adoc

@@ -101,7 +101,7 @@ do
     echo "processing renaming in $i ...."
     perl -077pi.bak -e 's/feelpp-project/$ENV{'projectname'}/sg' $i
     perl -077pi.bak -e 's/Feel\+\+ Project/$ENV{'projecttitle'}/sg' $i
-    perl -077pi.bak -e 's/\"fp\"/"$ENV{'shortprojectname'}/sg' $i
+    perl -077pi.bak -e 's/\"fp\"/"$ENV{'shortprojectname'}"/sg' $i
     perl -077pi.bak -e 's/myapp/$ENV{'appname'}/sg' $i
 done
 

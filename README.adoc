@@ -10,14 +10,17 @@ image:https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
 
 This repository provides a basic starting point for a {feelpp} application including:
 
-- [x] {cpp} code
+- [x] {feelpp} applications in {cpp} to use {feelpp} and {feelpp} toolboxes in `src`
 - [x] documentation using asciidoc and antora
-- [x] continuous integration including tests
-- [x] docker image generation and delivery
+- [x] python {feelpp} notebooks that can be downloaded from the documentation
+- [x] continuous integration including tests for the {cpp} applications
+- [x] docker image generation for the project
+
+The documentation for feelpp-project is available at link:https://feelpp.github.io/feelpp-project[here] and you can build on it for your project by enabling the link:https://docs.github.com/en/pages[github pages] for your repository.
 
 == Renaming the project
 
-To rename the project, you need to the following script and ansewer the questions:
+By default the project is named the project, you need to the following script and ansewer the questions:
 
  $ bash rename.sh 
 

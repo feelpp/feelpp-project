@@ -13,6 +13,7 @@ jobs:
         - run: echo ok go
 
     initialize:
+        needs: activate
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v3
@@ -22,7 +23,7 @@ jobs:
         - name: Rename project
           shell: bash
           run: |
-            rename.sh $GITHUB_REPOSITORY 
+            bash rename.sh $GITHUB_REPOSITORY 
           env:
             GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         - name: Commit files

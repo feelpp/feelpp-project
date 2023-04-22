@@ -20,12 +20,13 @@ jobs:
           with:
             ref: ${{ github.head_ref }}
             fetch-depth: 0
+            token: ${{ secrets.CR_PAT_WORKFLOW }}
         - name: Rename project
           shell: bash
           run: |
             bash rename.sh $GITHUB_REPOSITORY 
           env:
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            GITHUB_TOKEN: ${{secrets.CR_PAT_WORKFLOW}}
         - name: Commit files
           run: |
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -35,9 +36,10 @@ jobs:
           uses: ad-m/github-push-action@master
           with:
             force_with_lease: true
+            github_token: ${{ secrets.CR_PAT_WORKFLOW }}
         - name: Disable this workflow
           shell: bash
           run: |
             gh workflow disable -R $GITHUB_REPOSITORY "${{ github.workflow }}"
           env:
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            GITHUB_TOKEN: ${{secrets.CR_PAT_WORKFLOW}}

@@ -30,7 +30,9 @@
     "@antora/cli": "^3.1",
     "@antora/site-generator-default": "^3.1",
     "handlebars": "^4.7.7",
-    "handlebars-utils": "^1.0.6"
+    "handlebars-utils": "^1.0.6",
+    "@antora/collector-extension": "^1.0.0-alpha.3",
+    "asciidoctor-jupyter": "^0.4.0"
   },
   "devDependencies": {
     "broken-link-checker": "^0.7.8",

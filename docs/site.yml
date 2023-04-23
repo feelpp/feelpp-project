@@ -14,7 +14,9 @@ ui:
 output:
   clean: true
   dir: public
-  
+antora:
+  extensions:
+  - '@antora/collector-extension'
 asciidoc:
   attributes:
     project_name: Feel++ Project

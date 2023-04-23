@@ -257,18 +257,30 @@ MathJax.Hub.Config({
 We use it to generate the documentation of the project
 It is part of the documentation of docs.feelpp.org[Feel++ docs] website.</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="title">To generate the documentation</div>
 <div class="content">
-<pre>$ cd docs
-$ antora site.yml</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> $ cd docs
+ $ npm install <i class="conum" data-value="1"></i><b>(1)</b>
+ $ npm run antora <i class="conum" data-value="2"></i><b>(2)</b>
+ $ npm run serve <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="title">To visualizethe documentation</div>
-<div class="content">
-<pre>$ node-srv public</pre>
-</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Install the dependencies</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Generate the documentation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Serve the documentation, the url is provided in the console</td>
+</tr>
+</table>
 </div>
 </article>
   </div>

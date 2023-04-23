@@ -7,7 +7,7 @@ nav:
 ext:
   collector:
     - run:
-        command: docs/generate-jupyter.sh modules/ROOT
+        command: docs/generate-jupyter.sh docs/modules/ROOT
       scan:
         dir: jupyter/
         files: '**/*.ipynb'

@@ -23,14 +23,11 @@ $ cmake --build --preset default -t package # <5>
 <4> Run the tests
 <5> Package the project
 
-== Usage
 
-The project can be used as follows:
 
-=== 
 
-[source,bash]
-----
+
+
 
 
 

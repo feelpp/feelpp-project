@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Cmake environment :: Feel++ Project // Docs</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-project/2.0.0/cmake.html">
+    <title>Feel++ Project Notebook :: Feel++ Project // Docs</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-project/2.0.2/jupyter.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -161,7 +161,7 @@ MathJax.Hub.Config({
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="feelpp-project" data-version="2.0.0">
+<div class="nav-container" data-component="feelpp-project" data-version="2.0.2">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -177,7 +177,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="index.html">Introduction</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="cmake.html">cmake environment</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -192,7 +192,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="rename.html">Renaming the project</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="jupyter.html">Jupyter Notebook</a>
   </li>
 </ul>
@@ -205,14 +205,14 @@ MathJax.Hub.Config({
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Feel++ Project</span>
-    <span class="version">2.0.0</span>
+    <span class="version">2.0.2</span>
   </div>
   <ul class="components">
     <li class="component is-current">
       <a class="title" href="index.html">Feel++ Project</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="index.html">2.0.0</a>
+          <a href="index.html">2.0.2</a>
         </li>
       </ul>
     </li>
@@ -229,12 +229,12 @@ MathJax.Hub.Config({
   <ul>
     <li><a href="index.html">Feel++ Project</a></li>
     <li>Feel++ project</li>
-    <li><a href="cmake.html">cmake environment</a></li>
+    <li><a href="jupyter.html">Jupyter Notebook</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-project/edit/master/docs/modules/ROOT/pages/cmake.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-project/edit/master/docs/modules/ROOT/pages/jupyter.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -245,6 +245,12 @@ MathJax.Hub.Config({
         <img class="pdf-file-icon icon" src="../../_/img/pdf.svg"/> .pdf
       </a>
     </li>
+      <li>
+        <a href="_attachments/jupyter.ipynb"
+           title="Download Jupyter Notebook" data-toggle="tooltip" data-placement="left" class="jupyter-download">
+          <img class="jupyter-file-icon icon" src="../../_/img/jupyter-logo.svg"/> .ipynb
+        </a>
+      </li>
   </ul>
 </div>
 </div>
@@ -255,79 +261,73 @@ MathJax.Hub.Config({
 </aside>
 
 <article class="doc">
-<h1 class="page">Cmake environment</h1>
+<h1 class="page">Feel++ Project Notebook</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>The CMakeLists.txt is setup with Feel++.
-A sample Feel++ application is available in <code>src</code>.</p>
+<div class="paragraph lead">
+<p>This is a Jupyter notebook for the Feel++ Project project.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_building"><a class="anchor" href="#_building"></a>1. Building</h2>
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The CMakeLists.txt is configured to build the application in <code>src</code>.
-The following commands can be used to build the application:</p>
+<p>You write your notebook in AsciiDoc including LaTeX math and thanks to the <code>:page-jupyter: true</code> attribute, the notebook is converted to a Jupyter notebook when the book is built.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_cells"><a class="anchor" href="#_code_cells"></a>2. Code cells</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can include code cells in your notebook using the <code>[source,python]</code> block macro.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> $ cmake --preset default <i class="conum" data-value="1"></i><b>(1)</b>
- $ cmake --build --preset default <i class="conum" data-value="2"></i><b>(2)</b>
- $ cmake --build --preset default -t install <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Configure the project</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Build the project</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Install the project</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_packaging"><a class="anchor" href="#_packaging"></a>2. Packaging</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>CPack is configured and allows to generate a binary and source package.
-Use the following commands to generate the binary package:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ cmake --build --preset default -t package</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Use the following commands to generate the source package:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ cmake --build --preset default -t package_source</pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import sys, os
+print("Hello, world!")</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_testing"><a class="anchor" href="#_testing"></a>3. Testing</h2>
+<h2 id="_feel_code_cells"><a class="anchor" href="#_feel_code_cells"></a>3. Feel++ Code cells</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CTest is configured.
-Use the following command to run the tests:</p>
+<p>You can include Feel++ code cells in your notebook using the <code>[source,python]</code> block macro.</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ cmake --build --preset default -t test</pre>
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">import feelpp
+app = feelpp.Environment(["myapp"],config=feelpp.globalRepository("myapp"))
+
+geo=feelpp.download( "github:{repo:feelpp,path:feelpp/quickstart/laplacian/cases/feelpp2d/feelpp2d.geo}", worldComm=app.worldCommPtr() )[0]
+print("geo file: {}".format(geo))
+mesh = feelpp.load(feelpp.mesh(dim=2,realdim=2), geo, 0.1)
+
+Xh=feelpp.functionSpace(mesh=mesh, space="Pchv")
+f = Xh.element()
+f.on(range=feelpp.elements(mesh),expr=feelpp.expr("{sin(pi*x)*sin(pi*y),cos(pi*x)*cos(pi*y)}:x:y",row=2,col=1))
+e= feelpp.exporter(mesh=mesh)
+e.add("f",f)
+e.save()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can then visualize the result using the <code>pyvista</code> package as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from xvfbwrapper import Xvfb
+vdisplay = Xvfb()
+vdisplay.start()
+
+import pyvista as pv
+pv.set_jupyter_backend('panel')
+reader = pv.get_reader("exports/ensightgold/Exporter/Exporter.case")
+mesh = reader.read()
+mesh.plot(scalars="f",show_edges=True)</code></pre>
 </div>
 </div>
 </div>

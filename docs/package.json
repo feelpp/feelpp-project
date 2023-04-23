@@ -1,10 +1,10 @@
 {
   "private": true,
   "name": "feelpp-project",
-  "description": "The Feelpp documentation",
-  "version": "1.0.4",
+  "description": "The Feel++ Project documentation",
+  "version": "2.0.0",
   "license": "AGPL-3.0",
-  "author": "The Feelpp Team",
+  "author": "The Feel++ Project Team",
   "homepage": "https://github.com/feelpp/feelpp-project#readme",
   "repository": {
     "type": "git",

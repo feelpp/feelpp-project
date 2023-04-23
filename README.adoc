@@ -20,9 +20,16 @@ The documentation for feelpp-project is available at link:https://feelpp.github.
 
 == Renaming the project
 
-By default the project is named the project, you need to the following script and ansewer the questions:
+By default the project is named  `feelpp-project` if you cloned the repository `feelpp/feelpp-project`.
+However if you used the previous repository as a template, then the project is renamed using the name of the repository using the script `rename.sh` at the initialization of the repository.
+If the name does not suit you, you can change it again using the script `rename.sh` and providing the new name as argument.
 
- $ bash rename.sh 
+WARNING: the script `rename.sh` will rename the project however some url might be set properly if you rename the project yourself. You need to check the following files: `docs/site.yml` and `docs/package.json` and fix the urls after the rename process is done.
+
+== Updating the {project} version
+
+The version of the project is defined in the files `CMakeLists.txt`, `docs/antora.yml` and `docs/package.json`. 
+You need to update with the same version in all files.
 
 == Release process
 

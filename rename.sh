@@ -96,10 +96,10 @@ export appname
 files=( "README.adoc" "CMakeLists.txt" "src/CMakeLists.txt" 
         "src/.tests.laplacian"  
         "src/.tests.toolbox"
-        "docs/site.yml" 
+        "site.yml" 
         "docs/antora.yml" 
-        "docs/package.json"
-        "docs/package-lock.json"
+        "package.json"
+        "package-lock.json"
         "docs/modules/ROOT/pages/index.adoc" 
         ".github/workflows/ci.yml" )
 for i in "${files[@]}"

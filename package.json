@@ -21,9 +21,9 @@
   ],
   "scripts": {
     "prose": "write-good --parse **/*.adoc",
-    "serve": "http-server public/ -d -i",
-    "antora": "antora --stacktrace generate --cache-dir cache --redirect-facility disabled --clean site.yml",
-    "validate": "antora --stacktrace generate --cache-dir cache --redirect-facility disabled --generator ./generator/xref-validator.js --clean site.yml",
+    "start": "http-server public/ -d -i",
+    "antora": "antora --stacktrace generate --cache-dir cache --clean site.yml",
+    "validate": "antora --stacktrace generate --cache-dir cache --generator ./generator/xref-validator.js --clean site.yml",
     "linkcheck": "broken-link-checker --filter-level 3 --recursive --verbose"
   },
   "dependencies": {

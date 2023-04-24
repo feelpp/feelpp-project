@@ -1,11 +1,11 @@
 site:
-  title: Feel++ Project // Docs
+  title: Feel++ Template Project
   url: https://feelpp.github.io/feelpp-project/
-  start_page: feelpp-project:ROOT:index.adoc
+  start_page: feelpp-project::index.adoc
 content:
   sources:
-  - url: https://github.com/feelpp/feelpp-project
-    branches: master
+  - url: .
+    branches: HEAD
     start_path: docs
 ui:
   bundle:
@@ -19,9 +19,8 @@ antora:
   - '@antora/collector-extension'
 asciidoc:
   attributes:
-    project_name: Feel++ Project
-    project_version: 2.0.0
-    deploymentRoot: ""
+    project_name: Feel++ Template Project
+    project_version: 2.0.2
     numbered: true
     allow-uri-read: true
     hide-uri-scheme: true

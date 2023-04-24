@@ -1,7 +1,7 @@
 name: feelpp-project
-title: Feel++ Project
-version: 2.0.2
-start_page: ROOT:index.adoc
+title: Feel++ Template Project
+version: ~
+start_page: index.adoc
 nav:
 - modules/ROOT/nav.adoc
 ext:

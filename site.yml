@@ -1,5 +1,5 @@
 site:
-  title: Feel++ Template Project
+  title: My Feel++ Project
   url: https://feelpp.github.io/feelpp-project/
   start_page: feelpp-project::index.adoc
 content:
@@ -8,8 +8,9 @@ content:
     branches: HEAD
     start_path: docs
 ui:
+  supplemental_files: ./antora/supplemental-ui
   bundle:
-    url: https://github.com/feelpp/antora-ui/releases/download/v0.3/ui-bundle.zip #https://gitlab.com/feelpp/antora-ui-default/-/jobs/artifacts/feelpp/raw/build/ui-bundle.zip?job=bundle-stable
+    url: https://github.com/feelpp/antora-ui/releases/download/v0.5/ui-bundle.zip
     snapshot: true
 output:
   clean: true

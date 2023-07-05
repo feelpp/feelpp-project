@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Antora environment :: Feel++ Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-project/antora.html">
+    <title>UI Macro Styles :: Feel++ Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui-default/ui-macro-styles.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -123,39 +123,63 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="feelpp-project" data-version="">
+<div class="nav-container" data-component="antora-ui-default" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Feel++ Project</a></h3>
+    <h3 class="title"><a href="index.html">Cemosis Documentation UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">Introduction</a>
+    <a class="nav-link" href="prerequisites.html">UI Development Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="set-up-project.html">Set up a UI Project</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="build-preview-ui.html">Build and Preview the UI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="development-workflow.html">UI Development Workflow</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="templates.html">Work with the Handlebars Templates</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="add-static-files.html">Add Static Files</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Feel++ Project Environment</span>
+    <a class="nav-link" href="stylesheets.html">Work with the CSS Stylesheets</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="cmake.html">cmake environment</a>
+    <a class="nav-link" href="add-fonts.html">Add Fonts</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="copy-to-clipboard.html">Copy to clipboard</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="style-guide.html">UI Element Styles</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="inline-text-styles.html">Inline Text</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="admonition-styles.html">Admonitions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="list-styles.html">Lists</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="sidebar-styles.html">Sidebars</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="antora.html">antora environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="vscode.html">vscode integration</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="githubactions.html">Github Actions</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="rename.html">Renaming the project</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="jupyter.html">Jupyter Notebook</a>
+    <a class="nav-link" href="ui-macro-styles.html">UI Macros</a>
   </li>
 </ul>
   </li>
@@ -166,15 +190,15 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Feel++ Project</span>
+    <span class="title">Cemosis Documentation UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
-      <li class="component">
-        <a class="title" href="../antora-ui-default/index.html">Cemosis Documentation UI</a>
-      </li>
       <li class="component is-current">
-        <a class="title" href="index.html">Feel++ Project</a>
+        <a class="title" href="index.html">Cemosis Documentation UI</a>
+      </li>
+      <li class="component">
+        <a class="title" href="../feelpp-project/index.html">Feel++ Project</a>
       </li>
   </ul>
 </div>
@@ -184,17 +208,17 @@ MathJax.Hub.Config({
 <main class="article">
 <div class="toolbar" role="navigation">
   <button class="nav-toggle"></button>
-    <a href="index.html" class="home-link"></a>
+    <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Feel++ Project</a></li>
-    <li>Feel++ Project Environment</li>
-    <li><a href="antora.html">antora environment</a></li>
+    <li><a href="index.html">Cemosis Documentation UI</a></li>
+    <li><a href="style-guide.html">UI Element Styles</a></li>
+    <li><a href="ui-macro-styles.html">UI Macros</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-project/edit/106-improve-antora-support/docs/modules/ROOT/pages/antora.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/ui-macro-styles.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -214,35 +238,100 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Antora environment</h1>
+<h1 class="page">UI Macro Styles</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Antora is our static website generator.
-We use it to generate the documentation of the project
-It is part of the documentation of docs.feelpp.org[Feel++ docs] website.</p>
+<p>Asciidoctor supports <a href="#antora:asciidoc:ui-macros.adoc" class="xref unresolved">three UI element representations</a> out of the box, which are made from corresponding inline UI macros.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>button (btn macro)</p>
+</li>
+<li>
+<p>keybinding (kbd macro)</p>
+</li>
+<li>
+<p>menu (menu macro)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The UI elements are output using semantic HTML elements, so they inherit some default styling from the browser.
+However, to look proper, they require some additional styling.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_button"><a class="anchor" href="#_button"></a>1. Button</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <a href="#antora:asciidoc:ui-macros.adoc#button" class="xref unresolved">button</a> is meant to represent an on-screen button (<code>btn:[Save]</code>).
+However, it should not appear like an actual button as that could confuse the reader into thinking it&#8217;s interactive.
+Therefore, a button is rendered as a bold text by default:</p>
 </div>
 <div class="listingblock">
-<div class="title">To generate the documentation</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> $ npm install <i class="conum" data-value="1"></i><b>(1)</b>
- $ npm run antora <i class="conum" data-value="2"></i><b>(2)</b>
- $ npm run start <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;b class="button"&gt;Save&lt;/b&gt;</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Install the dependencies</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Generate the documentation</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Serve the documentation, the url is provided in the console</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Traditionally, a button reference is styled by surrounding the text with square brackets, as shown here:</p>
+</div>
+<div class="paragraph">
+<p>btn:[Save]</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_keybinding"><a class="anchor" href="#_keybinding"></a>2. Keybinding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <a href="#antora:asciidoc:ui-macros.adoc#keybinding" class="xref unresolved">keybinding</a> can be a single key (<code>kbd:[F11]</code>) or a sequence of keys (<code>+kbd:[Ctrl+F]</code>).
+Here&#8217;s the HTML that&#8217;s generated for these two forms.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;kbd&gt;F11&lt;/kbd&gt;
+&lt;span class="keyseq"&gt;&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;F&lt;/kbd&gt;&lt;/span&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s how these might appear:</p>
+</div>
+<div class="paragraph">
+<p>kbd:[F11]<br>
+kbd:[Ctrl+F]</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_menu"><a class="anchor" href="#_menu"></a>3. Menu</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <a href="#antora:asciidoc:ui-macros.adoc#menu" class="xref unresolved">menu</a> can be a top-level menu reference (<code>menu:File[]</code>) or a nested selection (<code>menu:File[Save]</code>).
+Here&#8217;s the HTML that&#8217;s generated for these two forms.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;b class="menuref"&gt;File&lt;/b&gt;
+&lt;span class="menuseq"&gt;&lt;b class="menu"&gt;File&lt;/b&gt;&amp;#160;&lt;b class="caret"&gt;&amp;#8250;&lt;/b&gt; &lt;b class="menuitem"&gt;Save&lt;/b&gt;&lt;/span&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This might be rendered as:</p>
+</div>
+<div class="paragraph">
+<p>menu:File[]</p>
+</div>
+<div class="paragraph">
+<p>menu:File[Save]</p>
+</div>
+<div class="paragraph">
+<p>The default styling applied to a menu reference is usually sufficient.</p>
+</div>
+</div>
 </div>
 </article>
   </div>

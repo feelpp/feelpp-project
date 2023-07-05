@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Github Actions :: Feel++ Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-project/githubactions.html">
+    <title>Overview of Feel++ Project :: Feel++ Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-project/overview.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -148,7 +148,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="vscode.html">vscode integration</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="githubactions.html">Github Actions</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -185,13 +185,12 @@ MathJax.Hub.Config({
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Feel++ Project</a></li>
-    <li>Feel++ Project Environment</li>
-    <li><a href="githubactions.html">Github Actions</a></li>
+    <li><a href="overview.html">Overview of Feel++ Project</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-project/edit/106-improve-antora-support/docs/modules/ROOT/pages/githubactions.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/feelpp-project/edit/106-improve-antora-support/docs/modules/ROOT/pages/overview.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -211,38 +210,92 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Github Actions</h1>
-<div id="preamble">
+<h1 class="page">Overview of Feel++ Project</h1>
+<div class="sect1">
+<h2 id="_organisation"><a class="anchor" href="#_organisation"></a>1. Organisation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Github actions are setup to</p>
+<p>The directory structure of the project is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>.
+├── docs
+│   ├── antora
+│   └── modules
+└── src
+    └── cases
+
+5 directories</pre>
+</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>build the documentation using Antora and upload them to docs.feelpp.org[Feel++ docs] upon any change in the repo.</p>
+<p>The <code>docs</code> directory contains the documentation of the project and uses antora to generate the documentation.</p>
 </li>
 <li>
-<p>build, install, package and deliver the Feel++ code</p>
+<p>The <code>src</code> directory contains initially some C++ and Python Feel++ source code of the project to help you get started.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>See the [workflow file](.github/workflows/ci.yml) for more details.</p>
+<p>Feel++ is a C++ library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend.
+{feelpp }is a free software distributed under the terms of the GNU General Public License version 3.
+The documentation is available <a href="https://docs.feelpp.org">&gt; here</a>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_skipping_a_job"><a class="anchor" href="#_skipping_a_job"></a>1. Skipping a job</h2>
+<h2 id="_how_to_build_the_project"><a class="anchor" href="#_how_to_build_the_project"></a>2. How to build the project</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can skip the CI  by adding the following line in the commit message: <code>[skip ci]</code></p>
+<p>The installation procedure uses <a href="cmake.html" class="xref page">Cmake</a>. You need to follow the <a href="quickstart.html" class="xref page">quickstart</a> to get the Feel++ environment.
+The steps are as follows:</p>
 </div>
-<div class="paragraph">
-<p>You can skip the job that build the documentation  by adding the following line in the commit message: <code>doc skip</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cmake --preset default <i class="conum" data-value="1"></i><b>(1)</b>
+$ cmake --build --preset default <i class="conum" data-value="2"></i><b>(2)</b>
+$ cmake --build --preset default -t install <i class="conum" data-value="3"></i><b>(3)</b>
+$ ctest --preset default <i class="conum" data-value="4"></i><b>(4)</b>
+$ cmake --build --preset default -t package <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
 </div>
-<div class="paragraph">
-<p>You can skip the job that build the code  by adding the following line in the commit message: <code>code skip</code>.</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Configure the project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Build the project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Install the project</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Run the tests</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Package the project</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

@@ -1,5 +1,5 @@
 site:
-  title: My Feel++ Project
+  title: Feel++ Project
   url: https://feelpp.github.io/feelpp-project/
   start_page: feelpp-project::index.adoc
 content:
@@ -7,10 +7,13 @@ content:
   - url: .
     branches: HEAD
     start_path: docs
+  - url: https://github.com/feelpp/antora-ui
+    branches: HEAD
+    start_path: docs
 ui:
-  supplemental_files: ./antora/supplemental-ui
+  supplemental_files: ./docs/antora/supplemental-ui
   bundle:
-    url: https://github.com/feelpp/antora-ui/releases/download/v0.5/ui-bundle.zip
+    url: https://github.com/feelpp/antora-ui/releases/latest/download/ui-bundle.zip
     snapshot: true
 output:
   clean: true
@@ -20,7 +23,7 @@ antora:
   - '@antora/collector-extension'
 asciidoc:
   attributes:
-    project_name: Feel++ Template Project
+    project_name: Feel++ Project
     project_version: 2.0.2
     numbered: true
     allow-uri-read: true
@@ -32,3 +35,5 @@ asciidoc:
     hemotumpp: Hemotum++
     eye2brain: Eye2Brain
     swimmer: Swimmer
+    python: Python
+    cpp: C++

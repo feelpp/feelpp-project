@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head defaultPageTitle='Untitled'}}
+</head>
+
+<body class="article docs-home{{#with (or page.attributes.role page.role)}} {{{this}}}{{/with}}">
+    {{> header}}
+
+    <div class="body">
+        {{> nav componentOrder=page.attributes.component-order}}
+        <main class="article">
+            {{!-- toolbar for responsive nav --}}
+            <div class="toolbar" role="navigation">
+                <div class="toolbar-wrapper">
+                    {{> nav-toggle}}
+                </div>
+            </div>
+
+            <div class="content">
+                {{> article}}
+            </div>
+
+            <div class="content">
+                <article class="doc">
+                    <div class="actions">
+                        <a href="quickstart.html" class="button primary">Quickstart</a>
+                        <a href="overview.html" class="button secondary">Overview</a>
+                        <a href="https://join.slack.com/t/feelpp/shared_invite/zt-2qe0q9hw-4pVbhohCXUE6Po9Ma8dbiQ" class="button secondary"
+                           style="background-color: #FFA500; color: black;">Join Feel++ Community</a>
+                    </div>
+                </article>
+            </div>
+
+            {{#if (get-recommended-resources) }}
+            <div class="content">
+                <article class="doc">
+                    <h2>Recommended Resources</h2>
+                    <div class="books">
+                        {{#each (get-recommended-resources)}}
+                        {{> book-cover this}}
+                        {{/each}}
+                    </div>
+                </article>
+            </div>
+            {{/if}}
+
+
+        </main>
+
+    </div>
+
+    {{> footer}}
+</body>
+
+</html>

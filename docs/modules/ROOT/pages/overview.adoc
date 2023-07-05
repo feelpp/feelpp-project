@@ -26,7 +26,8 @@ The documentation is available https://docs.feelpp.org[> here].
 
 == How to build the project
 
-The installation procedure uses xref:cmake.adoc[Cmake]. You need to follow the xref:quickstart.adoc[quickstart] to get the {feelpp} environment.
+You need first to follow the xref:quickstart.adoc[quickstart] to get the {feelpp} environment.
+The installation procedure uses xref:cmake.adoc[Cmake] for the {cpp} programs and create a bundle of this project.
 The steps are as follows:
 
 [source,bash]

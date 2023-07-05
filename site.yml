@@ -7,6 +7,9 @@ content:
   - url: .
     branches: HEAD
     start_path: docs
+  - url: https://github.com/feelpp/antora-ui
+    branches: HEAD
+    start_path: docs
 ui:
   supplemental_files: ./docs/antora/supplemental-ui
   bundle:

@@ -5,7 +5,10 @@
 
 [.lead]
 {project_name} is a {feelpp} project. It was created using the repository https://github.com/feelpp/feelpp-project[`feelpp/feelpp-project`].
-This documentation is here to help you start with {project_name} documentation.
+
+Coding:: xref:overview.adoc[{feelpp} {cpp} and {python}] codes are available to help you get starting with using and coding with {feelpp}.
+
+Documenting:: The xref:overview.adoc[documentation] is written using the https://docs.asciidoc.org[Asciidoc plain text format] and https://docs.antora.org[Antora] to produce the documentation website. It is here to help you start with {project_name} documentation.
 
 
 

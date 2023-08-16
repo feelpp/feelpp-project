@@ -1,10 +1,10 @@
 {
   "private": true,
   "name": "feelpp-project",
-  "description": "The Feel++ Project documentation",
+  "description": "The Feel++ Template Project documentation",
   "version": "2.0.2",
   "license": "AGPL-3.0",
-  "author": "The Feel++ Project Team",
+  "author": "The Feel++ Template Project Team",
   "homepage": "https://github.com/feelpp/feelpp-project#readme",
   "repository": {
     "type": "git",
@@ -22,8 +22,8 @@
   "scripts": {
     "prose": "write-good --parse **/*.adoc",
     "start": "http-server public/ -d -i",
-    "antora": "antora --stacktrace generate --cache-dir cache --clean site.yml",
-    "validate": "antora --stacktrace generate --cache-dir cache --generator ./generator/xref-validator.js --clean site.yml",
+    "antora": "npx antora --stacktrace generate --cache-dir cache --clean site.yml",
+    "validate": "npx antora --stacktrace generate --cache-dir cache --generator ./generator/xref-validator.js --clean site.yml",
     "linkcheck": "broken-link-checker --filter-level 3 --recursive --verbose"
   },
   "dependencies": {

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>UI Development Prerequisites :: Feel++ Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui-default/prerequisites.html">
+    <title>List Styles :: Feel++ Template Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/list-styles.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -98,7 +98,7 @@ MathJax.Hub.Config({
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
         <div class="navbar-brand">
             <div class="navbar-item feelpp-logo">
-                <a href="https://feelpp.github.io/feelpp-project">Feel++ Project</a>
+                <a href="https://feelpp.github.io/feelpp-project">Feel++ Template Project</a>
             </div>
             <button class="navbar-burger" data-target="topbar-nav">
                 <span></span>
@@ -112,6 +112,9 @@ MathJax.Hub.Config({
                 <div class="navbar-item">
                     <a href="https://docs.feelpp.org/">Documentation Reference</a>
                 </div>
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="https://docs.feelpp.org/user/latest/install/index.html" class="download-btn">Get Feel++</a></div>
+                </div>
                 <div class="navbar-item">
                     <a class="navbar-brand"  href="https://www.cemosis.fr">
                         <img class="cemosis-logo"  src="../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
@@ -123,16 +126,16 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui-default" data-version="">
+<div class="nav-container" data-component="antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Cemosis Documentation UI</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="prerequisites.html">UI Development Prerequisites</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -172,7 +175,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="admonition-styles.html">Admonitions</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="list-styles.html">Lists</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -190,15 +193,15 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Cemosis Documentation UI</span>
+    <span class="title">Feel++ Antora UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Cemosis Documentation UI</a>
+        <a class="title" href="index.html">Feel++ Antora UI</a>
       </li>
       <li class="component">
-        <a class="title" href="../feelpp-project/index.html">Feel++ Project</a>
+        <a class="title" href="../feelpp-project/index.html">Template Project</a>
       </li>
   </ul>
 </div>
@@ -211,13 +214,14 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Cemosis Documentation UI</a></li>
-    <li><a href="prerequisites.html">UI Development Prerequisites</a></li>
+    <li><a href="index.html">Feel++ Antora UI</a></li>
+    <li><a href="style-guide.html">UI Element Styles</a></li>
+    <li><a href="list-styles.html">Lists</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/prerequisites.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/list-styles.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -237,100 +241,120 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">UI Development Prerequisites</h1>
-<div id="preamble">
+<h1 class="page">List Styles</h1>
+<div class="sect1">
+<h2 id="_ordered_list_numeration"><a class="anchor" href="#_ordered_list_numeration"></a>1. Ordered list numeration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An Antora UI project is based on tools built atop Node.js, namely:</p>
+<p>The browser automatically numbers <a href="#antora:asciidoc:ordered-and-unordered-lists.adoc" class="xref unresolved">ordered lists</a> and selects a numeration style by list depth in the following order: decimal, lower-alpha, lower-roman, upper-alpha, upper-roman.</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="paragraph">
+<p>AsciiDoc allows the author to override the numeration style for an ordered list.
+Here&#8217;s an example of that output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;div class="olist loweralpha"&gt;
+&lt;ol class="loweralpha" type="a"&gt;
+&lt;li&gt;&lt;p&gt;a&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;b&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;c&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to support this customization, you must assign the list-style-type property to the following classes on the <code>&lt;ol&gt;</code> element in your stylesheet.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">&lt;ol&gt; class</th>
+<th class="tableblock halign-left valign-top">list-style-type property value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">arabic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decimal</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decimal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decimal-leading-zero</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">loweralpha</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lower-alpha</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lowergreek</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lower-greek</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lowerroman</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lower-roman</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upperalpha</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upper-alpha</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upperroman</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">upper-roman</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_checklist"><a class="anchor" href="#_checklist"></a>2. Checklist</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <a href="#antora:asciidoc:checklists.adoc" class="xref unresolved">checklist</a> is an unordered list with items that are prefixed with a checkbox marker (checked or unchecked).
+Here&#8217;s an AsciiDoc source example that produces a checklist:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* [ ] todo
+* [x] done!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If font-based icons are enabled (<code>icons=font</code>), the checkbox gets inserted as the first element of the paragraph element that contains the list item text.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;div class="ulist checklist"&gt;
+&lt;ul class="checklist"&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class="fa fa-square-o"&gt; todo&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;i class="fa fa-check-square-o"&gt; done!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The recommended approach is to hide the list markers (<code>list-style: none</code>), then add a checkbox glyph on the icon element using either a background image or a <code>before</code> pseudo element.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s how it might appear:</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
 <li>
-<p><a href="https://nodejs.org">Node.js</a> (commands: <code>node</code> and <code>npm</code>)</p>
-<div class="ulist">
-<ul>
+<p><i class="fa fa-square-o"></i> todo</p>
+</li>
 <li>
-<p><a href="https://github.com/creationix/nvm">nvm</a> (optional, but strongly recommended)</p>
+<p><i class="fa fa-check-square-o"></i> done!</p>
 </li>
 </ul>
-</div>
-</li>
-<li>
-<p><a href="http://gulpjs.com">Gulp CLI</a> (command: <code>gulp</code>)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You also need <a href="https://git-scm.com">git</a> (command: <code>git</code>) to pull down the project and push updates to it.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_git"><a class="anchor" href="#_git"></a>1. git</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>First, make sure you have git installed.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ git --version</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If not, <a href="https://git-scm.com/downloads">download and install</a> the git package for your system.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_node_js"><a class="anchor" href="#_node_js"></a>2. Node.js</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You need Node.js installed on your machine to use Antora, including the default UI.
-Antora follows the Node.js release schedule, so we advise that you choose an active long term support (LTS) release of Node.js.
-We recommend using the latest active Node.js LTS version.
-While you can use other versions of Node.js, Antora is only tested against LTS releases.</p>
-</div>
-<div class="paragraph">
-<p>To check whether you have Node.js installed, and which version, open a terminal and type:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ node --version</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You should see a version string, such as:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>v10.15.3</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If the command fails with an error, it means you don&#8217;t have Node.js installed.
-The best way to install Node.js is to use nvm (Node Version Manager).
-Refer to <a href="#antora:install:linux-requirements.adoc#install-nvm" class="xref unresolved">Install nvm and Node.js (Linux)</a>, <a href="#antora:install:macos-requirements.adoc#install-nvm" class="xref unresolved">Install nvm and Node.js (macOS)</a>, or <a href="#antora:install:windows-requirements.adoc#install-nvm" class="xref unresolved">Install nvm and Node.js (Windows)</a> for instructions.</p>
-</div>
-<div class="paragraph">
-<p>Once you have Node.js installed, you can proceed with installing the Gulp CLI.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_gulp_cli"><a class="anchor" href="#_gulp_cli"></a>3. Gulp CLI</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Next, you&#8217;ll need the Gulp CLI (aka wrapper).
-This package provides the <code>gulp</code> command which executes the version of Gulp declared by the project.
-You should install the Gulp CLI globally (which resolves to a location in your user directory if you&#8217;re using nvm) using the following command:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ npm install -g gulp-cli</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now that you have Node.js and Gulp installed, you&#8217;re ready to set up the project.</p>
 </div>
 </div>
 </div>

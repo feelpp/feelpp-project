@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>UI Element Style Guide :: Feel++ Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui-default/style-guide.html">
+    <title>Copy to clipboard :: Feel++ Template Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/copy-to-clipboard.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -98,7 +98,7 @@ MathJax.Hub.Config({
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
         <div class="navbar-brand">
             <div class="navbar-item feelpp-logo">
-                <a href="https://feelpp.github.io/feelpp-project">Feel++ Project</a>
+                <a href="https://feelpp.github.io/feelpp-project">Feel++ Template Project</a>
             </div>
             <button class="navbar-burger" data-target="topbar-nav">
                 <span></span>
@@ -112,6 +112,9 @@ MathJax.Hub.Config({
                 <div class="navbar-item">
                     <a href="https://docs.feelpp.org/">Documentation Reference</a>
                 </div>
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="https://docs.feelpp.org/user/latest/install/index.html" class="download-btn">Get Feel++</a></div>
+                </div>
                 <div class="navbar-item">
                     <a class="navbar-brand"  href="https://www.cemosis.fr">
                         <img class="cemosis-logo"  src="../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
@@ -123,12 +126,12 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui-default" data-version="">
+<div class="nav-container" data-component="antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Cemosis Documentation UI</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -159,10 +162,10 @@ MathJax.Hub.Config({
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="copy-to-clipboard.html">Copy to clipboard</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="style-guide.html">UI Element Styles</a>
 <ul class="nav-list">
@@ -190,15 +193,15 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Cemosis Documentation UI</span>
+    <span class="title">Feel++ Antora UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Cemosis Documentation UI</a>
+        <a class="title" href="index.html">Feel++ Antora UI</a>
       </li>
       <li class="component">
-        <a class="title" href="../feelpp-project/index.html">Feel++ Project</a>
+        <a class="title" href="../feelpp-project/index.html">Template Project</a>
       </li>
   </ul>
 </div>
@@ -211,13 +214,13 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Cemosis Documentation UI</a></li>
-    <li><a href="style-guide.html">UI Element Styles</a></li>
+    <li><a href="index.html">Feel++ Antora UI</a></li>
+    <li><a href="copy-to-clipboard.html">Copy to clipboard</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/style-guide.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/copy-to-clipboard.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -237,44 +240,77 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">UI Element Style Guide</h1>
+<h1 class="page">Copy to clipboard</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>When creating a UI theme for Antora, there are certain elements in the UI that require support from the CSS to work correctly.
-This list includes elements in the shell (i.e., frame) and in the document content.
-This document identifies these UI elements.</p>
+<p>This page describes the copy to clipboard feature added to source blocks when using the default UI.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_document_content"><a class="anchor" href="#_document_content"></a>1. Document Content</h2>
+<h2 id="_source_blocks"><a class="anchor" href="#_source_blocks"></a>1. Source blocks</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The HTML in the main content area is generated from AsciiDoc using Asciidoctor.
-AsciiDoc has numerous content elements that require assistance from CSS to render properly.</p>
+<p>The default UI provides JavaScript that adds a clipboard button to all source blocks.
+The clipboard button shows up next to the language label when the mouse is hovered over the block.
+When the user clicks the clipboard button, the contents of the source block will be copied to the user&#8217;s clipboard.</p>
 </div>
 <div class="paragraph">
-<p>These elements include:</p>
+<p>You can try this behavior below:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="inline-text-styles.html" class="xref page">Inline text emphasis</a></p>
-</li>
-<li>
-<p><a href="admonition-styles.html" class="xref page">Admonitions</a></p>
-</li>
-<li>
-<p><a href="list-styles.html" class="xref page">Lists</a></p>
-</li>
-<li>
-<p><a href="sidebar-styles.html" class="xref page">Sidebars</a></p>
-</li>
-<li>
-<p><a href="ui-macro-styles.html" class="xref page">Button, keybinding, and menu UI macros</a></p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">puts 'Take me to your clipboard!'</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Copy to clipboard only works for a local site or if the site is hosted over https (SSL).
+The copy to clipboard does not work on an insecure site (http) since the clipboard API is not available in that environment.
+In that case, the behavior gracefully degrades so the user will not see the clipboard button or an error.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_console_blocks"><a class="anchor" href="#_console_blocks"></a>2. Console blocks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The default UI also adds a clipboard button to all console blocks.
+A console block is either a literal paragraph that begins with a <code>$</code> or a source block with the language <code>console</code>.</p>
+</div>
+<div class="paragraph">
+<p>The script provided by the default UI will automatically strip the <code>$</code> prompt at the beginning of each line and join the lines with <code>&amp;&amp;</code>.
+In <a href="#ex-console-copy-paste">Copy to clipboard for a multi-line console command</a>, since the language is <code>console</code> and each line begins with a <code>$</code>, the console copy-paste logic is triggered.</p>
+</div>
+<div id="ex-console-copy-paste" class="listingblock">
+<div class="title">Copy to clipboard for a multi-line console command</div>
+<div class="content">
+<pre>[,console]
+----
+$ mkdir example
+$ cd example
+----</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a user uses the copy-to-clipboard button, they will copy the combined command <code>mkdir example &amp;&amp; cd example</code> instead of the literal text shown.
+This can be useful for tutorial examples that a user is expected to copy-paste to run.
+You can try this behavior below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ mkdir example
+$ cd example</code></pre>
+</div>
 </div>
 </div>
 </div>

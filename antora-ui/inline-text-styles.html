@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>List Styles :: Feel++ Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui-default/list-styles.html">
+    <title>Inline Text Styles :: Feel++ Template Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/inline-text-styles.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -98,7 +98,7 @@ MathJax.Hub.Config({
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
         <div class="navbar-brand">
             <div class="navbar-item feelpp-logo">
-                <a href="https://feelpp.github.io/feelpp-project">Feel++ Project</a>
+                <a href="https://feelpp.github.io/feelpp-project">Feel++ Template Project</a>
             </div>
             <button class="navbar-burger" data-target="topbar-nav">
                 <span></span>
@@ -112,6 +112,9 @@ MathJax.Hub.Config({
                 <div class="navbar-item">
                     <a href="https://docs.feelpp.org/">Documentation Reference</a>
                 </div>
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="https://docs.feelpp.org/user/latest/install/index.html" class="download-btn">Get Feel++</a></div>
+                </div>
                 <div class="navbar-item">
                     <a class="navbar-brand"  href="https://www.cemosis.fr">
                         <img class="cemosis-logo"  src="../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
@@ -123,12 +126,12 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui-default" data-version="">
+<div class="nav-container" data-component="antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Cemosis Documentation UI</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -166,13 +169,13 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="style-guide.html">UI Element Styles</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="inline-text-styles.html">Inline Text</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="admonition-styles.html">Admonitions</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="list-styles.html">Lists</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -190,15 +193,15 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Cemosis Documentation UI</span>
+    <span class="title">Feel++ Antora UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Cemosis Documentation UI</a>
+        <a class="title" href="index.html">Feel++ Antora UI</a>
       </li>
       <li class="component">
-        <a class="title" href="../feelpp-project/index.html">Feel++ Project</a>
+        <a class="title" href="../feelpp-project/index.html">Template Project</a>
       </li>
   </ul>
 </div>
@@ -211,14 +214,14 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Cemosis Documentation UI</a></li>
+    <li><a href="index.html">Feel++ Antora UI</a></li>
     <li><a href="style-guide.html">UI Element Styles</a></li>
-    <li><a href="list-styles.html">Lists</a></li>
+    <li><a href="inline-text-styles.html">Inline Text</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/list-styles.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/inline-text-styles.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -238,120 +241,114 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">List Styles</h1>
-<div class="sect1">
-<h2 id="_ordered_list_numeration"><a class="anchor" href="#_ordered_list_numeration"></a>1. Ordered list numeration</h2>
+<h1 class="page">Inline Text Styles</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The browser automatically numbers <a href="#antora:asciidoc:ordered-and-unordered-lists.adoc" class="xref unresolved">ordered lists</a> and selects a numeration style by list depth in the following order: decimal, lower-alpha, lower-roman, upper-alpha, upper-roman.</p>
+<p>This page describes how to style text in the contents of the page which is visually emphasized.</p>
 </div>
-<div class="paragraph">
-<p>AsciiDoc allows the author to override the numeration style for an ordered list.
-Here&#8217;s an example of that output:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;div class="olist loweralpha"&gt;
-&lt;ol class="loweralpha" type="a"&gt;
-&lt;li&gt;&lt;p&gt;a&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;b&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;c&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In order to support this customization, you must assign the list-style-type property to the following classes on the <code>&lt;ol&gt;</code> element in your stylesheet.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">&lt;ol&gt; class</th>
-<th class="tableblock halign-left valign-top">list-style-type property value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">arabic</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">decimal</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">decimal</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">decimal-leading-zero</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">loweralpha</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lower-alpha</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lowergreek</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lower-greek</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lowerroman</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lower-roman</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">upperalpha</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">upper-alpha</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">upperroman</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">upper-roman</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_checklist"><a class="anchor" href="#_checklist"></a>2. Checklist</h2>
+<h2 id="bold"><a class="anchor" href="#bold"></a>1. Bold text (&lt;strong&gt;)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <a href="#antora:asciidoc:checklists.adoc" class="xref unresolved">checklist</a> is an unordered list with items that are prefixed with a checkbox marker (checked or unchecked).
-Here&#8217;s an AsciiDoc source example that produces a checklist:</p>
+<p>How <a href="#antora:asciidoc:bold.adoc" class="xref unresolved">text marked as bold</a> appears on your site depends on the fonts loaded by the UI and the CSS styles the UI applies to the <code>&lt;strong&gt;</code> HTML tag.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* [ ] todo
-* [x] done!</code></pre>
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">A bold &lt;strong&gt;word&lt;/strong&gt;, or a bold &lt;strong&gt;phrase of text&lt;/strong&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If font-based icons are enabled (<code>icons=font</code>), the checkbox gets inserted as the first element of the paragraph element that contains the list item text.</p>
+<p>Since <code>&lt;strong&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-weight: bold</code>) from the browser.
+If you want to override the browser styles, you&#8217;ll need to define properties on the <code>strong</code> selector in the stylesheet for your UI.</p>
+</div>
+<div class="paragraph">
+<p>In the default UI, the <code>&lt;strong&gt;</code> element is styled in the 500 font weight of the current typeface (Roboto).
+For example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+A bold <strong>word</strong>, or a bold <strong>phrase of text</strong>.
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="italic"><a class="anchor" href="#italic"></a>2. Italic text (&lt;em&gt;)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>How <a href="#antora:asciidoc:italic.adoc" class="xref unresolved">italicized text</a> appears on your site depends on the fonts loaded by the UI and the CSS styles the UI applies to the <code>&lt;em&gt;</code> HTML tag.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;div class="ulist checklist"&gt;
-&lt;ul class="checklist"&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;i class="fa fa-square-o"&gt; todo&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;i class="fa fa-check-square-o"&gt; done!&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">An italic &lt;em&gt;word&lt;/em&gt;, or an italic &lt;em&gt;phrase of text&lt;/em&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The recommended approach is to hide the list markers (<code>list-style: none</code>), then add a checkbox glyph on the icon element using either a background image or a <code>before</code> pseudo element.</p>
+<p>Since <code>&lt;em&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-style: italic</code>) from the browser.
+If you want to override the browser styles, you&#8217;ll need to define properties on the <code>em</code> selector in the stylesheet for your UI.</p>
 </div>
 <div class="paragraph">
-<p>Here&#8217;s how it might appear:</p>
+<p>In the default UI, the <code>em</code> element is styled in the italic font variant of the current typeface (Roboto).
+For example:</p>
 </div>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p><i class="fa fa-square-o"></i> todo</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> done!</p>
-</li>
-</ul>
+<div class="exampleblock">
+<div class="content">
+An italic <em>word</em>, or an italic <em>phrase of text</em>.
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="monospace"><a class="anchor" href="#monospace"></a>3. Monospace text (&lt;code&gt;)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>How <a href="#antora:asciidoc:monospace.adoc" class="xref unresolved">inline monospace text</a> is displayed depends on the fixed-width font loaded by your UI and the CSS styles it applies to the <code>&lt;code&gt;</code> HTML tag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">A monospace &lt;code&gt;word&lt;/code&gt;, or a monospace &lt;code&gt;phrase of text&lt;/code&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since <code>&lt;code&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-family: monospace</code>) from the browser.
+If you want to override the browser styles, you&#8217;ll need to define properties on the <code>code</code> selector in the stylesheet for your UI.</p>
+</div>
+<div class="paragraph">
+<p>In the default UI, the <code>code</code> element is styled using the fixed-width font loaded by the stylesheet (Roboto Mono).
+For example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+A monospace <code>word</code>, or a monospace <code>phrase of text</code>.
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="highlight"><a class="anchor" href="#highlight"></a>4. Highlighted text (&lt;mark&gt;)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>How <a href="#antora:asciidoc:highlight.adoc" class="xref unresolved">highlighted (or marked) text</a> appears on your site depends on the CSS styles the UI applies to the <code>&lt;mark&gt;</code> HTML tag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">Let&amp;#8217;s add some &lt;mark&gt;highlight&lt;/mark&gt; to it.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since <code>&lt;mark&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>background-color: yellow</code>) from the browser.
+Here&#8217;s an example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+Let&#8217;s add some <mark>highlight</mark> to it.
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to override the browser styles, you&#8217;ll need to define properties on the <code>mark</code> selector in the stylesheet for your UI.</p>
 </div>
 </div>
 </div>

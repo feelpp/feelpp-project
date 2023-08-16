@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>UI Development Workflow :: Feel++ Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui-default/development-workflow.html">
+    <title>Admonition Styles :: Feel++ Template Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/admonition-styles.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -98,7 +98,7 @@ MathJax.Hub.Config({
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
         <div class="navbar-brand">
             <div class="navbar-item feelpp-logo">
-                <a href="https://feelpp.github.io/feelpp-project">Feel++ Project</a>
+                <a href="https://feelpp.github.io/feelpp-project">Feel++ Template Project</a>
             </div>
             <button class="navbar-burger" data-target="topbar-nav">
                 <span></span>
@@ -112,6 +112,9 @@ MathJax.Hub.Config({
                 <div class="navbar-item">
                     <a href="https://docs.feelpp.org/">Documentation Reference</a>
                 </div>
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="https://docs.feelpp.org/user/latest/install/index.html" class="download-btn">Get Feel++</a></div>
+                </div>
                 <div class="navbar-item">
                     <a class="navbar-brand"  href="https://www.cemosis.fr">
                         <img class="cemosis-logo"  src="../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
@@ -123,12 +126,12 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui-default" data-version="">
+<div class="nav-container" data-component="antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Cemosis Documentation UI</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -141,7 +144,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="build-preview-ui.html">Build and Preview the UI</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="development-workflow.html">UI Development Workflow</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -169,7 +172,7 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="inline-text-styles.html">Inline Text</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="admonition-styles.html">Admonitions</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -190,15 +193,15 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Cemosis Documentation UI</span>
+    <span class="title">Feel++ Antora UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Cemosis Documentation UI</a>
+        <a class="title" href="index.html">Feel++ Antora UI</a>
       </li>
       <li class="component">
-        <a class="title" href="../feelpp-project/index.html">Feel++ Project</a>
+        <a class="title" href="../feelpp-project/index.html">Template Project</a>
       </li>
   </ul>
 </div>
@@ -211,13 +214,14 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Cemosis Documentation UI</a></li>
-    <li><a href="development-workflow.html">UI Development Workflow</a></li>
+    <li><a href="index.html">Feel++ Antora UI</a></li>
+    <li><a href="style-guide.html">UI Element Styles</a></li>
+    <li><a href="admonition-styles.html">Admonitions</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/development-workflow.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/admonition-styles.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -237,55 +241,62 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">UI Development Workflow</h1>
+<h1 class="page">Admonition Styles</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>All changes pushed to a UI project&#8217;s default branch can trigger a new release (not described here).
-Therefore, you want to make your changes to a development branch and submit it as a pull request (PR) to be approved.
-(Even better would be to issue the PR from a fork).
-Only when the PR is approved and merged will the new release be triggered.</p>
+<p>An <a href="#antora:asciidoc:admonitions.adoc" class="xref unresolved">admonition</a>, also known as a notice, helps draw attention to content with a special label or icon.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_git_steps"><a class="anchor" href="#_git_steps"></a>1. git steps</h2>
+<h2 id="_admonition_blocks"><a class="anchor" href="#_admonition_blocks"></a>1. Admonition blocks</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Use the following command to create a local development branch named <code>name-me</code>:</p>
+<p>An admonition block is a table.
+The table title element is specified by the block class: tip, note, important, warning, or caution.
+Here&#8217;s an AsciiDoc source example that produces an admonition with the table title warning:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ git checkout -b name-me -t origin/HEAD</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">WARNING: Watch out!</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You&#8217;ll then apply your changes to the UI files.
-Once you&#8217;re done making changes, commit those changes to the local branch:</p>
+<p>If font-based icons are enabled (<code>icons=font</code>), the table title text is replaced by the associated icon.</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ git commit -a -m "describe your change"</pre>
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;div class="admonitionblock warning"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;i class="fa icon-warning" title="Warning"&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Watch out!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then, push your branch to the remote repository:</p>
+<p>Here&#8217;s how it might appear when the title is displayed as text:</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>$ git push origin name-me</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally, navigate to your UI project in your browser and create a new pull request from this branch.</p>
-</div>
-<div class="paragraph">
-<p>The maintainer of the UI should review the changes.
-If the changes are acceptable, the maintainer will merge the pull request.
-As soon as the pull request is merged into the default branch, an automated process will take over to publish a new release for the site generator to use.</p>
-</div>
-<div class="paragraph">
-<p>Now that you&#8217;ve got the process down, let&#8217;s review some of the files you&#8217;ll be working with in more detail.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Watch out!
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

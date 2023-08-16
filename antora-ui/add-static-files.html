@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Work with the CSS Stylesheets :: Feel++ Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui-default/stylesheets.html">
+    <title>Add Static Files :: Feel++ Template Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/add-static-files.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -98,7 +98,7 @@ MathJax.Hub.Config({
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
         <div class="navbar-brand">
             <div class="navbar-item feelpp-logo">
-                <a href="https://feelpp.github.io/feelpp-project">Feel++ Project</a>
+                <a href="https://feelpp.github.io/feelpp-project">Feel++ Template Project</a>
             </div>
             <button class="navbar-burger" data-target="topbar-nav">
                 <span></span>
@@ -112,6 +112,9 @@ MathJax.Hub.Config({
                 <div class="navbar-item">
                     <a href="https://docs.feelpp.org/">Documentation Reference</a>
                 </div>
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="https://docs.feelpp.org/user/latest/install/index.html" class="download-btn">Get Feel++</a></div>
+                </div>
                 <div class="navbar-item">
                     <a class="navbar-brand"  href="https://www.cemosis.fr">
                         <img class="cemosis-logo"  src="../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
@@ -123,12 +126,12 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui-default" data-version="">
+<div class="nav-container" data-component="antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Cemosis Documentation UI</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -147,10 +150,10 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="templates.html">Work with the Handlebars Templates</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="add-static-files.html">Add Static Files</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="stylesheets.html">Work with the CSS Stylesheets</a>
 <ul class="nav-list">
@@ -190,15 +193,15 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Cemosis Documentation UI</span>
+    <span class="title">Feel++ Antora UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Cemosis Documentation UI</a>
+        <a class="title" href="index.html">Feel++ Antora UI</a>
       </li>
       <li class="component">
-        <a class="title" href="../feelpp-project/index.html">Feel++ Project</a>
+        <a class="title" href="../feelpp-project/index.html">Template Project</a>
       </li>
   </ul>
 </div>
@@ -211,13 +214,13 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Cemosis Documentation UI</a></li>
-    <li><a href="stylesheets.html">Work with the CSS Stylesheets</a></li>
+    <li><a href="index.html">Feel++ Antora UI</a></li>
+    <li><a href="add-static-files.html">Add Static Files</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/stylesheets.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/add-static-files.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -237,47 +240,135 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Work with the CSS Stylesheets</h1>
+<h1 class="page">Add Static Files</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The stylesheets are written in CSS.
-These stylesheets utilize CSS variables to keep the CSS DRY and easy to customize.</p>
+<p>A static UI file is any file provided by the UI that is added directly to your site.
+A common example of a static file is a favicon image.
+One way to add static files is by using the <a href="#antora:playbook:ui-supplemental-files.adoc" class="xref unresolved">supplemental UI</a>, which is defined in your Antora playbook.
+This document explains how to add static files using a UI bundle instead.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_stylesheet_organization_and_processing"><a class="anchor" href="#_stylesheet_organization_and_processing"></a>1. Stylesheet organization and processing</h2>
+<h2 id="_set_up_the_static_files_folder"><a class="anchor" href="#_set_up_the_static_files_folder"></a>1. Set up the static files folder</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Within the default UI project, the stylesheet files are separated into modules to help organize the rules and make them easier to find.
-The UI build combines and minifies these files into a single file named <em class="path">site.css</em>.
-During the build, the CSS is enhanced using PostCSS in much the same way as a CSS preprocessor works, only the modifications are made to the CSS directly.
-The modifications mostly center around injecting vendor prefixes for compatibility or backporting new features to more broadly supported syntax.</p>
+<p>You&#8217;ll first need a place to store the static files in the UI project.
+Let&#8217;s create a folder under <em class="path">src</em> named <em class="path">static</em> for this purpose.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ mkdir src/static</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can add static files, such as a favicon image (e.g., <em class="path">favicon.ico</em>), to this folder.
+The UI build will add files in this folder to the root of the UI bundle, dropping the <em class="path">static</em> folder prefix from the path.</p>
+</div>
+<div class="paragraph">
+<p>Antora automatically passes through static files in the bundle to the UI output folder (<code>_</code> by default), ignoring any hidden files (i.e., files that begin with a dot).
+A static file is any file that&#8217;s not designated as a layout, partial, or helper.
+That means our favicon image file will end up at the path <em class="path">_/favicon.ico</em>.</p>
+</div>
+<div class="literalblock">
+<div class="title">Contents of site</div>
+<div class="content">
+<pre>_/
+  favicon.ico
+  css/
+    site.css
+  ...
+sitemap.xml
+...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If that&#8217;s where you want the file to go, there&#8217;s nothing else you have to do.
+Otherwise, you have the option of promoting select static files to the site root.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_add_a_new_css_rule"><a class="anchor" href="#_add_a_new_css_rule"></a>2. Add a new CSS rule</h2>
+<h2 id="_promote_static_files"><a class="anchor" href="#_promote_static_files"></a>2. Promote static files</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s consider the case when you want to modify the font size of a section title.</p>
+<p>If you want to promote certain static files out of the UI output folder, you need to identify them.
+Antora looks for a file named <em class="path">ui.yml</em>, the UI descriptor, in the UI bundle to configure the behavior of the UI.</p>
 </div>
 <div class="paragraph">
-<p>First, make sure you have set up the project and created a development branch.
-Next, open the file <em class="path">src/css/doc.css</em> and modify the rule for the section title.</p>
+<p>Start by creating the file <em class="path">src/ui.yml</em> in your UI project.
+The UI build copies this file, if present, to the root of the UI bundle.</p>
+</div>
+<div class="paragraph">
+<p>This file does not have any required keys.
+The key we&#8217;re interested in is <code>static_files</code>.
+This key identifies files by relative path in the UI bundle that should be promoted from the UI output folder to the site root.
+The files must be specified as an array, where each entry is either a relative paths or a path glob.
+Unlike other static files, promoted static files can begin with a dot.</p>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s how to configure the UI descriptor to promote the favicon image file to the site root.</p>
 </div>
 <div class="listingblock">
+<div class="title">src/ui.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">.doc h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  margin-top: 2rem
-}</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">static_files:
+- favicon.ico</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Save the file, commit it to git, push the branch, and allow the approval workflow to play out.</p>
+<p>If you have multiple favicon files with different file extensions, you can match all of them using a glob.</p>
+</div>
+<div class="listingblock">
+<div class="title">src/ui.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">static_files:
+- favicon*</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this configuration in place, Antora will read the favicon image from the UI bundle and copy it to the root of the site.</p>
+</div>
+<div class="literalblock">
+<div class="title">Contents of site</div>
+<div class="content">
+<pre>_/
+  css/
+    site.css
+  ...
+favicon.ico
+sitemap.xml
+...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s now look at how to put the static files to use.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_use_the_static_files"><a class="anchor" href="#_use_the_static_files"></a>3. Use the static files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Often when you add static files to your site, you need to reference them somewhere.
+In the case of a favicon image, it must be referenced in the <code>&lt;head&gt;</code> of the HTML page.
+If you are referencing a promoted static file, you&#8217;ll use the prefix <code>{{{siteRootPath}}}</code>.
+Otherwise, you&#8217;ll use the prefix <code>{{{uiRootPath}}}</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s update the <em class="path">src/partials/head-icons.hbs</em> partial to reference the favicon image at the root of the site.</p>
+</div>
+<div class="listingblock">
+<div class="title">src/partials/head-icons.hbs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">    &lt;link rel="icon" href="{{{siteRootPath}}}/favicon.ico" type="image/x-icon"&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Rebuild the UI with <code>gulp bundle</code>.
+You should now see that your site has a favicon image that&#8217;s provided by the UI bundle.</p>
 </div>
 </div>
 </div>

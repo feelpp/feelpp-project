@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Add Fonts :: Feel++ Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui-default/add-fonts.html">
+    <title>UI Development Prerequisites :: Feel++ Template Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/prerequisites.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -98,7 +98,7 @@ MathJax.Hub.Config({
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-template-project" style="border-top: 4px solid #9E9E9E">
         <div class="navbar-brand">
             <div class="navbar-item feelpp-logo">
-                <a href="https://feelpp.github.io/feelpp-project">Feel++ Project</a>
+                <a href="https://feelpp.github.io/feelpp-project">Feel++ Template Project</a>
             </div>
             <button class="navbar-burger" data-target="topbar-nav">
                 <span></span>
@@ -112,6 +112,9 @@ MathJax.Hub.Config({
                 <div class="navbar-item">
                     <a href="https://docs.feelpp.org/">Documentation Reference</a>
                 </div>
+                <div class="navbar-item has-dropdown is-hoverable download-item">
+                    <div class="navbar-item"><a href="https://docs.feelpp.org/user/latest/install/index.html" class="download-btn">Get Feel++</a></div>
+                </div>
                 <div class="navbar-item">
                     <a class="navbar-brand"  href="https://www.cemosis.fr">
                         <img class="cemosis-logo"  src="../_/img/cemosis-logo.svg" alt="Cemosis logo"/>
@@ -123,16 +126,16 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui-default" data-version="">
+<div class="nav-container" data-component="antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Cemosis Documentation UI</a></h3>
+    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="prerequisites.html">UI Development Prerequisites</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -154,7 +157,7 @@ MathJax.Hub.Config({
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="stylesheets.html">Work with the CSS Stylesheets</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="add-fonts.html">Add Fonts</a>
   </li>
 </ul>
@@ -190,15 +193,15 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Cemosis Documentation UI</span>
+    <span class="title">Feel++ Antora UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Cemosis Documentation UI</a>
+        <a class="title" href="index.html">Feel++ Antora UI</a>
       </li>
       <li class="component">
-        <a class="title" href="../feelpp-project/index.html">Feel++ Project</a>
+        <a class="title" href="../feelpp-project/index.html">Template Project</a>
       </li>
   </ul>
 </div>
@@ -211,14 +214,13 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Cemosis Documentation UI</a></li>
-    <li><a href="stylesheets.html">Work with the CSS Stylesheets</a></li>
-    <li><a href="add-fonts.html">Add Fonts</a></li>
+    <li><a href="index.html">Feel++ Antora UI</a></li>
+    <li><a href="prerequisites.html">UI Development Prerequisites</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/add-fonts.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/prerequisites.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -238,212 +240,100 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Add Fonts</h1>
+<h1 class="page">UI Development Prerequisites</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This page explains how to add new fonts to your UI.
-These instructions assume you&#8217;ve forked the default UI and are able to customize it.</p>
+<p>An Antora UI project is based on tools built atop Node.js, namely:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://nodejs.org">Node.js</a> (commands: <code>node</code> and <code>npm</code>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/creationix/nvm">nvm</a> (optional, but strongly recommended)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://gulpjs.com">Gulp CLI</a> (command: <code>gulp</code>)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>There are three steps involved:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Add the font to your UI project</p>
-</li>
-<li>
-<p>Add a font-face declaration to your stylesheet</p>
-</li>
-<li>
-<p>Use the new font in your stylesheet</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>How you reference the font file in the font-face declaration depends on how you decide to manage it.
-You can manage the font with npm or download it manually and add it directly to your UI project.
-The following sections describe each approach in turn.</p>
+<p>You also need <a href="https://git-scm.com">git</a> (command: <code>git</code>) to pull down the project and push updates to it.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_npm_managed"><a class="anchor" href="#_npm_managed"></a>1. npm managed</h2>
+<h2 id="_git"><a class="anchor" href="#_git"></a>1. git</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can use npm (or Yarn) to manage the font.
-This approach saves you from having to store the font file directly in your UI project.
-Here are the steps involved.</p>
+<p>First, make sure you have git installed.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Use npm (or Yarn) to install the font files from a package (e.g., <a href="https://www.npmjs.com/package/typeface-open-sans">typeface-open-sans</a>)</p>
 <div class="literalblock">
 <div class="content">
-<pre>$ npm install --save typeface-open-sans</pre>
-</div>
-</div>
-</li>
-<li>
-<p>In <em class="path">src/css</em>, add a corresponding CSS file (e.g., <em class="path">typeface-open-sans.css</em>)</p>
-</li>
-<li>
-<p>In that file, declare the font face:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400;
-  src:
-    local("Open Sans"),
-    local("Open Sans-Regular"),
-    url(~typeface-open-sans/files/open-sans-latin-400.woff) format("woff")
-}</code></pre>
+<pre>$ git --version</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The Gulp build recognizes the <code>~</code> URL prefix and copies the font from the npm package to the build folder (and hence bundle).</p>
-</div>
-<div class="paragraph">
-<p>You must define one @font-face for each font weight and style combination (e.g., <code>font-weight: 500</code> + <code>font-style: italic</code>) from the font that you want to use in your stylesheet.</p>
-</div>
-</li>
-<li>
-<p>Import the typeface CSS file you just created into the main stylesheet, <em class="path">src/css/site.css</em> (adjacent to the other typeface imports):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">@import "typeface-open-sans.css";</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Repeat the previous steps for each font style and weight you want to use from that package.</p>
-</li>
-<li>
-<p>Change the CSS to use your newly imported font:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">html {
-  font-family: "Open Sans", sans;
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you&#8217;re building on the default UI, you may instead want to define or update the font family using a variable defined in <em class="path">src/css/vars.css</em>.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Test the new font by previewing your UI:</p>
-<div class="literalblock">
-<div class="content">
-<pre>$ gulp preview</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>If you see the new font, you&#8217;ve now successfully added it to your UI.
-If you aren&#8217;t sure, look for the <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_fonts">All fonts on page</a> section in your browser&#8217;s developer tools to see whether the font was loaded.</p>
+<p>If not, <a href="https://git-scm.com/downloads">download and install</a> the git package for your system.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_manual"><a class="anchor" href="#_manual"></a>2. Manual</h2>
+<h2 id="_node_js"><a class="anchor" href="#_node_js"></a>2. Node.js</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A simpler approach to adding fonts is to store them directly in your project.
-Here are the steps involved.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Download the font files and add them to the <em class="path">src/font</em> folder.
-Create this folder if it does not exist.</p>
-</li>
-<li>
-<p>In <em class="path">src/css</em>, add a corresponding CSS file (e.g., <em class="path">typeface-open-sans.css</em>)</p>
-</li>
-<li>
-<p>In that file, declare the font face:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">@font-face {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400;
-  src:
-    local("Open Sans"),
-    local("Open Sans-Regular"),
-    url(../font/open-sans-latin-400.woff) format("woff")
-}</code></pre>
-</div>
+<p>You need Node.js installed on your machine to use Antora, including the default UI.
+Antora follows the Node.js release schedule, so we advise that you choose an active long term support (LTS) release of Node.js.
+We recommend using the latest active Node.js LTS version.
+While you can use other versions of Node.js, Antora is only tested against LTS releases.</p>
 </div>
 <div class="paragraph">
-<p>Note that the path is a relative path starting from the <em class="path">src/css</em> folder to the <em class="path">src/font</em> folder.</p>
+<p>To check whether you have Node.js installed, and which version, open a terminal and type:</p>
 </div>
-<div class="paragraph">
-<p>You must define one @font-face for each font weight and style combination (e.g., <code>font-weight: 500</code> + <code>font-style: italic</code>) from the font that you want to use in your stylesheet.</p>
-</div>
-</li>
-<li>
-<p>Import the typeface CSS file you just created into the main stylesheet, <em class="path">src/css/site.css</em> (adjacent to the other typeface imports):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">@import "typeface-open-sans.css";</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Repeat the previous steps for each font style and weight you want to use.</p>
-</li>
-<li>
-<p>Change the CSS to use your newly imported font:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-css hljs" data-lang="css">html {
-  font-family: "Open Sans", sans;
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you&#8217;re building on the default UI, you may instead want to define or update the font family using a variable defined in <em class="path">src/css/vars.css</em>.
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Test the new font by previewing your UI:</p>
 <div class="literalblock">
 <div class="content">
-<pre>$ gulp preview</pre>
+<pre>$ node --version</pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="paragraph">
-<p>If you see the new font, you&#8217;ve now successfully added it to your UI.
-If you aren&#8217;t sure, look for the <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_fonts">All fonts on page</a> section in your browser&#8217;s developer tools to see whether the font was loaded.</p>
+<p>You should see a version string, such as:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>v10.15.3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the command fails with an error, it means you don&#8217;t have Node.js installed.
+The best way to install Node.js is to use nvm (Node Version Manager).
+Refer to <a href="#antora:install:linux-requirements.adoc#install-nvm" class="xref unresolved">Install nvm and Node.js (Linux)</a>, <a href="#antora:install:macos-requirements.adoc#install-nvm" class="xref unresolved">Install nvm and Node.js (macOS)</a>, or <a href="#antora:install:windows-requirements.adoc#install-nvm" class="xref unresolved">Install nvm and Node.js (Windows)</a> for instructions.</p>
+</div>
+<div class="paragraph">
+<p>Once you have Node.js installed, you can proceed with installing the Gulp CLI.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gulp_cli"><a class="anchor" href="#_gulp_cli"></a>3. Gulp CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next, you&#8217;ll need the Gulp CLI (aka wrapper).
+This package provides the <code>gulp</code> command which executes the version of Gulp declared by the project.
+You should install the Gulp CLI globally (which resolves to a location in your user directory if you&#8217;re using nvm) using the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ npm install -g gulp-cli</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that you have Node.js and Gulp installed, you&#8217;re ready to set up the project.</p>
 </div>
 </div>
 </div>

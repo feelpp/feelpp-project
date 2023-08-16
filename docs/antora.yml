@@ -1,9 +1,12 @@
 name: feelpp-project
-title: Feel++ Project
+title: Template Project
 version: ~
 start_page: index.adoc
 nav:
 - modules/ROOT/nav.adoc
+asciidoc:
+  attributes:
+    project_name: Feel++ Template Project
 ext:
   collector:
     - run:

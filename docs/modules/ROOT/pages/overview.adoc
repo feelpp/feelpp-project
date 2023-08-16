@@ -44,6 +44,10 @@ $ cmake --build --preset default -t package # <5>
 <4> Run the tests
 <5> Package the project
 
+== How to start documenting your work
+
+The documentation is written in Asciidoc and uses Antora to generate the documentation. Please check the project xref:antora.adoc[Antora] page to get started.
+
 
 
 

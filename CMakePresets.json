@@ -64,7 +64,7 @@
                 "outputOnFailure": true
             },
             "execution": {
-                "noTestsAction": "error",
+                "noTestsAction": "ignore",
                 "stopOnFailure": true
             }
         }

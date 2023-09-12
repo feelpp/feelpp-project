@@ -1,9 +1,9 @@
 * xref:index.adoc[Introduction]
 * {project_name} Environment
-** xref:cmake.adoc[cmake environment]
-** xref:antora.adoc[antora environment]
-** xref:vscode.adoc[vscode integration]
-** xref:githubactions.adoc[Github Actions]
-** xref:rename.adoc[Renaming the project]
-** xref:jupyter.adoc[Jupyter Notebook]
+** xref:env/cmake.adoc[cmake environment]
+** xref:env/antora.adoc[antora environment]
+** xref:env/vscode.adoc[vscode integration]
+** xref:env/githubactions.adoc[Github Actions]
+** xref:env/rename.adoc[Renaming the project]
+** xref:env/jupyter.adoc[Jupyter Notebook]
 

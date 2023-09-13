@@ -1,4 +1,5 @@
 = Quickstart Guide 
+:navtitle: Quickstart
 
 To get started with compiling and using {project_name}, you can either 
 

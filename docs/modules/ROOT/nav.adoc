@@ -1,5 +1,7 @@
 * xref:index.adoc[Introduction]
-* {project_name} Environment
+* xref:quickstart.adoc[]
+* xref:overview.adoc[]
+* Setting up the development Environment
 ** xref:env/cmake.adoc[]
 ** xref:env/antora.adoc[]
 ** xref:env/vscode.adoc[]

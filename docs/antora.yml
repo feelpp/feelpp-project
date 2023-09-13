@@ -8,10 +8,10 @@ asciidoc:
     numbered: true
     allow-uri-read: true
     hide-uri-scheme: true
+    feelpp: Feel++
     stem: latexmath
     python: Python
     cpp: C++
-    feelpp: Feel++
 ext:
   collector:
     - run:

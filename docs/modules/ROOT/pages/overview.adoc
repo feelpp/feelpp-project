@@ -1,4 +1,5 @@
 = Overview of {project_name}
+:navtitle: Overview
 
 == Organisation
 
@@ -46,7 +47,7 @@ $ cmake --build --preset default -t package # <5>
 
 == How to start documenting your work
 
-The documentation is written in Asciidoc and uses Antora to generate the documentation. Please check the project xref:env/antora.adoc[Antora] page to get started.
+The documentation is written in AsciiDoc and uses Antora to generate the documentation. Please check the project xref:env/antora.adoc[Antora] page to get started.
 
 
 

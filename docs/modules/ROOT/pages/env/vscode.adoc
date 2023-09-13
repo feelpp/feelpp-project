@@ -1,4 +1,4 @@
-= Using VSCode 
+= VS Code Integration
 
 The project is configured to integrate VSCode using Docker Container.
 

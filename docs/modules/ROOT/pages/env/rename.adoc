@@ -1,4 +1,4 @@
-= Renaming the project 
+= Renaming the Project
 
 The script `rename.sh` renames the project. 
 

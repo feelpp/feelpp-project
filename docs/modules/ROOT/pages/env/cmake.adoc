@@ -1,4 +1,4 @@
-= Cmake environment
+= CMake Environment
 
 The CMakeLists.txt is setup with {feelpp}.
 A sample {feelpp} application is available in `src`.

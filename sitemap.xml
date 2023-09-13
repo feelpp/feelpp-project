@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <sitemap>
-<loc>https://feelpp.github.io/feelpp-project/sitemap-antora-ui.xml</loc>
+<loc>https://feelpp.github.io/feelpp-project/sitemap-feelpp-antora-ui.xml</loc>
 </sitemap>
 <sitemap>
 <loc>https://feelpp.github.io/feelpp-project/sitemap-feelpp-project.xml</loc>

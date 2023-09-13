@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Build a UI Project for Local Preview :: Feel++ Template Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/build-preview-ui.html">
+    <title>Inline Text Styles :: Feel++ Template Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-antora-ui/inline-text-styles.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -126,63 +126,33 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui" data-version="">
+<div class="nav-container" data-component="feelpp-antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
+    <h3 class="title"><a href="index.html">Antora Feel++ UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="prerequisites.html">UI Development Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="set-up-project.html">Set up a UI Project</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="build-preview-ui.html">Build and Preview the UI</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development-workflow.html">UI Development Workflow</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="templates.html">Work with the Handlebars Templates</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="add-static-files.html">Add Static Files</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="stylesheets.html">Work with the CSS Stylesheets</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="add-fonts.html">Add Fonts</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="copy-to-clipboard.html">Copy to clipboard</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="style-guide.html">UI Element Styles</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="inline-text-styles.html">Inline Text</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="admonition-styles.html">Admonitions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="list-styles.html">Lists</a>
+    <a class="nav-link" href="source-highlighting.html">Source Highlighting</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="sidebar-styles.html">Sidebars</a>
+    <a class="nav-link" href="copy-to-clipboard.html">Copy to Clipboard</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ui-macro-styles.html">UI Macros</a>
+    <a class="nav-link" href="pseudocode.html">Pseudocode</a>
   </li>
 </ul>
   </li>
@@ -193,12 +163,12 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Feel++ Antora UI</span>
+    <span class="title">Antora Feel++ UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Feel++ Antora UI</a>
+        <a class="title" href="index.html">Antora Feel++ UI</a>
       </li>
       <li class="component">
         <a class="title" href="../feelpp-project/index.html">Template Project</a>
@@ -214,13 +184,14 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Feel++ Antora UI</a></li>
-    <li><a href="build-preview-ui.html">Build and Preview the UI</a></li>
+    <li><a href="index.html">Antora Feel++ UI</a></li>
+    <li><a href="style-guide.html">UI Element Styles</a></li>
+    <li><a href="inline-text-styles.html">Inline Text</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/build-preview-ui.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/inline-text-styles.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -240,105 +211,114 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Build a UI Project for Local Preview</h1>
-<div class="sect1">
-<h2 id="_build_preview_site"><a class="anchor" href="#_build_preview_site"></a>1. Build Preview Site</h2>
+<h1 class="page">Inline Text Styles</h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once you&#8217;ve modified the site UI, the first thing you&#8217;ll want to do is check out how it looks.
-That&#8217;s what the files in the <em class="path">preview-src/</em> folder are for.
-This folder contains HTML file fragments that provide a representative sample of content from the site.
-The preview saves you from having to generate the whole site just to test the UI.
-These files should give you an idea of how the UI will look when applied to the actual site.</p>
+<p>This page describes how to style text in the contents of the page which is visually emphasized.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bold"><a class="anchor" href="#bold"></a>1. Bold text (&lt;strong&gt;)</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The pages in the preview site are assembled using the Handlebars templates and link to the pre-compiled asset files (emulating the behavior of the site generator).
-Thus, to look at them, you need to run them through the UI build.</p>
+<p>How <a href="asciidoc/bold.html" class="xref page">text marked as bold</a> appears on your site depends on the fonts loaded by the UI and the CSS styles the UI applies to the <code>&lt;strong&gt;</code> HTML tag.</p>
 </div>
-<div class="paragraph">
-<p>There are two preview modes available.
-You can run the build once and examine the result or you can run the build continuously so you can see changes as you make them.
-The next two sections explain how to use these modes.</p>
-</div>
-<div class="sect2">
-<h3 id="_build_once"><a class="anchor" href="#_build_once"></a>1.1. Build Once</h3>
-<div class="paragraph">
-<p>To build the UI once for preview, then stop, execute the following command:</p>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ gulp preview:build</pre>
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">A bold &lt;strong&gt;word&lt;/strong&gt;, or a bold &lt;strong&gt;phrase of text&lt;/strong&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This task pre-compiles the UI files into the <em class="path">public</em> directory.
-To view the preview pages, navigate to the HTML pages in the <em class="path">public</em> directory using your browser (e.g., <em class="path">public/index.html</em>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_build_continuously"><a class="anchor" href="#_build_continuously"></a>1.2. Build Continuously</h3>
-<div class="paragraph">
-<p>To avoid the need to run the <code>preview:build</code> task over and over while developing, you can use the <code>preview</code> command instead to have it run continuously.
-This task also launches a local HTTP server so updates get synchronized with the browser (i.e., &#8220;live reload&#8221;).</p>
+<p>Since <code>&lt;strong&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-weight: bold</code>) from the browser.
+If you want to override the browser styles, you&#8217;ll need to define properties on the <code>strong</code> selector in the stylesheet for your UI.</p>
 </div>
 <div class="paragraph">
-<p>To launch the preview server, execute the following command:</p>
+<p>In the default UI, the <code>&lt;strong&gt;</code> element is styled in the 500 font weight of the current typeface (Roboto).
+For example:</p>
 </div>
-<div class="literalblock">
+<div class="exampleblock">
 <div class="content">
-<pre>$ gulp preview</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You&#8217;ll see a URL listed in the output of this command:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>[12:59:28] Starting 'preview:serve'...
-[12:59:28] Starting server...
-[12:59:28] Server started http://localhost:5252
-[12:59:28] Running server</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Navigate to the URL to view the preview site.
-While this command is running, any changes you make to the source files will be instantly reflected in the browser.
-This works by monitoring the project for changes, running the <code>preview:build</code> task if a change is detected, and sending the updates to the browser.</p>
-</div>
-<div class="paragraph">
-<p>Press kbd:[Ctrl+C] to stop the preview server and end the continuous build.</p>
+A bold <strong>word</strong>, or a bold <strong>phrase of text</strong>.
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_package_for_previewing"><a class="anchor" href="#_package_for_previewing"></a>2. Package for Previewing</h2>
+<h2 id="italic"><a class="anchor" href="#italic"></a>2. Italic text (&lt;em&gt;)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you need to bundle the UI in order to preview the UI on the real site in local development, run the following command:</p>
+<p>How <a href="asciidoc/italic.html" class="xref page">italicized text</a> appears on your site depends on the fonts loaded by the UI and the CSS styles the UI applies to the <code>&lt;em&gt;</code> HTML tag.</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ gulp bundle</pre>
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">An italic &lt;em&gt;word&lt;/em&gt;, or an italic &lt;em&gt;phrase of text&lt;/em&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>bundle</code> command also invokes the <code>lint</code> command to check that the CSS and JavaScript follow the coding standards.</p>
+<p>Since <code>&lt;em&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-style: italic</code>) from the browser.
+If you want to override the browser styles, you&#8217;ll need to define properties on the <code>em</code> selector in the stylesheet for your UI.</p>
 </div>
 <div class="paragraph">
-<p>The UI bundle will be available at <em class="path">build/ui-bundle.zip</em>.
-You can then point Antora at this bundle using the <code>--ui-bundle-url</code> command-line option.</p>
+<p>In the default UI, the <code>em</code> element is styled in the italic font variant of the current typeface (Roboto).
+For example:</p>
 </div>
-<div class="paragraph">
-<p>If you have the preview running, and you want to bundle without causing the preview to be clobbered, use:</p>
-</div>
-<div class="literalblock">
+<div class="exampleblock">
 <div class="content">
-<pre>$ gulp bundle:pack</pre>
+An italic <em>word</em>, or an italic <em>phrase of text</em>.
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="monospace"><a class="anchor" href="#monospace"></a>3. Monospace text (&lt;code&gt;)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>How <a href="asciidoc/monospace.html" class="xref page">inline monospace text</a> is displayed depends on the fixed-width font loaded by your UI and the CSS styles it applies to the <code>&lt;code&gt;</code> HTML tag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">A monospace &lt;code&gt;word&lt;/code&gt;, or a monospace &lt;code&gt;phrase of text&lt;/code&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The UI bundle will again be available at <em class="path">build/ui-bundle.zip</em>.</p>
+<p>Since <code>&lt;code&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>font-family: monospace</code>) from the browser.
+If you want to override the browser styles, you&#8217;ll need to define properties on the <code>code</code> selector in the stylesheet for your UI.</p>
+</div>
+<div class="paragraph">
+<p>In the default UI, the <code>code</code> element is styled using the fixed-width font loaded by the stylesheet (Roboto Mono).
+For example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+A monospace <code>word</code>, or a monospace <code>phrase of text</code>.
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="highlight"><a class="anchor" href="#highlight"></a>4. Highlighted text (&lt;mark&gt;)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>How <a href="asciidoc/highlight.html" class="xref page">highlighted (or marked) text</a> appears on your site depends on the CSS styles the UI applies to the <code>&lt;mark&gt;</code> HTML tag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">Let&amp;#8217;s add some &lt;mark&gt;highlight&lt;/mark&gt; to it.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since <code>&lt;mark&gt;</code> is a semantic HTML element, it automatically inherits default styling (<code>background-color: yellow</code>) from the browser.
+Here&#8217;s an example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+Let&#8217;s add some <mark>highlight</mark> to it.
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to override the browser styles, you&#8217;ll need to define properties on the <code>mark</code> selector in the stylesheet for your UI.</p>
 </div>
 </div>
 </div>

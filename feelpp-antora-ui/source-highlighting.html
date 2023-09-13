@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>UI Element Style Guide :: Feel++ Template Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/style-guide.html">
+    <title>Source Highlighting :: Feel++ Template Project</title>
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-antora-ui/source-highlighting.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -126,46 +126,16 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui" data-version="">
+<div class="nav-container" data-component="feelpp-antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
+    <h3 class="title"><a href="index.html">Antora Feel++ UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="prerequisites.html">UI Development Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="set-up-project.html">Set up a UI Project</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="build-preview-ui.html">Build and Preview the UI</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development-workflow.html">UI Development Workflow</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="templates.html">Work with the Handlebars Templates</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="add-static-files.html">Add Static Files</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="stylesheets.html">Work with the CSS Stylesheets</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="add-fonts.html">Add Fonts</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="copy-to-clipboard.html">Copy to clipboard</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="style-guide.html">UI Element Styles</a>
 <ul class="nav-list">
@@ -175,14 +145,14 @@ MathJax.Hub.Config({
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="admonition-styles.html">Admonitions</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="list-styles.html">Lists</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="source-highlighting.html">Source Highlighting</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="sidebar-styles.html">Sidebars</a>
+    <a class="nav-link" href="copy-to-clipboard.html">Copy to Clipboard</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ui-macro-styles.html">UI Macros</a>
+    <a class="nav-link" href="pseudocode.html">Pseudocode</a>
   </li>
 </ul>
   </li>
@@ -193,12 +163,12 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Feel++ Antora UI</span>
+    <span class="title">Antora Feel++ UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Feel++ Antora UI</a>
+        <a class="title" href="index.html">Antora Feel++ UI</a>
       </li>
       <li class="component">
         <a class="title" href="../feelpp-project/index.html">Template Project</a>
@@ -214,13 +184,14 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Feel++ Antora UI</a></li>
+    <li><a href="index.html">Antora Feel++ UI</a></li>
     <li><a href="style-guide.html">UI Element Styles</a></li>
+    <li><a href="source-highlighting.html">Source Highlighting</a></li>
   </ul>
 </nav>
 
   
-    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/style-guide.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/feelpp/antora-ui/edit/main/docs/modules/ROOT/pages/source-highlighting.adoc">Edit this Page</a></div>
   
   <div class="page-downloads">
   <span class="label">Download as</span>
@@ -240,46 +211,75 @@ MathJax.Hub.Config({
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">UI Element Style Guide</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Source Highlighting</h1>
 <div class="paragraph">
-<p>When creating a UI theme for Antora, there are certain elements in the UI that require support from the CSS to work correctly.
-This list includes elements in the shell (i.e., frame) and in the document content.
-This document identifies these UI elements.</p>
+<p>Source highlighting is applied to text that’s assigned the source block style (either explicitly or implicitly) and a source language. The source language is defined either on the block or inherited from the source-language document attribute.
+Source Highlighting is provided by <a href="https://highlightjs.org/">Highlight.js</a>.</p>
 </div>
+<div class="listingblock">
+<div class="title">Source block with source highlighting</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">[#hello,python]
+----
+print('Hello World')
+----</code></pre>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_document_content"><a class="anchor" href="#_document_content"></a>1. Document Content</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The HTML in the main content area is generated from AsciiDoc using Asciidoctor.
-AsciiDoc has numerous content elements that require assistance from CSS to render properly.</p>
 </div>
 <div class="paragraph">
-<p>These elements include:</p>
+<p>Here&#8217;s the result:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="inline-text-styles.html" class="xref page">Inline text emphasis</a></p>
-</li>
-<li>
-<p><a href="admonition-styles.html" class="xref page">Admonitions</a></p>
-</li>
-<li>
-<p><a href="list-styles.html" class="xref page">Lists</a></p>
-</li>
-<li>
-<p><a href="sidebar-styles.html" class="xref page">Sidebars</a></p>
-</li>
-<li>
-<p><a href="ui-macro-styles.html" class="xref page">Button, keybinding, and menu UI macros</a></p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">print('Hello World')</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>In addition, <code>mpirun</code> commands are also highlighted using a custom syntax highlighter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">[,mpirun]
+----
+mpirun -np 4 feelpp_toolbox_electric \
+  --case "github:{path:toolboxes/electric/cvg}" \
+  --case.config-file 2d.cfg
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-mpirun hljs" data-lang="mpirun">mpirun -np 4 feelpp_toolbox_electric \
+  --case "github:{path:toolboxes/electric/cvg}" \
+  --case.config-file 2d.cfg</code></pre>
+</div>
+</div>
+<div class="listingblock mpirun-caseopt">
+<div class="title">Case option</div>
+<div class="content">
+<pre>--case "github:{path:toolboxes/electric/cvg}"</pre>
+</div>
+</div>
+<div class="listingblock mpirun-caseconfigfileopt">
+<div class="title">Case config file option</div>
+<div class="content">
+<pre>--case.config-file 2d.cfg</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As you can see, the command <code>mpirun</code> and the command line options are highlighted.
+Furthermore, the <code>--case</code> and <code>--case.config</code> options are extracted into two separate code blocks to facilitate copy and paste.
+</td>
+</tr>
+</table>
 </div>
 </article>
   </div>

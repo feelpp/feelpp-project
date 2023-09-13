@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Admonition Styles :: Feel++ Template Project</title>
-    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/antora-ui/admonition-styles.html">
+    <link rel="canonical" href="https://feelpp.github.io/feelpp-project/feelpp-antora-ui/admonition-styles.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -126,45 +126,15 @@ MathJax.Hub.Config({
 </header>
 <div class="body">
 <a href="#" class="menu-expand-toggle"></a>
-<div class="nav-container" data-component="antora-ui" data-version="">
+<div class="nav-container" data-component="feelpp-antora-ui" data-version="">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="index.html">Feel++ Antora UI</a></h3>
+    <h3 class="title"><a href="index.html">Antora Feel++ UI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="prerequisites.html">UI Development Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="set-up-project.html">Set up a UI Project</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="build-preview-ui.html">Build and Preview the UI</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development-workflow.html">UI Development Workflow</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="templates.html">Work with the Handlebars Templates</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="add-static-files.html">Add Static Files</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="stylesheets.html">Work with the CSS Stylesheets</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="add-fonts.html">Add Fonts</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="copy-to-clipboard.html">Copy to clipboard</a>
-  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="style-guide.html">UI Element Styles</a>
@@ -176,13 +146,13 @@ MathJax.Hub.Config({
     <a class="nav-link" href="admonition-styles.html">Admonitions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="list-styles.html">Lists</a>
+    <a class="nav-link" href="source-highlighting.html">Source Highlighting</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="sidebar-styles.html">Sidebars</a>
+    <a class="nav-link" href="copy-to-clipboard.html">Copy to Clipboard</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="ui-macro-styles.html">UI Macros</a>
+    <a class="nav-link" href="pseudocode.html">Pseudocode</a>
   </li>
 </ul>
   </li>
@@ -193,12 +163,12 @@ MathJax.Hub.Config({
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Feel++ Antora UI</span>
+    <span class="title">Antora Feel++ UI</span>
     <span class="version"></span>
   </div>
   <ul class="components">
       <li class="component is-current">
-        <a class="title" href="index.html">Feel++ Antora UI</a>
+        <a class="title" href="index.html">Antora Feel++ UI</a>
       </li>
       <li class="component">
         <a class="title" href="../feelpp-project/index.html">Template Project</a>
@@ -214,7 +184,7 @@ MathJax.Hub.Config({
     <a href="../feelpp-project/index.html" class="home-link"></a>
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Feel++ Antora UI</a></li>
+    <li><a href="index.html">Antora Feel++ UI</a></li>
     <li><a href="style-guide.html">UI Element Styles</a></li>
     <li><a href="admonition-styles.html">Admonitions</a></li>
   </ul>
@@ -245,7 +215,7 @@ MathJax.Hub.Config({
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>An <a href="#antora:asciidoc:admonitions.adoc" class="xref unresolved">admonition</a>, also known as a notice, helps draw attention to content with a special label or icon.</p>
+<p>An <a href="asciidoc/admonitions.html" class="xref page">admonition</a>, also known as a notice, helps draw attention to content with a special label or icon.</p>
 </div>
 </div>
 </div>
@@ -294,6 +264,324 @@ Here&#8217;s an AsciiDoc source example that produces an admonition with the tab
 </td>
 <td class="content">
 Watch out!
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mathematical_blocks"><a class="anchor" href="#_mathematical_blocks"></a>2. Mathematical blocks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When writing mathematical documents you can use the following style labels:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Problem statement
+</td>
+<td class="hdlist2">
+<p><code>prob</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Exercise
+</td>
+<td class="hdlist2">
+<p><code>exer</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Example
+</td>
+<td class="hdlist2">
+<p><code>examp</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Lemma
+</td>
+<td class="hdlist2">
+<p><code>lem</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Definition
+</td>
+<td class="hdlist2">
+<p><code>def</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Proof
+</td>
+<td class="hdlist2">
+<p><code>proof</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Proposal
+</td>
+<td class="hdlist2">
+<p><code>prop</code></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Theorem
+</td>
+<td class="hdlist2">
+<p><code>thm</code></p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Please note that <code>:stem: latexmath</code> is defined as a document attribute to render STEM block (using MathJax).</p>
+</div>
+<div class="listingblock">
+<div class="title">Problem admonition syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Problème : Formulation forte du Laplacien
+[.prob#prob:1]
+****
+On cherche stem:[u] telle que
+[[eq:64]]
+[stem]
+++++
+    \begin{split}
+      -\Delta u &amp;= f \mbox{ dans } \Omega\\
+      u &amp;= 0 \mbox{ sur } \partial \Omega
+\end{split}
+++++
+****</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<div id="prob:1" class="sidebarblock prob">
+<div class="content">
+<div class="title">Problème : Formulation forte du Laplacien</div>
+<div class="paragraph">
+<p>On cherche \(u\) telle que</p>
+</div>
+<div id="eq:64" class="stemblock">
+<div class="content">
+\[    \begin{split}
+      -\Delta u &amp;= f \mbox{ dans } \Omega\\
+      u &amp;= 0 \mbox{ sur } \partial \Omega
+\end{split}\]
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Lemma admonition syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Lemma
+[.lem#lem:1]
+****
+Soit stem:[\Omega] un ouvert borné de stem:[\R{d}].
+Il existe une constante stem:[c_\Omega] (dépendente de stem:[\Omega] telle que
+[stem]
+++++
+    \forall v \in H^1_0(\Omega),\quad \|v\|_{0,\Omega} \le c_\Omega \|\nabla v\|_{0,\Omega}
+++++
+****</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<div id="lem:1" class="sidebarblock lem">
+<div class="content">
+<div class="title">Lemma</div>
+<div class="paragraph">
+<p>Soit \(\Omega\) un ouvert borné de \(\R{d}\).
+Il existe une constante \(c_\Omega\) (dépendente de \(\Omega\) telle que</p>
+</div>
+<div class="stemblock">
+<div class="content">
+\[    \forall v \in H^1_0(\Omega),\quad \|v\|_{0,\Omega} \le c_\Omega \|\nabla v\|_{0,\Omega}\]
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Exercise admonition syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Exercise: Find the magic number
+[.exer#exer:1]
+****
+This is an exercise...
+****</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<div id="exer:1" class="sidebarblock exer">
+<div class="content">
+<div class="title">Exercise: Find the magic number</div>
+<div class="paragraph">
+<p>This is an exercise&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example admonition syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Example: Théorème de Lax-Milgram
+[.examp#examp:1]
+****
+This is an example.
+****</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<div id="examp:1" class="sidebarblock examp">
+<div class="content">
+<div class="title">Example: Théorème de Lax-Milgram</div>
+<div class="paragraph">
+<p>This is an example.</p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Theorem admonition syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Theorem de Perlimpinpin
+[.thm#thm:1]
+****
+Soit stem:[V] un espace de Hilbert et stem:[a \in \mathcal{L}(V \times V, \RR)] une forme bilinéaire continue et _coercive_ sur stem:[V]. Alors, pour toute forme linéaire continue stem:[\ell \in \mathcal{L}(V, \RR)], le problème est bien posé
+****</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<div id="thm:1" class="sidebarblock thm">
+<div class="content">
+<div class="title">Theorem de Perlimpinpin</div>
+<div class="paragraph">
+<p>Soit \(V\) un espace de Hilbert et \(a \in \mathcal{L}(V \times V, \RR)\) une forme bilinéaire continue et <em>coercive</em> sur \(V\). Alors, pour toute forme linéaire continue \(\ell \in \mathcal{L}(V, \RR)\), le problème est bien posé</p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Definition admonition syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Definition de Perlimpinpin
+[.def#def:1]
+****
+Une forme bilinéaire stem:[a \in \mathcal{L}(V \times V, \RR)] est _coercive_ sur stem:[V] s’il existe une constante stem:[\alpha &gt; 0].
+****</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<div id="def:1" class="sidebarblock def">
+<div class="content">
+<div class="title">Definition de Perlimpinpin</div>
+<div class="paragraph">
+<p>Une forme bilinéaire \(a \in \mathcal{L}(V \times V, \RR)\) est <em>coercive</em> sur \(V\) s’il existe une constante \(\alpha &gt; 0\).</p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Proposal admonition syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Proposition
+[.prop#prop:7]
+****
+La forme bilinéaire stem:[a] du problème &lt;&lt;prob:2&gt;&gt; est _coercive_
+****</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<div id="prop:7" class="sidebarblock prop">
+<div class="content">
+<div class="title">Proposition</div>
+<div class="paragraph">
+<p>La forme bilinéaire \(a\) du problème <a href="#prob:2">[prob:2]</a> est <em>coercive</em></p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Proof admonition syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-adoc hljs" data-lang="adoc">.Preuve
+[%collapsible.proof]
+====
+On note tout d’abord que par l’inégalité de Poincaré et la définition de
+stem:[\|\cdot\|_{1,\Omega}]
+[[eq:68]]
+[stem]
+++++
+      \|v\|^2_{1,\Omega} \le (1 + c^2_\Omega) \|\nabla v\|^2_{0,\Omega}
+++++
+On en déduit que
+[[eq:67]]
+[stem]
+++++
+\forall v \in H^1_0(\Omega),\quad a(v,v) = \|\nabla v\|^2_{0,\Omega} \ge \frac{1}{1+c^2_\Omega} \|v\|^2_{1,\Omega}
+++++
+
+Le Lemme de Lax-Milgram permet alors de conclure sur l’existence d’une solution unique pour le problème &lt;&lt;prob:2&gt;&gt;.
+====</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the result:</p>
+</div>
+<details class="proof">
+<summary class="title">Preuve</summary>
+<div class="content">
+<div class="paragraph">
+<p>On note tout d’abord que par l’inégalité de Poincaré et la définition de
+\(\|\cdot\|_{1,\Omega}\)</p>
+</div>
+<div id="eq:68" class="stemblock">
+<div class="content">
+\[      \|v\|^2_{1,\Omega} \le (1 + c^2_\Omega) \|\nabla v\|^2_{0,\Omega}\]
+</div>
+</div>
+<div class="paragraph">
+<p>On en déduit que</p>
+</div>
+<div id="eq:67" class="stemblock">
+<div class="content">
+\[\forall v \in H^1_0(\Omega),\quad a(v,v) = \|\nabla v\|^2_{0,\Omega} \ge \frac{1}{1+c^2_\Omega} \|v\|^2_{1,\Omega}\]
+</div>
+</div>
+<div class="paragraph">
+<p>Le Lemme de Lax-Milgram permet alors de conclure sur l’existence d’une solution unique pour le problème <a href="#prob:2">[prob:2]</a>.</p>
+</div>
+</div>
+</details>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>collapsible</code> option is used to make the block content collapsible (i.e., revealed or hidden on interaction).
+By default, the block content is hidden. You can use the <code>%open</code> option to make it visible.
 </td>
 </tr>
 </table>

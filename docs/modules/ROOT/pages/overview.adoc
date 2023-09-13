@@ -20,7 +20,7 @@ The directory structure of the project is as follows:
 [NOTE]
 ====
 {feelpp} is a {cpp} library for the numerical simulation of partial differential equations. It is designed to be easy to use and to extend.
-{feelpp }is a free software distributed under the terms of the GNU General Public License version 3.
+{feelpp} is a free software distributed under the terms of the GNU General Public License version 3.
 The documentation is available https://docs.feelpp.org[> here].
 ====
 

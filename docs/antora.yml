@@ -5,6 +5,13 @@ start_page: index.adoc
 asciidoc:
   attributes:
     project_name: Feel++ Template Project
+    numbered: true
+    allow-uri-read: true
+    hide-uri-scheme: true
+    stem: latexmath
+    python: Python
+    cpp: C++
+    feelpp: Feel++
 ext:
   collector:
     - run:

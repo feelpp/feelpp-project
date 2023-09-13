@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap>
-<loc>https://feelpp.github.io/feelpp-project/sitemap-feelpp-antora-ui.xml</loc>
-</sitemap>
-<sitemap>
-<loc>https://feelpp.github.io/feelpp-project/sitemap-feelpp-project.xml</loc>
-</sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/env/antora.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/env/cmake.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/env/githubactions.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/env/jupyter.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/env/rename.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/env/vscode.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/index.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/overview.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+<url>
+<loc>https://feelpp.github.io/feelpp-project/feelpp-project/quickstart.html</loc>
+<lastmod>2023-09-13T14:26:52.218Z</lastmod>
+</url>
+</urlset>

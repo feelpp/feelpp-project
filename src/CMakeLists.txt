@@ -21,9 +21,18 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 #
-feelpp_add_application(laplacian SRCS laplacian.cpp TESTS INSTALL )
+#feelpp_add_application(laplacian SRCS laplacian.cpp TESTS INSTALL )
+feelpp_add_testcase(cases PREFIX fp CATEGORY feelpp)
 
-if ( FEELPP_TOOLBOXES_FOUND )
-    feelpp_add_application(toolbox SRCS toolbox.cpp LINK_LIBRARIES Feelpp::feelpp_toolbox_electric_lib TESTS)
-    feelpp_add_testcase(cases)
-endif()
+python_add_library(_laplacian MODULE _laplacian.cpp WITH_SOABI)
+target_link_libraries(_laplacian PRIVATE pybind11::headers Feelpp::feelpp)
+target_compile_definitions(_laplacian PRIVATE VERSION_INFO=${PROJECT_VERSION})
+
+install(TARGETS _laplacian DESTINATION ${PROJECT_NAME})
+
+#feelpp_add_pymodule(laplacian SRCS _laplacian.cpp DESTINATION feelpp_project)
+
+# if ( FEELPP_TOOLBOXES_FOUND )
+#     feelpp_add_application(toolbox SRCS toolbox.cpp LINK_LIBRARIES Feelpp::feelpp_toolbox_electric_lib TESTS)
+#     feelpp_add_testcase(cases)
+# endif()

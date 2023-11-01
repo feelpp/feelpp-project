@@ -2,8 +2,12 @@ node_modules/
 build*/
 public/
 cache/
+.venv/
 *.bak
 jupyter/
+/**/feelppdb/
+/**/__pycache__/
+dist/
 # Prerequisites
 *.d
 

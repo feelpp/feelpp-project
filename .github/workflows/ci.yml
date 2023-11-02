@@ -17,6 +17,45 @@ on:
 
 jobs:
 
+  build_wheel:
+    runs-on: self-ubuntu-22.04
+    name: Build, Install, Package wheel
+    if: "!contains(github.event.head_commit.message, 'wheel skip')"
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        lfs: true
+        recursive: true
+    - 
+      name: Create Virtual Environment 
+      run: |
+        python3 -m venv .venv
+        source .venv/bin/activate
+        pip3 install -r requirements.txt
+    - 
+      name: Compile
+      run: |
+        pip3 wheel --no-deps --wheel-dir dist .
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        # Artifact name
+        name: dist-artifacts
+        # Directory containing files to upload
+        path: dist/*.whl
+    - name: Release
+      if: startsWith(github.ref ,'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*
+        draft: false
+        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc')}}
+        name: Release ${{ github.ref_name }}
+        generate_release_notes: true
+        tag_name: ${{ github.ref }}
+        token: ${{ secrets.GITHUB_TOKEN }}
   build_code:
     runs-on: self-ubuntu-22.04
     name: Build, Install, Package code

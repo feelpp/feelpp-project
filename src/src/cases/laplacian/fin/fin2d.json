@@ -24,18 +24,18 @@
     "Spaces": {
         "laplacian": {
             "Domain": {
-
-
+                //"marker": ["Post"]
+                "levelset": "x > 0:x:y"
             }
         }
     },
-    "TimeStepping":
+    "Time":
     {
         "laplacian" :{
             "steady": false,
             "order" : 1,
             "start": 0.0,
-            "end": 10,
+            "end": 1.0,
             "step": 0.1
         }
     },
@@ -93,11 +93,10 @@
             },
             "convective_laplacian_flux": {
                 "Gamma_ext": {
-                    "h": "0.3",
+                    "h": "0.1",
                     "Text": "0"
                 }
             }
         }
     }
-
 }

@@ -1,2 +1,10 @@
+pipx
+build
+scikit-build >= 0.8.1
+scikit_build_core
+pyproject-metadata
 numpy
 scipy
+pandas
+plotly
+

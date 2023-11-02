@@ -22,7 +22,11 @@
 #
 #
 cmake_minimum_required(VERSION 3.21.0)
-project(feelpp-project VERSION 2.0.2)
+
+project(
+  feelpp-project
+  VERSION 3.0.0 )
+
 set(EXTRA_VERSION "")
 set(PROJECT_SHORTNAME "fp")
 
@@ -32,6 +36,9 @@ if (POLICY CMP0077)
   cmake_policy(SET CMP0077 NEW)
   set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 endif()
+
+find_package(Python REQUIRED COMPONENTS Interpreter Development.Module)
+find_package(pybind11 CONFIG REQUIRED)
 
 find_package(Feel++ COMPONENTS Toolboxes PATHS ${FEELPP_DIR}/share/feelpp/feel/cmake/modules $ENV{FEELPP_DIR}/share/feelpp/feel/cmake/modules /usr/share/feelpp/feel/cmake/modules /usr/local/share/feelpp/feel/cmake/modules )
 if(NOT FEELPP_FOUND)
@@ -49,7 +56,7 @@ endif()
 
 
 add_subdirectory( src )
-add_subdirectory( docs )
+#add_subdirectory( docs )
 
 # extra ignored files
 list(APPEND CPACK_SOURCE_IGNORE_FILES

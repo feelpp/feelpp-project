@@ -1,4 +1,3 @@
 {
-    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
-    "cmake.buildDirectory": "${workspaceFolder}/build-${variant:buildType}"
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 }

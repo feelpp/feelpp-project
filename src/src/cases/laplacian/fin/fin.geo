@@ -53,13 +53,13 @@ For ii In { 1 : (#bdy[]-1) }
 EndFor
 
 // Nfins = 1 2 cavities
-// If ( Nfins == 1 )
-//     Physical Curve("Cavity_1_1") = {1};
-//     Physical Curve("Cavity_1_2") = {10};
-// 
-//     Physical Curve("Cavity_2_1") = {3};
-//     Physical Curve("Cavity_2_2") = {13};
-// EndIf
+If ( Nfins == 1 )
+    Physical Curve("Cavity_1_1") = {1};
+    Physical Curve("Cavity_1_2") = {10};
+
+    Physical Curve("Cavity_2_1") = {3};
+    Physical Curve("Cavity_2_2") = {13};
+EndIf
 ElseIf ( dim == 3 )
 
 //+

@@ -3,7 +3,7 @@ Christophe Prud'homme
 :page-plotly: true
 :page-jupyter: true
 :page-tags: case
-:page-illustration: 
+:page-illustration: fin2d-4.png
 :description: We simulate the heat transfer in a thermal fin
 
 We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure 1, consists of a vertical central post and four horizontal subfins; the fin conducts heat from a prescribed uniform flux source at the root, stem:[\Gamma_{\text {root }}], through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or input, stem:[\mu_{=}\left(\mu_1, \mu_2, \ldots, \mu_5\right)], where stem:[\mu_i=k^i, i=1, \ldots, 4], and stem:[\mu_5=\mathrm{Bi} ; \mu] may take on any value in a specified design set stem:[D \subset \mathbb{R}^5].

@@ -34,7 +34,7 @@ if ( SKBUILD_PROJECT_NAME )
     target_link_libraries(_laplacian PRIVATE pybind11::headers Feelpp::feelpp)
     target_compile_definitions(_laplacian PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
-    install(TARGETS _laplacian DESTINATION ${PROJECT_NAME})
+    install(TARGETS _laplacian DESTINATION feelpp_project)
 else()
     feelpp_add_pymodule(laplacian SRCS _laplacian.cpp DESTINATION ${PROJECT_NAME})
     file(GLOB PYFILES "${CMAKE_CURRENT_SOURCE_DIR}/feelpp_project/*.py")

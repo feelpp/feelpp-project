@@ -6,6 +6,7 @@ asciidoc:
   attributes:
     project_name: Feel++ Template Project
     numbered: true
+    dynamic-blocks@: ''
     allow-uri-read: true
     hide-uri-scheme: true
     feelpp: Feel++

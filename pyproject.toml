@@ -5,7 +5,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "feelpp-project"
-version = "0.1.0"
+version = "3.0.0"
 description="Feelpp Template Project"
 readme = "README.md"
 authors = [

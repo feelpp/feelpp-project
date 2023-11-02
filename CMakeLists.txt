@@ -24,8 +24,8 @@
 cmake_minimum_required(VERSION 3.21.0)
 
 project(
-  ${SKBUILD_PROJECT_NAME}
-  VERSION ${SKBUILD_PROJECT_VERSION} )
+  feelpp-project
+  VERSION 3.0.0 )
 
 set(EXTRA_VERSION "")
 set(PROJECT_SHORTNAME "fp")

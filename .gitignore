@@ -48,3 +48,6 @@ dist/
 auto-save-list
 tramp
 .\#*
+
+*.whl
+/**/*.egg-info

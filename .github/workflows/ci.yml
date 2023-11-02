@@ -37,6 +37,8 @@ jobs:
       name: Compile
       run: |
         pip3 wheel --no-deps --wheel-dir dist .
+      env:
+        CXX: clang++
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v3

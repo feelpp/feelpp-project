@@ -35,6 +35,7 @@
 #include <feel/feelfilters/loadmesh.hpp>
 #include <feel/feelvf/form.hpp>
 #include <feel/feelvf/vf.hpp>
+#include <feel/feelvf/measure.hpp>
 #include <feel/feelts/bdf.hpp>
 
 namespace Feel
@@ -233,7 +234,7 @@ void Laplacian<Dim, Order>::processMaterials()
         auto Cp = specs_[nl::json::json_pointer( matCp )].get<std::string>();
 
         a_ += integrate( _range = markedelements( support( Xh_ ), material.get<std::string>() ),
-                _expr = expr( Rho ) * expr( Cp ) * idt( u_ ) * id( v_ ) + bdf_->polyDerivCoefficient( 0 ) * expr( k ) * gradt( u_ ) * trans( grad( v_ ) ) );
+                _expr = bdf_->polyDerivCoefficient( 0 ) * expr( Rho ) * expr( Cp ) * idt( u_ ) * id( v_ ) + expr( k ) * gradt( u_ ) * trans( grad( v_ ) ) );
     }
 }
 
@@ -250,7 +251,7 @@ void Laplacian<Dim, Order>::processBoundaryConditions()
             auto flux = value["expr"].get<std::string>();
 
             l_ += integrate( _range = markedfaces( support( Xh_ ), bc ),
-                    _expr = bdf_->polyDerivCoefficient( 0 ) * expr( flux ) * id( v_ ) );
+                    _expr = expr( flux ) * id( v_ ) );
         }
     }
 
@@ -264,9 +265,9 @@ void Laplacian<Dim, Order>::processBoundaryConditions()
             auto Text = value["Text"].get<std::string>();
 
             a_ += integrate( _range = markedfaces( support( Xh_ ), bc ),
-                    _expr = bdf_->polyDerivCoefficient( 0 ) * expr( h ) * id( v_ ) * idt( u_ ) );
+                    _expr = expr( h ) * id( v_ ) * idt( u_ ) );
             l_ += integrate( _range = markedfaces( support( Xh_ ), bc ),
-                    _expr = bdf_->polyDerivCoefficient( 0 ) * expr( h ) * expr( Text ) * id( v_ ) );
+                    _expr = expr( h ) * expr( Text ) * id( v_ ) );
         }
     }
 }
@@ -317,14 +318,37 @@ void Laplacian<Dim, Order>::exportResults()
     e_->step(bdf_->time())->add("u", u_);
     e_->save();
 
-    auto totalQuantity = integrate(_range=elements(mesh_), _expr=idv(u_)).evaluate();
-    auto totalFlux = integrate(_range=boundaryfaces(mesh_), _expr=gradv(u_)*N()).evaluate();
-    meas_["timesteps"].push_back({
-            {"time", bdf_->time()},
-            {"totalQuantity", totalQuantity},
-            {"totalFlux", totalFlux}
-        });
-
+    
+    auto totalQuantity = integrate(_range=elements(mesh_), _expr=idv(u_)).evaluate()(0,0);
+    auto totalFlux = integrate(_range=boundaryfaces(mesh_), _expr=gradv(u_)*N()).evaluate()(0,0);
+    double meas=measure(_range=elements(mesh_), _expr=cst(1.0));
+    meas_["time"].push_back(bdf_->time());
+    meas_["totalQuantity"].push_back(totalQuantity);
+    meas_["totalFlux"].push_back(totalFlux);
+    meas_["mean"].push_back(totalQuantity/meas);
+    meas_["min"].push_back(u_.min());
+    meas_["max"].push_back(u_.max());
+    for( auto [key,values] : mesh_->markerNames())
+    {
+        if ( values[1] == Dim )
+        {
+            double meas=measure(_range=markedelements(mesh_,key), _expr=cst(1.0));
+            auto quantity = integrate(_range=markedelements(mesh_,key), _expr=idv(u_)).evaluate()(0,0);
+            meas_[fmt::format("quantity_{}",key)].push_back(quantity);
+            meas_[fmt::format("mean_{}",key)].push_back(quantity/meas);
+        }
+        else if ( values[1] == Dim-1 )
+        {
+            double meas=measure(_range=markedfaces(mesh_,key), _expr=cst(1.0));
+            auto quantity = integrate(_range=markedfaces(mesh_,key), _expr=idv(u_)).evaluate()(0,0);
+            meas_[fmt::format("quantity_{}",key)].push_back(quantity);
+            meas_[fmt::format("mean_{}",key)].push_back(quantity/meas);
+            auto flux = integrate(_range=markedfaces(mesh_,key), _expr=gradv(u_)*N()).evaluate()(0,0);
+            meas_[fmt::format("flux_{}",key)].push_back(flux);
+        }
+        
+    }
+    
 }
 template <int Dim, int Order>
 void Laplacian<Dim, Order>::writeResultsToFile(const std::string& filename) const

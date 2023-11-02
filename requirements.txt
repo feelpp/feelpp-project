@@ -6,5 +6,6 @@ pyproject-metadata
 numpy
 scipy
 pandas
+tabulate 
 plotly
 

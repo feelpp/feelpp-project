@@ -4,6 +4,7 @@ import json
 
 _laps = {
     'laplacian(2,1)': Laplacian2DP1,
+    'laplacian(2,2)': Laplacian2DP2,
 }
 
 

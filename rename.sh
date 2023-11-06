@@ -93,13 +93,14 @@ export projecttitle
 export shortprojectname
 export appname
 
-files=( "README.adoc" "CMakeLists.txt" "src/CMakeLists.txt" 
+files=( "README.adoc" "README.md" "CMakeLists.txt" "src/CMakeLists.txt" 
         "src/.tests.laplacian"  
         "src/.tests.toolbox"
         "site.yml" 
         "docs/antora.yml" 
         "package.json"
         "package-lock.json"
+        "pyproject.toml"
         "docs/modules/ROOT/pages/index.adoc" 
         ".github/workflows/ci.yml" )
 for i in "${files[@]}"

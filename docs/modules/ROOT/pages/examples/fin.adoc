@@ -6,6 +6,8 @@ Christophe Prud'homme
 :page-illustration: fin2d-4.png
 :description: We simulate the heat transfer in a thermal fin
 
+== Problem statement
+
 We consider the problem of designing a thermal fin to effectively remove heat from a surface. The two-dimensional fin, shown in Figure below, consists of a vertical central post and four horizontal subfins; the fin conducts heat from a prescribed uniform flux source at the root, stem:[\Gamma_{\text {root }}], through the large-surface-area subfins to surrounding flowing air. The fin is characterized by a five-component parameter vector, or input, stem:[\mu_{=}\left(\mu_1, \mu_2, \ldots, \mu_5\right)], where stem:[\mu_i=k^i, i=1, \ldots, 4], and stem:[\mu_5=\mathrm{Bi} ; \mu] may take on any value in a specified design set stem:[D \subset \mathbb{R}^5].
 
 .Geometry of 2D thermal fin
@@ -16,9 +18,12 @@ Here stem:[k^i] is the thermal conductivity of the ith subfin (normalized relati
 We are interested in the design of this thermal fin, and we thus need to look at certain outputs or cost-functionals of the temperature as a function of stem:[\mu]. We choose for our output stem:[T_{\text {root }}], the average steady-state temperature of the fin root normalized by the prescribed heat flux into the fin root. The particular output chosen relates directly to the cooling efficiency of the fin lower values of stem:[T_{\text {root }}] imply better thermal performance. The steadystate temperature distribution within the fin, stem:[u(\mu)], is governed by the elliptic partial differential equation
 [stem]
 ++++
--k^i \Delta u^i=0 \text { in } \Omega^i, i=0, \ldots, 4,
+\rho_i C_i \frac{\partial u^i}{\partial t} -k^i \Delta u^i=0 \text { in } \Omega^i, i=0, \ldots, 4,
 ++++
-where stem:[\Delta] is the Laplacian operator, and stem:[u_i] refers to the restriction of stem:[u] to stem:[\Omega^i] . Here stem:[\Omega^i] is the region of the fin with conductivity stem:[k^i, i=0, \ldots, 4: \Omega^0] is thus the central post, and stem:[\Omega^i, i=1, \ldots, 4], corresponds to the four subfins. The entire fin domain is denoted stem:[\Omega\left(\bar{\Omega}=\cup_{i=0}^4 \bar{\Omega}^i\right)]; the boundary stem:[\Omega] is denoted stem:[\Gamma]. We must also ensure continuity of temperature and heat flux at the conductivity discontinuity interfaces stem:[\Gamma_{\text {int }}^i \equiv \partial \Omega^0 \cap \partial \Omega^i, i=1, \ldots, 4], where stem:[\partial \Omega^i] denotes the boundary of stem:[\Omega^i], we have on stem:[\Gamma_{\text {int }}^i i=1, \ldots, 4] :
+where stem:[\Delta] is the Laplacian operator, and stem:[u_i] refers to the restriction of stem:[u] to stem:[\Omega^i]. 
+Here stem:[\Omega^i] is the region of the fin with conductivity stem:[k^i, i=0, \ldots, 4] and volumetric heat capacity stem:[(\rho C)_i, i=0, \cdots, 4]: stem:[\Omega^0] is thus the central post, and stem:[\Omega^i, i=1, \ldots, 4], corresponds to the four subfins. 
+
+The entire fin domain is denoted stem:[\Omega\left(\bar{\Omega}=\cup_{i=0}^4 \bar{\Omega}^i\right)]; the boundary stem:[\Omega] is denoted stem:[\Gamma]. We must also ensure continuity of temperature and heat flux at the conductivity discontinuity interfaces stem:[\Gamma_{\text {int }}^i \equiv \partial \Omega^0 \cap \partial \Omega^i, i=1, \ldots, 4], where stem:[\partial \Omega^i] denotes the boundary of stem:[\Omega^i], we have on stem:[\Gamma_{\text {int }}^i i=1, \ldots, 4] :
 [stem]
 ++++
 \begin{aligned}

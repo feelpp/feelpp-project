@@ -90,7 +90,7 @@ PYBIND11_MODULE(_laplacian, m )
     if (import_mpi4py()<0) return ;
     m.doc() = fmt::format("Python bindings for Laplacian class" );  // Optional module docstring
     laplacian_inst<2,1>(m);
-//    laplacian_inst<2,2>(m);
+    laplacian_inst<2,2>(m);
 //    laplacian_inst<2,3>(m);
 //    laplacian_inst<3,1>(m);
 //    laplacian_inst<3,2>(m);

@@ -2,7 +2,7 @@
 :cpp: C++
 :project: feelpp-project 
 
-= {feelpp} Project Template
+= {feelpp} Template Project 
 Christophe Prud'homme <https://github.com/prudhomm[@prudhomm]>
 v2: 
 

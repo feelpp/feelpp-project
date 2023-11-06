@@ -70,6 +70,8 @@ else
     projecttitle=$(create_title ${projectname})
     shortprojectname=$( create_short_name $projectname )
     appname="app"
+    projectname_="${projectname//-/_}"
+
 fi
 
 echo "     project name: $projectname"
@@ -89,6 +91,7 @@ if [ "$1" == "-r" ]; then
 fi
 
 export projectname
+export projectname_
 export projecttitle
 export shortprojectname
 export appname
@@ -107,10 +110,12 @@ for i in "${files[@]}"
 do
     echo "processing renaming in $i ...."
     perl -077pi.bak -e 's/feelpp-project/$ENV{'projectname'}/sg' $i
+    perl -077pi.bak -e 's/feelpp_project/$ENV{'projectname_'}/sg' $i
     perl -077pi.bak -e 's/Feel\+\+ Template Project/$ENV{'projecttitle'}/sg' $i
     perl -077pi.bak -e 's/\"fp\"/"$ENV{'shortprojectname'}"/sg' $i
     perl -077pi.bak -e 's/myapp/$ENV{'appname'}/sg' $i
 done
+git mv src/feelpp_project src/$projectname_
 
 
 

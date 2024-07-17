@@ -4,8 +4,9 @@
 
 = {feelpp} Template Project 
 Christophe Prud'homme <https://github.com/prudhomm[@prudhomm]>
-v2: 
 
+image:https://zenodo.org/badge/DOI/10.5281/zenodo.12762669.svg[DOI, link=https://doi.org/10.5281/zenodo.12762669]
+image:https://img.shields.io/github/v/release/feelpp/feelpp-project[GitHub Release]
 image:https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
 
 This repository provides a basic starting point for a {feelpp} application including:

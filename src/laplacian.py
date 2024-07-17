@@ -3,7 +3,7 @@ import os
 import pyvista as pv
 from xvfbwrapper import Xvfb 
 import sys
-import feelpp
+import feelpp.core as fppc
 import feelpp.toolboxes.core as tb
 from feelpp.toolboxes.cfpdes import *
 import pandas as pd
@@ -64,7 +64,7 @@ def getMesh(filename, hsize=0.05, dim=2, verbose=False):
         print(
             f"generate mesh {filename} with hsize={hsize} and dimension={dim}")
     generateGeometry(filename=filename, dim=dim, hsize=hsize)
-    mesh = feelpp.load(feelpp.mesh(dim=dim, realdim=dim), filename, hsize)
+    mesh = fppc.load(fppc.mesh(dim=dim, realdim=dim), filename, hsize)
     return mesh
 
 
@@ -175,10 +175,10 @@ def plot_convergence(df, dim, orders=[1, 2]):
     fig.show()
 
 sys.argv = ["feelpp_cfpdes_poisson"]
-e = feelpp.Environment(sys.argv,
+e = fppc.Environment(sys.argv,
                        opts=tb.toolboxes_options(
                            "coefficient-form-pdes", "cfpdes"),
-                       config=feelpp.globalRepository("cfpdes-poisson-homogeneous-dirichlet"))
+                       config=fppc.globalRepository("cfpdes-poisson-homogeneous-dirichlet"))
 
 # generate 2D abd 3D meshes
 for dim in [2, 3]:

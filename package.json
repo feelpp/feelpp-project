@@ -37,10 +37,11 @@
     "asciidoctor-kroki": "^0.18.1",
     "handlebars": "^4.7.8",
     "handlebars-utils": "^1.0.6",
+    "package": "^1.0.1",
     "@feelpp/asciidoctor-extensions": "1.0.0-rc.11"
   },
   "devDependencies": {
-    "broken-link-checker": "^0.7.8",
+    "broken-link-checker": "^0.6.7",
     "http-server": "^14.1.1",
     "write-good": "^1.0.8"
   },

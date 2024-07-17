@@ -53,21 +53,21 @@ First, we initialize the {feelpp} environment and set the working directory.
 
 [%dynamic,python]
 ----
-import feelpp
+import feelpp.core as fppc
 from feelpp_project import laplacian
 import json
 import os
 
 d = os.getcwd()
 print(f"directory={d}")
-e = feelpp.Environment(['fin'], config=feelpp.localRepository("."))
+e = fppc.Environment(['fin'], config=fppc.localRepository("."))
 ----
 
 Next, we set the configuration file for the simulation and load the specifications from a JSON file.
 
 [%dynamic,python]
 ----
-feelpp.Environment.setConfigFile(f"{d}/src/cases/laplacian/fin/fin1/fin2d.cfg")
+fppc.Environment.setConfigFile(f"{d}/src/cases/laplacian/fin/fin1/fin2d.cfg")
 # Reading the JSON file
 data = laplacian.loadSpecs(f"{d}/src/cases/laplacian/fin/fin2d.json")
 print(data)

@@ -7,8 +7,6 @@ content:
   - url: .
     branches: HEAD
     start_path: docs
-    tags:
-    - 'v3.2.4' # v3.2.0, v3.2.1, v3.2.2, etc.
 ui:
   supplemental_files: ./docs/antora/supplemental-ui
   bundle:

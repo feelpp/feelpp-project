@@ -1,4 +1,4 @@
-import feelpp,core as fppc
+import feelpp.core as fppc
 from ._laplacian import *
 import json
 

@@ -1,0 +1,19 @@
+{
+    "name": "fin simulations",
+    "description": "Dataset for fin heat simulation cases",
+    "configurations": [
+        {
+            "filename": "fin1/fin2d.cfg",
+            "description": "Configuration for a 1 fin 2D simulation"
+        },
+        {
+            "filename": "fin4/fin2d.cfg",
+            "description": "Configuration for a 4 fins 2D simulation"
+        }
+    ],
+    "metadata": {
+        "author": "Feel++ Team",
+        "version": "1.0",
+        "date": "2024-06-24"
+    }
+}

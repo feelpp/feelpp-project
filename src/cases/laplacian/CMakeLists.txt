@@ -27,11 +27,13 @@ macro(zip_files src dest)
     file(MAKE_DIRECTORY ${dest_dir})
 
     # Collect all files in the source directory to ensure dependencies are tracked
-    file(GLOB_RECURSE src_files ${src}/*)
+    file(GLOB_RECURSE src_files ${src}/* ${src}.json)
+    get_filename_component(src_dir ${src} NAME)
+    message(STATUS "src_dir=${src_dir}")
 
     add_custom_command(
         OUTPUT ${dest}
-        COMMAND ${CMAKE_COMMAND} -E tar "cf" ${dest} --format=zip -- ${src}
+        COMMAND ${CMAKE_COMMAND} -E chdir ${src}/.. ${CMAKE_COMMAND} -E tar "cf" ${dest} --format=zip ${src_dir} ${src_dir}.json
         DEPENDS ${src_files}
         COMMENT "Creating zip file ${dest}"
     )

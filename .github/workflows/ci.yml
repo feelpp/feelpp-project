@@ -41,6 +41,8 @@ jobs:
         name: wheel-artifacts
         # Directory containing files to upload
         path: dist/*.whl
+
+
   docs:
     runs-on: self-ubuntu-22.04
     name: Build Antora Site
@@ -107,12 +109,17 @@ jobs:
       run: |
         cmake --build --preset default -t package
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         # Artifact name
         name: feelpp-project-artifacts
         # Directory containing files to upload
         path: build/default/assets/feelpp-project-*
+    - name: Upload Fin Datasets
+      uses: actions/upload-artifact@v4
+      with:
+        name: datasets
+        path: build/default/datasets/
   deliver:
     runs-on: self-ubuntu-22.04
     needs: build_code
@@ -124,7 +131,7 @@ jobs:
         lfs: true
         submodules: 'recursive'
     - name: Download
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         # Artifact name
         name: feelpp-project-artifacts
@@ -174,23 +181,30 @@ jobs:
           lfs: true
           submodules: 'recursive'      
       - name: Download Deb Packages
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           # Artifact name
           name: feelpp-project-artifacts
           path: artifacts/
       - name: Download Wheel Packages
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           # Artifact name
           name: wheel-artifacts
           path: dist/
+      - name: Download Datasets
+        uses: actions/download-artifact@v4
+        with:
+          # Artifact name
+          name: datasets
+          path: datasets/
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             artifacts/*.deb
             dist/*.whl
+            datasets/*
           draft: false
           prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc')}}
           name: Release ${{ github.ref_name }}

@@ -41,3 +41,5 @@ foreach(binding laplacian)
         install(FILES ${PYFILES} DESTINATION ${FEELPP_PYTHON_MODULE_PATH}/${PROJECT_NAME})
     endif()
 endforeach()
+
+add_subdirectory( cases/laplacian)

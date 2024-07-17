@@ -1,6 +1,6 @@
 name: feelpp-project
 title: Template Project
-version: ~
+version: 'v3.2.3'
 start_page: index.adoc
 asciidoc:
   attributes:

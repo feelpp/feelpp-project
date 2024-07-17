@@ -1,4 +1,4 @@
-import feelpp
+import feelpp,core as fppc
 from ._laplacian import *
 import json
 
@@ -13,7 +13,7 @@ def get(dim=2, order=1, worldComm=None):
 
     """
     if worldComm is None:
-        worldComm = feelpp.Environment.worldCommPtr()
+        worldComm = fppc.Environment.worldCommPtr()
     key = 'laplacian('+str(dim)+','+str(order)+')'
     if key not in _laps:
         raise RuntimeError('Laplacian'+key+' is not available')

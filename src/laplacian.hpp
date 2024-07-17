@@ -25,18 +25,23 @@
 #pragma once
 #include <iostream>
 
+#include <feel/feelalg/matrixpetsc.hpp>
+#include <feel/feelalg/topetsc.hpp>
+#include <feel/feelalg/vectorpetsc.hpp>
 #include <feel/feelcore/environment.hpp>
 #include <feel/feelcore/json.hpp>
 #include <feel/feelcore/ptreetools.hpp>
 #include <feel/feelcore/utility.hpp>
-#include <feel/feeldiscr/pch.hpp>
 #include <feel/feeldiscr/minmax.hpp>
+#include <feel/feeldiscr/pch.hpp>
 #include <feel/feelfilters/exporter.hpp>
 #include <feel/feelfilters/loadmesh.hpp>
-#include <feel/feelvf/form.hpp>
-#include <feel/feelvf/vf.hpp>
-#include <feel/feelvf/measure.hpp>
 #include <feel/feelts/bdf.hpp>
+#include <feel/feelvf/form.hpp>
+#include <feel/feelvf/measure.hpp>
+#include <feel/feelvf/vf.hpp>
+#include <fmt/core.h>
+#include <fmt/ostream.h>
 
 namespace Feel
 {
@@ -45,6 +50,14 @@ inline const int FEELPP_ORDER=1;
 
 static inline const bool do_print = true;
 static inline const bool dont_print = false;
+
+template<int M, int N=M>
+inline
+Expr<vf::detail::Ones<M,N> >
+constant( Eigen::Matrix<double,M,N> const& value )
+{
+    return Expr<vf::detail::Ones<M,N> >( vf::detail::Ones<M, N>( value ));
+}
 
 /**
  * @brief compute the summary of a container
@@ -103,21 +116,28 @@ public:
     using mesh_t = Mesh<Simplex<Dim>>;
     using space_t = Pch_type<mesh_t, Order>;
     using space_ptr_t = Pch_ptrtype<mesh_t, Order>; // Define the type for Pch_ptrtype
-    using element_ = typename space_t::element_type;
+    using element_t = typename space_t::element_type;
     using form2_type = form2_t<space_t,space_t>; // Define the type for form2
     using form1_type = form1_t<space_t>; // Define the type for form1
     using bdf_ptrtype = std::shared_ptr<Bdf<space_t>>;
     using exporter_ptrtype = std::shared_ptr<Exporter<mesh_t>>; // Define the type for exporter_ptrtype
+    using matrix_ptr_t = std::shared_ptr<MatrixPetsc<double>>;
+    using vector_ptr_t = std::shared_ptr<VectorPetsc<double>>;
 
     Laplacian() = default;
+    Laplacian( Laplacian const& l );
+    Laplacian( Laplacian && l ) noexcept;
     Laplacian(nl::json const& specs);
+
+    Laplacian& operator=( Laplacian const& l );
 
     // Accessors
     nl::json const& specs() const { return specs_; }
     std::shared_ptr<mesh_t> const& mesh() const { return mesh_; }
     space_ptr_t const& Xh() const { return Xh_; }
-    element_ const& u() const { return u_; }
-    element_ const& v() const { return v_; }
+    element_t& u() { return u_; }
+    element_t const& u() const { return u_; }
+    element_t const& v() const { return v_; }
     form2_type const& a() const { return a_; }
     form2_type const& at() const { return at_; }
     form1_type const& l() const { return l_; }
@@ -129,17 +149,21 @@ public:
     // Mutators
     void setSpecs(nl::json const& specs) { specs_ = specs; }
     void setMesh(std::shared_ptr<mesh_t> const& mesh) { mesh_ = mesh; }
-    void setU(element_ const& u) { u_ = u; }
+    void setU(element_t const& u) { u_ = u; }
 
     void initialize();
     void processMaterials();
     void processBoundaryConditions();
     void run();
     void timeLoop();
-    void exportResults();
+    nl::json exportResults() const { return exportResults( bdf_->time(), u_ ); }
+    nl::json exportResults( double t, element_t const& u ) const;
     void summary(/*arguments*/);
     void writeResultsToFile(const std::string& filename) const;
-    
+    form2_type assembleGradGrad( std::vector<std::string> const& markers, Eigen::MatrixXd const& coeffs );
+    form2_type assembleMass( std::vector<std::string> const& markers, double coeff );
+    form1_type assembleFlux( std::vector<std::string> const& markers, double coeff );
+
     // Accessors and mutators for members
     /* ... */
 
@@ -147,12 +171,12 @@ private:
     nl::json specs_;
     std::shared_ptr<mesh_t> mesh_;
     space_ptr_t Xh_;
-    element_ u_, v_;
+    element_t u_, v_;
     form2_type a_, at_;
     form1_type l_, lt_;
     bdf_ptrtype bdf_;
-    exporter_ptrtype e_;
-    nl::json meas_;
+    mutable exporter_ptrtype e_;
+    mutable nl::json meas_;
 };
 
 // Constructor
@@ -161,6 +185,66 @@ Laplacian<Dim, Order>::Laplacian(nl::json const& specs) : specs_(specs)
 {
     initialize();
 }
+template <int Dim, int Order>
+Laplacian<Dim, Order>::Laplacian( Laplacian const& l )
+    : specs_( l.specs ),
+      mesh_( l.mesh_ ),
+      Xh_( l.Xh_ ),
+      u_( l.u_ ),
+      v_( l.v_ ),
+      a_( form2( _test = Xh_, _trial = Xh_ ) ),
+      at_( form2( _test = Xh_, _trial = Xh_ ) ),
+      l_( form1( _test = Xh_ ) ),
+      lt_( form1( _test = Xh_ ) ),
+      bdf_( l.bdf_ ),
+      e_( Feel::exporter( _mesh = mesh_ ) ),
+      meas_( l.meas_ )
+{
+    a_ = l.a_;
+    at_ = l.at_;
+    l_ = l.l_;
+    lt_ = l.lt_;
+}
+
+template <int Dim, int Order>
+Laplacian<Dim, Order>::Laplacian( Laplacian&& l ) noexcept
+    : specs_( std::move( l.specs_ ) ),
+      mesh_( std::move( l.mesh_ ) ),
+      Xh_( std::move( l.Xh_ ) ),
+      u_( std::move( l.u_ ) ),
+      v_( std::move( l.v_ ) ),
+      a_( std::move( l.a_ ) ),
+      at_( std::move( l.at_ ) ),
+      l_( std::move( l.l_ ) ),
+      lt_( std::move( l.lt_ ) ),
+      bdf_( std::move( l.bdf_ ) ),
+      e_( std::move( l.e_ ) ),
+      meas_( std::move( l.meas_ ) )
+{
+    // Optionally, handle the moved-from state if necessary
+}
+template <int Dim, int Order>
+Laplacian<Dim, Order>&
+Laplacian<Dim, Order>::operator=( Laplacian const& l )
+{
+    if ( this != &l )
+    {
+        specs_ = l.specs_;
+        mesh_ = l.mesh_;
+        Xh_ = l.Xh_;
+        u_ = l.u_;
+        v_ = l.v_;
+        a_ = l.a_;
+        at_ = l.at_;
+        l_ = l.l_;
+        lt_ = l.lt_;
+        bdf_ = l.bdf_;
+        e_ = exporter( _mesh = mesh_ );
+        meas_ = l.meas_;
+    }
+    return *this;
+}
+
 
 // Initialization
 template <int Dim, int Order>
@@ -192,7 +276,7 @@ void Laplacian<Dim, Order>::initialize()
     double final_time = get_value(specs_, "/TimeStepping/laplacian/end", 1.0);
     double time_step = get_value(specs_, "/TimeStepping/laplacian/step", 0.1);
     bdf_ = Feel::bdf( _space = Xh_, _steady=steady, _initial_time=initial_time, _final_time=final_time, _time_step=time_step, _order=time_order );
-    
+
     bdf_->start();
     if ( steady )
         bdf_->setSteady();
@@ -225,7 +309,7 @@ void Laplacian<Dim, Order>::processMaterials()
 {
     for ( auto [key, material] : specs_["/Models/laplacian/Materials"_json_pointer].items() )
     {
-        LOG( INFO ) << fmt::format( "Material {} found", material );
+        LOG( INFO ) << fmt::format( "Material {} found", material.dump() );
         std::string mat = fmt::format( "/Materials/{}/k", material.get<std::string>() );
         auto k = specs_[nl::json::json_pointer( mat )].get<std::string>();
         std::string matRho = fmt::format( "/Materials/{}/rho", material.get<std::string>() );
@@ -312,43 +396,42 @@ void Laplacian<Dim, Order>::timeLoop()
 
 // Export results
 template <int Dim, int Order>
-void Laplacian<Dim, Order>::exportResults()
+nl::json Laplacian<Dim, Order>::exportResults( double t, element_t const& u ) const
 {
-    e_->step(bdf_->time())->addRegions();
-    e_->step(bdf_->time())->add("u", u_);
+    e_->step(t)->addRegions();
+    e_->step(t)->add("u", u);
     e_->save();
 
-    
-    auto totalQuantity = integrate(_range=elements(mesh_), _expr=idv(u_)).evaluate()(0,0);
-    auto totalFlux = integrate(_range=boundaryfaces(mesh_), _expr=gradv(u_)*N()).evaluate()(0,0);
+    auto totalQuantity = integrate(_range=elements(mesh_), _expr=idv(u)).evaluate()(0,0);
+    auto totalFlux = integrate(_range=boundaryfaces(mesh_), _expr=gradv(u)*N()).evaluate()(0,0);
     double meas=measure(_range=elements(mesh_), _expr=cst(1.0));
-    meas_["time"].push_back(bdf_->time());
+    meas_["time"].push_back(t);
     meas_["totalQuantity"].push_back(totalQuantity);
     meas_["totalFlux"].push_back(totalFlux);
     meas_["mean"].push_back(totalQuantity/meas);
-    meas_["min"].push_back(u_.min());
-    meas_["max"].push_back(u_.max());
+    meas_["min"].push_back(u.min());
+    meas_["max"].push_back(u.max());
     for( auto [key,values] : mesh_->markerNames())
     {
         if ( values[1] == Dim )
         {
             double meas=measure(_range=markedelements(mesh_,key), _expr=cst(1.0));
-            auto quantity = integrate(_range=markedelements(mesh_,key), _expr=idv(u_)).evaluate()(0,0);
+            auto quantity = integrate(_range=markedelements(mesh_,key), _expr=idv(u)).evaluate()(0,0);
             meas_[fmt::format("quantity_{}",key)].push_back(quantity);
             meas_[fmt::format("mean_{}",key)].push_back(quantity/meas);
         }
         else if ( values[1] == Dim-1 )
         {
             double meas=measure(_range=markedfaces(mesh_,key), _expr=cst(1.0));
-            auto quantity = integrate(_range=markedfaces(mesh_,key), _expr=idv(u_)).evaluate()(0,0);
+            auto quantity = integrate(_range=markedfaces(mesh_,key), _expr=idv(u)).evaluate()(0,0);
             meas_[fmt::format("quantity_{}",key)].push_back(quantity);
             meas_[fmt::format("mean_{}",key)].push_back(quantity/meas);
-            auto flux = integrate(_range=markedfaces(mesh_,key), _expr=gradv(u_)*N()).evaluate()(0,0);
+            auto flux = integrate(_range=markedfaces(mesh_,key), _expr=gradv(u)*N()).evaluate()(0,0);
             meas_[fmt::format("flux_{}",key)].push_back(flux);
         }
-        
+
     }
-    
+    return meas_;
 }
 template <int Dim, int Order>
 void Laplacian<Dim, Order>::writeResultsToFile(const std::string& filename) const
@@ -368,7 +451,67 @@ void Laplacian<Dim, Order>::summary(/*arguments*/) {
     /* ... summary code ... */
 }
 
-// Accessors and Mutators
-/* ... */
+template <int Dim, int Order>
+typename Laplacian<Dim, Order>::form2_type
+Laplacian<Dim, Order>::assembleGradGrad( std::vector<std::string> const& markers, Eigen::MatrixXd const& coeffs )
+{
+    auto a = form2( _test = Xh_, _trial = Xh_ );
+    for( auto marker : markers )
+    {
+        LOG( INFO ) << fmt::format( "assemble grad.grad on marker {} with coeffs: {}", marker, coeffs );
+        a += integrate( _range = markedelements( support( Xh_ ), marker ),
+                        _expr = trans(constant<Dim,Dim>(coeffs) * trans(gradt( u_ ))) * trans(grad( v_ )) );
+    }
+    a.close();
+    return a;
+}
+template <int Dim, int Order>
+typename Laplacian<Dim, Order>::form2_type
+Laplacian<Dim, Order>::assembleMass( std::vector<std::string> const& markers, double coeff )
+{
+    auto a = form2( _test = Xh_, _trial = Xh_ );
+    for( auto marker : markers )
+    {
+        if ( mesh_->markerNames().at(marker)[1] == Dim )
+        {
+            LOG( INFO ) << fmt::format( "assemble mass on volume marker {} with coeff: {}", marker, coeff );
+            a += integrate( _range = markedelements( support( Xh_ ), marker ),
+                        _expr = coeff * idt( u_ ) * id( v_ ) );
+        }
+        else if ( mesh_->markerNames().at(marker)[1] == Dim-1 )
+        {
+            LOG( INFO ) << fmt::format( "assemble mass on face marker {} with coeff: {}", marker, coeff );
+            a += integrate( _range = markedfaces( support( Xh_ ), marker ),
+                        _expr = coeff * idt( u_ ) * id( v_ ) );
+        }
+    }
+    a.close();
+    return a;
+}
+template <int Dim, int Order>
+typename Laplacian<Dim, Order>::form1_type
+Laplacian<Dim, Order>::assembleFlux( std::vector<std::string> const& markers, double coeff )
+{
+    auto l = form1( _test = Xh_ );
+    for( auto marker : markers )
+    {
+        if ( mesh_->markerNames().at(marker)[1] == Dim )
+        {
+            LOG( INFO ) << fmt::format( "assemble flux on volume marker {} with coeff: {}", marker, coeff );
+            l += integrate( _range = markedelements( support( Xh_ ), marker ),
+                            _expr = coeff * id( v_ ) );
+        }
+        else
+        {
+            LOG(INFO) << fmt::format("assemble flux on marker {} is a face marker with coeff: {}", marker, coeff);
+            l += integrate( _range = markedfaces( support( Xh_ ), marker ),
+                            _expr = coeff * id( v_ ) );
+        }
+    }
+    l.close();
+    v_.setConstant(1);
+    LOG(INFO) << fmt::format("flux l(1)={}",l(v_)) << std::endl;
+    return l;
+}
 
 } // namespace Feel

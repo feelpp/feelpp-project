@@ -25,7 +25,7 @@ cmake_minimum_required(VERSION 3.21.0)
 
 project(
   feelpp-project
-  VERSION 3.0.1 )
+  VERSION 3.2.0 )
 
 set(EXTRA_VERSION "")
 set(PROJECT_SHORTNAME "fp")

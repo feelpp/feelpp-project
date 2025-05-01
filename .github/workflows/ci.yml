@@ -37,7 +37,7 @@ jobs:
         run: |
           uv venv --system-site-packages
           source .venv/bin/activate
-          uv pip install .[dev,test]    
+          uv pip install -r pyproject.toml --extra dev --extra test
           npm install --verbose
           npx downdoc README.adoc
 
@@ -151,7 +151,7 @@ jobs:
         run: |
           uv venv --system-site-packages
           source .venv/bin/activate
-          uv pip install .[test]
+          uv pip install -r pyproject.toml --extra test
           uv pip install dist/*.whl
           npm install --verbose
           npx downdoc README.adoc

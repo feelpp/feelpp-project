@@ -54,7 +54,7 @@ dev = [
 
 [tool.scikit-build]
 wheel.expand-macos-universal-tags = true
-wheel.packages = ["src/feelpp/project"]
+wheel.packages = ["src/python/feelpp/"]
 build.verbose = true
 logging.level = "INFO"
 sdist.cmake = true

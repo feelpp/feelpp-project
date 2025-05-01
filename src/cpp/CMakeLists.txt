@@ -22,11 +22,10 @@
 #
 #
 feelpp_add_application(laplacian SRCS laplacian.cpp TESTS INSTALL )
-feelpp_add_testcase(cases PREFIX fp CATEGORY feelpp)
+
 
 if(FEELPP_TOOLBOXES_FOUND)
     feelpp_add_application(toolbox SRCS toolbox.cpp LINK_LIBRARIES Feelpp::feelpp_toolbox_electric_lib TESTS)
-    feelpp_add_testcase(cases)
 endif()
 
 foreach(binding laplacian)
@@ -37,8 +36,6 @@ foreach(binding laplacian)
             install(TARGETS _${binding} DESTINATION feelpp_project)
     else()
         feelpp_add_pymodule(${binding} SRCS _${binding}.cpp DESTINATION ${PROJECT_NAME})
-        
-        install(FILES ${PYFILES} DESTINATION ${FEELPP_PYTHON_MODULE_PATH}/${PROJECT_NAME})
     endif()
 endforeach()
 

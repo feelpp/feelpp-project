@@ -1,39 +1,117 @@
 :feelpp: Feel++
 :cpp: C++
-:project: feelpp-project 
+:project: feelpp-project
 
-= {feelpp} Template Project 
-Christophe Prud'homme <https://github.com/prudhomm[@prudhomm]>
+= {feelpp} Template Project
+:author: Christophe Prud’homme
+:email: <https://github.com/prudhomm>
+:revdate: 2025-05-01
+:doctype: book
+:toc:
+:toclevels: 2
+:icons: font
+:source-highlighter: rouge
 
-image:https://zenodo.org/badge/DOI/10.5281/zenodo.12762669.svg[DOI, link=https://doi.org/10.5281/zenodo.12762669]
-image:https://img.shields.io/github/v/release/feelpp/feelpp-project[GitHub Release]
-image:https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
+image::https://zenodo.org/badge/DOI/10.5281/zenodo.12762669.svg[DOI, link="https://doi.org/10.5281/zenodo.12762669"]
+image::https://img.shields.io/github/v/release/feelpp/feelpp-project[GitHub Release]
+image::https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg[CI]
 
-This repository provides a basic starting point for a {feelpp} application including:
+A template repository to kickstart your finite-element applications with Feel++.
 
-- [x] {feelpp} applications in {cpp} to use {feelpp} and {feelpp} toolboxes in `src`
-- [x] documentation using asciidoc and antora
-- [x] python {feelpp} notebooks that can be downloaded from the documentation
-- [x] continuous integration including tests for the {cpp} applications
-- [x] docker image generation for the project
+== Table of Contents
 
-The documentation for feelpp-project is available at link:https://feelpp.github.io/feelpp-project[here] and you can build on it for your project by enabling the link:https://docs.github.com/en/pages[github pages] for your repository.
+* <<features,Features>>
+* <<quick-start,Quick Start>>
+* <<building,Building>>
+* <<ci,Continuous Integration>>
+* <<versioning,Versioning & Release>>
+* <<contributing,Contributing>>
+* <<license,License>>
 
-== Renaming the project
+== Features
 
-By default the project is named  `feelpp-project` if you cloned the repository `feelpp/feelpp-project`.
-However if you used the previous repository as a template, then the project is renamed using the name of the repository using the script `rename.sh` at the initialization of the repository.
-If the name does not suit you, you can change it again using the script `rename.sh` and providing the new name as argument.
+* **C++** example apps using Feel++ and its toolboxes (located in `src/`).
+* **Python** Jupyter notebooks under `docs/notebooks/` for interactive demos.
+* **Documentation** authored in AsciiDoc and published with Antora (`docs/`).
+* **Docker** setup for reproducible development and deployment.
+* **CI** via GitHub Actions: C++ tests, Python wheel builds, docs site.
 
-WARNING: the script `rename.sh` will rename the project however some url might be set properly if you rename the project yourself. You need to check the following files: `docs/site.yml` and `docs/package.json` and fix the urls after the rename process is done.
+== Quick Start
 
-== Updating the {project} version
+=== Prerequisites
 
-The version of the project is defined in the files `CMakeLists.txt`, `docs/antora.yml` and `docs/package.json`. 
-You need to update with the same version in all files.
+* CMake ≥ 3.21  
+* A C++ compiler (GCC or Clang) with MPI support  
+* Python 3.8+ and `pip`  
+* Docker (optional, for container builds)
 
-== Release process
+=== Clone & Rename
 
-- [x] update the version in CMakeLists.txt
-- [x] update the version in docs/antora.yml
-- [x] commit the changes with the message "Release vx.y.z". At this point the CI will generate the docker image and push it to docker hub
+If you used this as a template, rename the project metadata:
+[source,bash]
+----
+./rename.sh your-project-name
+----
+
+NOTE: After renaming, verify URLs in `docs/site.yml` and `docs/package.json`.
+
+== Building
+
+=== CMake Presets
+
+Create **CMakePresets.json** in your project root or update the one provided:
+
+[source,bash]
+----
+cmake --preset default
+cmake --build --preset default
+cmake --build --preset default --target install
+----
+
+`build/default` will contain the build artifacts and the build directory.
+
+== Continuous Integration
+
+Our GitHub Actions workflow (`.github/workflows/ci.yml`) includes:
+
+* build_wheel: Python wheel compilation and artifact upload.
+* docs: Builds the Antora site, deploys to GitHub Pages on master.
+* build_code: CMake build, tests with ctest --preset default, packaging.
+* deliver: Docker image build & push to GHCR.
+* release: On tags vX.Y.Z, publishes binaries, wheels, datasets, and creates a GitHub release.
+
+== Versioning & Release
+
+Project version is centrally defined in:
+
+* CMakeLists.txt
+* docs/antora.yml
+* docs/package.json
+
+=== Release Process
+
+.	Bump the version in the three files above.
+.	Commit with:
++
+ $ git commit -am "Release vX.Y.Z"
++
+. Tag and push:
++
+ $ git tag vX.Y.Z && git push --tags
++
+. GitHub Actions will build and publish artifacts automatically.
+
+== Contributing
+
+We welcome contributions! Please:
+
+* Fork the repository and create a feature branch.
+* Adhere to existing coding conventions; add C++ tests where appropriate.
+* Update documentation (docs/) for any new features.
+* Submit a pull request with a clear description of your changes.
+
+== License
+
+This project is licensed under the BSD 3-Clause License.
+See LICENSE for full details.
+

@@ -23,11 +23,9 @@
 #
 cmake_minimum_required(VERSION 3.21.0)
 
-project(
-  feelpp-project
-  VERSION 4.4.0 )
+project( feelpp-project  VERSION 4.0.0 )
 
-set(EXTRA_VERSION "-rc.4")
+set(EXTRA_VERSION "-rc.2")
 set(PROJECT_SHORTNAME "fp")
 
 include(GNUInstallDirs)

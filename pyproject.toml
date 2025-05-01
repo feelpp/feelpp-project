@@ -1,86 +1,50 @@
-[build-system]
-requires = ["scikit-build-core>=0.11", "pybind11"]
-build-backend = "scikit_build_core.build"
+#!/bin/bash
 
-[project]
-name = "feelpp-project"
-version = "4.0.0-rc.1"
-description = "Feel++ Template Project"
-readme = "README.md"
-license = { file = "LICENSE" }
-authors = [
-  { name = "Christophe Prud'homme", email = "christophe.prudhomme@cemosis.fr" },
-]
-requires-python = ">=3.7"
-classifiers = [
-  "Development Status :: 4 - Beta",
-  "License :: OSI Approved :: BSD License",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
-]
+set -euo pipefail
 
-# Runtime dependencies from requirements.txt
-dependencies = [
-  "platformdirs<3,>=2",
-  "scikit-build>=0.8.1",
-  "scikit-build-core",
-  "ipykernel",
-  "pyproject-metadata",
-  "pandas<2.2",
-  "tabulate",
-  "plotly"
-]
+if [[ $# -lt 1 ]]; then
+  cat <<EOF
+Usage: $0 <version> [<extra>]
+  version  X.Y.Z       (e.g. 4.5.0)
+  extra    -rc.1       (optional suffix)
+EOF
+  exit 1
+fi
 
-[project.urls]
-Homepage = "https://feelpp.github.io/feelpp-project"
-Documentation = "https://feelpp.github.io/feelpp-project"
-Repository = "https://github.com/feelpp/feelpp-project"
-Issues = "https://github.com/feelpp/feelpp-project/issues"
+VERSION=$1
+EXTRA="${2:-}"              # e.g. "-rc.1" or empty
+TAG="v${VERSION}${EXTRA}"
 
-[project.optional-dependencies]
-test = [
-  "pytest",
-]
-dev = [
-  "pipx",
-  "build",
-]
+echo "🔖 Releasing ${TAG} …"
 
-[tool.scikit-build]
-wheel.expand-macos-universal-tags = true
-wheel.packages = ["src/python/feelpp/"]
-build.verbose = true
-logging.level = "INFO"
-sdist.cmake = true
-sdist.include = ["README.md"]
-cmake.args = ["--preset", "default"]
+# 1) bump CMake project version
+sed -E -i.bak \
+  -e "s#(project\(\s*feelpp-project\s+VERSION\s+)[0-9]+\.[0-9]+\.[0-9]+#\1${VERSION}#i" \
+  CMakeLists.txt
+rm CMakeLists.txt.bak
 
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
-xfail_strict = true
-filterwarnings = [
-  "error",
-  "ignore:(ast.Str|Attribute s|ast.NameConstant|ast.Num) is deprecated:DeprecationWarning:_pytest",
-]
+# 2) bump CMake EXTRA_VERSION
+sed -E -i.bak \
+  -e "s#(set\s*\(\s*EXTRA_VERSION\s*\")[^\"]*(\"\))#\1${EXTRA}\2#i" \
+  CMakeLists.txt
+rm CMakeLists.txt.bak
 
-[tool.ruff]
-src = ["src/python"]
+# 3) bump package.json (with suffix)
+sed -E -i.bak \
+  -e "s#(\"version\"[[:space:]]*:[[:space:]]*\")[^\"]*(\")#\1${VERSION}${EXTRA}\2#i" \
+  package.json
+rm package.json.bak
 
-[tool.ruff.lint]
-extend-select = [
-  "B", "I", "ARG", "C4", "EM", "ICN", "G",
-  "PGH","PIE","PL","PT","PTH","RET","RUF","SIM",
-  "T20","UP","YTT","EXE","NPY","PD"
-]
-ignore = ["PLR"]
-isort.required-imports = ["from __future__ import annotations"]
+# 4) bump pyproject.toml (with suffix)
+sed -E -i.bak \
+  -e "s#(^[[:space:]]*version[[:space:]]*=[[:space:]]*\")[^\"]*(\")#\1${VERSION}${EXTRA}\2#i" \
+  pyproject.toml
+rm pyproject.toml.bak
 
-[tool.ruff.per-file-ignores]
-"tests/**" = ["T20"]
+# 5) commit, tag & push
+git add CMakeLists.txt package.json pyproject.toml
+git commit -m "Release ${TAG}"
+git tag "${TAG}"
+git push origin HEAD --follow-tags
+
+echo "✅ Successfully released ${TAG}"

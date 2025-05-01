@@ -27,7 +27,7 @@ project(
   feelpp-project
   VERSION 4.4.0 )
 
-set(EXTRA_VERSION "-rc.1")
+set(EXTRA_VERSION "-rc.4")
 set(PROJECT_SHORTNAME "fp")
 
 include(GNUInstallDirs)

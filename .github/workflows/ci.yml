@@ -26,6 +26,10 @@ jobs:
           submodules: recursive
           clean: true
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
@@ -83,6 +87,10 @@ jobs:
           name: wheel-artifacts-${{ matrix.os }}
           path: dist/
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
       - name: Install uv
         uses: astral-sh/setup-uv@v5
 
@@ -131,6 +139,10 @@ jobs:
         with:
           name: wheel-artifacts-${{ matrix.os }}
           path: dist/
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
@@ -243,19 +255,13 @@ jobs:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          name: deb-artifacts-ubuntu-22.04
           path: artifacts/
-      - uses: actions/download-artifact@v4
-        with:
-          name: wheel-artifacts-ubuntu-22.04
-          path: dist/
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            artifacts/*.deb
-            dist/*.whl
+            artifacts/*
           draft: false
           prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
           name: Release ${{ github.ref_name }}

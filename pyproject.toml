@@ -28,8 +28,6 @@ classifiers = [
 # Runtime dependencies from requirements.txt
 dependencies = [
   "platformdirs<3,>=2",
-  "pipx",
-  "build",
   "scikit-build>=0.8.1",
   "scikit-build-core",
   "ipykernel",

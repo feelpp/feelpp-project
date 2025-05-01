@@ -58,7 +58,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: wheel-artifacts-${{ matrix.os }}
+          name: artifacts-wheel-${{ matrix.os }}
           path: dist/*.whl
 
   build_docs:
@@ -84,7 +84,7 @@ jobs:
       - name: Download Wheels
         uses: actions/download-artifact@v4
         with:
-          name: wheel-artifacts-${{ matrix.os }}
+          name: artifacts-wheel-${{ matrix.os }}
           path: dist/
 
       - uses: actions/setup-node@v4
@@ -137,7 +137,7 @@ jobs:
       - name: Download Wheels
         uses: actions/download-artifact@v4
         with:
-          name: wheel-artifacts-${{ matrix.os }}
+          name: artifacts-wheel-${{ matrix.os }}
           path: dist/
 
       - uses: actions/setup-node@v4
@@ -179,7 +179,7 @@ jobs:
       - name: Upload Debian artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: deb-artifacts-${{ matrix.os }}
+          name: artifacts-deb-${{ matrix.os }}
           path: build/default/assets/feelpp-project-*
 
   docker:
@@ -198,7 +198,7 @@ jobs:
       - name: Download Debian artifacts
         uses: actions/download-artifact@v4
         with:
-          name: deb-artifacts-ubuntu-22.04
+          name: artifacts-deb-ubuntu-22.04
           path: artifacts/
 
       - name: Copy LICENSE
@@ -256,6 +256,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: artifacts/
+          pattern: artifacts-*
+          merge-multiple: true
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

@@ -32,8 +32,6 @@ dependencies = [
   "scikit-build-core",
   "ipykernel",
   "pyproject-metadata",
-  "numpy",
-  "scipy",
   "pandas<2.2",
   "tabulate",
   "plotly"

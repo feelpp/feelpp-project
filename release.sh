@@ -57,7 +57,7 @@ echo "   ✔️  committed"
 
 echo
 echo "6️⃣  Creating Git tag ${TAG}..."
-git tag "${TAG}"
+git tag -a "${TAG}" -m "Release ${TAG}"
 echo "   ✔️  tagged"
 
 echo

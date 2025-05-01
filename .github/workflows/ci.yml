@@ -34,7 +34,7 @@ jobs:
           uv venv --system-site-packages
           source .venv/bin/activate
           uv pip install .[dev,test]    
-          npm install
+          npm install --verbose
           npx downdoc README.adoc
 
       - name: Build wheel
@@ -95,7 +95,7 @@ jobs:
       - name: Build Antora site
         run: |
           source .venv/bin/activate
-          npm install
+          npm install --verbose
           npm run antora || true
           npm run antora
         env:
@@ -141,7 +141,7 @@ jobs:
           source .venv/bin/activate
           uv pip install .[test]
           uv pip install dist/*.whl
-          npm install
+          npm install --verbose
           npx downdoc README.adoc
 
       - name: Build C++ code

@@ -97,8 +97,8 @@ export shortprojectname
 export appname
 
 files=( "README.adoc" "README.md" "CMakeLists.txt" "src/CMakeLists.txt" 
-        "src/.tests.laplacian"  
-        "src/.tests.toolbox"
+        "src/cpp/.tests.laplacian"  
+        "src/cpp/.tests.toolbox"
         "site.yml" 
         "docs/antora.yml" 
         "package.json"
@@ -115,7 +115,7 @@ do
     perl -077pi.bak -e 's/\"fp\"/"$ENV{'shortprojectname'}"/sg' $i
     perl -077pi.bak -e 's/myapp/$ENV{'appname'}/sg' $i
 done
-git mv src/feelpp_project src/$projectname_
+git mv src/python/feelpp/project src/python/feelpp/$projectname_
 
 
 

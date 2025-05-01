@@ -23,11 +23,9 @@
 #
 cmake_minimum_required(VERSION 3.21.0)
 
-project(
-  feelpp-project
-  VERSION 3.3.0 )
+project( feelpp-project  VERSION 4.0.0 )
 
-set(EXTRA_VERSION "")
+set(EXTRA_VERSION "-rc.7")
 set(PROJECT_SHORTNAME "fp")
 
 include(GNUInstallDirs)
@@ -40,7 +38,7 @@ endif()
 find_package(Python REQUIRED COMPONENTS Interpreter Development.Module)
 find_package(pybind11 CONFIG REQUIRED)
 
-find_package(Feel++ COMPONENTS Toolboxes PATHS ${FEELPP_DIR}/share/feelpp/feel/cmake/modules $ENV{FEELPP_DIR}/share/feelpp/feel/cmake/modules /usr/share/feelpp/feel/cmake/modules /usr/local/share/feelpp/feel/cmake/modules )
+find_package(Feel++  PATHS ${FEELPP_DIR}/share/feelpp/feel/cmake/modules $ENV{FEELPP_DIR}/share/feelpp/feel/cmake/modules /usr/share/feelpp/feel/cmake/modules /usr/local/share/feelpp/feel/cmake/modules )
 if(NOT FEELPP_FOUND)
   message(FATAL_ERROR "Feel++ was not found on your system. Make sure to install it and specify the FEELPP_DIR to reference the installation directory.")
 endif()
@@ -54,7 +52,10 @@ if ( NOT TARGET check )
   add_custom_target(check)
 endif()
 
-
+option( FEELPP_PROJECT_ENABLE_CPP "Enable C++ application" ON )
+option( FEELPP_PROJECT_ENABLE_PYTHON "Enable Python application" ON )
+option( FEELPP_PROJECT_ENABLE_TESTS "Enable tests" ON )
+option( FEELPP_PROJECT_ENABLE_DOCS "Enable documentation" OFF )
 add_subdirectory( src )
 #add_subdirectory( docs )
 

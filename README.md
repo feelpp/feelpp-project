@@ -1,36 +1,103 @@
-# Feel++ Template Project 
-Christophe Prud’homme &lt;[@prudhomm](https://github.com/prudhomm)>
+# Feel++ Template Project
 
 ![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.12762669.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/feelpp/feelpp-project)
 ![CI](https://github.com/feelpp/feelpp-project/workflows/CI/badge.svg)
 
-This repository provides a basic starting point for a Feel++ application including:
+A template repository to kickstart your finite-element applications with Feel++.
 
-* [x] Feel++ applications in C++ to use Feel++ and Feel++ toolboxes in `src`
-* [x] documentation using asciidoc and antora
-* [x] python Feel++ notebooks that can be downloaded from the documentation
-* [x] continuous integration including tests for the C++ applications
-* [x] docker image generation for the project
+## Table of Contents
 
-The documentation for feelpp-project is available at [here](https://feelpp.github.io/feelpp-project) and you can build on it for your project by enabling the [github pages](https://docs.github.com/en/pages) for your repository.
+* [Features](#features)
+* [Quick Start](#quick-start)
+* [Building](#building)
+* [Continuous Integration](#ci)
+* [Versioning & Release](#versioning)
+* [Contributing](#contributing)
+* [License](#license)
 
-## Renaming the project
+## Features
 
-By default the project is named  `feelpp-project` if you cloned the repository `feelpp/feelpp-project`.
-However if you used the previous repository as a template, then the project is renamed using the name of the repository using the script `rename.sh` at the initialization of the repository.
-If the name does not suit you, you can change it again using the script `rename.sh` and providing the new name as argument.
+* ***C++*** example apps using Feel++ and its toolboxes (located in `src/`).
+* ***Python*** Jupyter notebooks under `docs/notebooks/` for interactive demos.
+* ***Documentation*** authored in AsciiDoc and published with Antora (`docs/`).
+* ***Docker*** setup for reproducible development and deployment.
+* ***CI*** via GitHub Actions: C++ tests, Python wheel builds, docs site.
 
-**⚠️ WARNING**\
-the script `rename.sh` will rename the project however some url might be set properly if you rename the project yourself. You need to check the following files: `docs/site.yml` and `docs/package.json` and fix the urls after the rename process is done.
+## Quick Start
 
-## Updating the feelpp-project  version
+### Prerequisites
 
-The version of the project is defined in the files `CMakeLists.txt`, `docs/antora.yml` and `docs/package.json`. 
-You need to update with the same version in all files.
+* CMake ≥ 3.21  
+* A C++ compiler (GCC or Clang) with MPI support  
+* Python 3.8+ and `pip`  
+* Docker (optional, for container builds)
 
-## Release process
+### Clone & Rename
 
-* [x] update the version in CMakeLists.txt
-* [x] update the version in docs/antora.yml
-* [x] commit the changes with the message "Release vx.y.z". At this point the CI will generate the docker image and push it to docker hub
+If you used this as a template, rename the project metadata:
+```bash
+./rename.sh your-project-name
+```
+
+**📌 NOTE**\
+After renaming, verify URLs in `docs/site.yml` and `docs/package.json`.
+
+## Building
+
+### CMake Presets
+
+Create ***CMakePresets.json*** in your project root or update the one provided:
+
+```bash
+cmake --preset default
+cmake --build --preset default
+cmake --build --preset default --target install
+```
+
+`build/default` will contain the build artifacts and the build directory.
+
+## Continuous Integration
+
+Our GitHub Actions workflow (`.github/workflows/ci.yml`) includes:
+
+* build_wheel: Python wheel compilation and artifact upload.
+* docs: Builds the Antora site, deploys to GitHub Pages on master.
+* build_code: CMake build, tests with ctest --preset default, packaging.
+* deliver: Docker image build & push to GHCR.
+* release: On tags vX.Y.Z, publishes binaries, wheels, datasets, and creates a GitHub release.
+
+## Versioning & Release
+
+Project version is centrally defined in:
+
+* CMakeLists.txt
+* docs/antora.yml
+* docs/package.json
+
+### Release Process
+
+**	Commit with:**
+
++
+ $ git commit -am "Release vX.Y.Z"
++
+. Tag and push:
++
+ $ git tag vX.Y.Z && git push --tags
++
+. GitHub Actions will build and publish artifacts automatically.
+
+## Contributing
+
+We welcome contributions! Please:
+
+* Fork the repository and create a feature branch.
+* Adhere to existing coding conventions; add C++ tests where appropriate.
+* Update documentation (docs/) for any new features.
+* Submit a pull request with a clear description of your changes.
+
+## License
+
+This project is licensed under the BSD 3-Clause License.
+See LICENSE for full details.

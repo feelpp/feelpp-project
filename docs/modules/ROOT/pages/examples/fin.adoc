@@ -54,7 +54,7 @@ First, we initialize the {feelpp} environment and set the working directory.
 [%dynamic,python]
 ----
 import feelpp.core as fppc
-from feelpp_project import laplacian
+from feelpp.project import laplacian
 import json
 import os
 

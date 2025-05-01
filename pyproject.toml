@@ -1,35 +1,65 @@
 [build-system]
-requires = ["scikit-build-core>=0.3.3", "pybind11"]
+requires = ["scikit-build-core>=0.11", "pybind11"]
 build-backend = "scikit_build_core.build"
-
 
 [project]
 name = "feelpp-project"
-version = "3.3.0"
-description="Feel++ Template Project"
+version = "4.0.0-rc.7"
+description = "Feel++ Template Project"
 readme = "README.md"
+license = { file = "LICENSE" }
 authors = [
   { name = "Christophe Prud'homme", email = "christophe.prudhomme@cemosis.fr" },
 ]
 requires-python = ">=3.7"
 classifiers = [
   "Development Status :: 4 - Beta",
-  "License :: OSI Approved :: MIT License",
+  "License :: OSI Approved :: BSD License",
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
 ]
 
-[project.optional-dependencies]
-test = ["pytest"]
+# Runtime dependencies from requirements.txt
+dependencies = [
+  "platformdirs<3,>=2",
+  "scikit-build>=0.8.1",
+  "scikit-build-core",
+  "ipykernel",
+  "pyproject-metadata",
+  "pandas<2.2",
+  "tabulate",
+  "plotly"
+]
 
+[project.urls]
+Homepage = "https://feelpp.github.io/feelpp-project"
+Documentation = "https://feelpp.github.io/feelpp-project"
+Repository = "https://github.com/feelpp/feelpp-project"
+Issues = "https://github.com/feelpp/feelpp-project/issues"
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+dev = [
+  "pipx",
+  "build",
+]
 
 [tool.scikit-build]
 wheel.expand-macos-universal-tags = true
-
+wheel.packages = ["src/python/feelpp/"]
+build.verbose = true
+logging.level = "INFO"
+sdist.cmake = true
+sdist.include = ["README.md"]
+cmake.args = ["--preset", "default"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -37,48 +67,19 @@ addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
 xfail_strict = true
 filterwarnings = [
   "error",
-  "ignore:(ast.Str|Attribute s|ast.NameConstant|ast.Num) is deprecated:DeprecationWarning:_pytest",  # Python 3.12
+  "ignore:(ast.Str|Attribute s|ast.NameConstant|ast.Num) is deprecated:DeprecationWarning:_pytest",
 ]
-# testpaths = ["tests"]
 
-
-# [tool.cibuildwheel]
-# test-command = "pytest {project}/tests"
-# test-extras = ["test"]
-# test-skip = ["*universal2:arm64"]
-# build-verbosity = 1
-
-
-#[tool.ruff]
-#src = ["src"]
+[tool.ruff]
+src = ["src/python"]
 
 [tool.ruff.lint]
 extend-select = [
-  "B",           # flake8-bugbear
-  "I",           # isort
-  "ARG",         # flake8-unused-arguments
-  "C4",          # flake8-comprehensions
-  "EM",          # flake8-errmsg
-  "ICN",         # flake8-import-conventions
-  "G",           # flake8-logging-format
-  "PGH",         # pygrep-hooks
-  "PIE",         # flake8-pie
-  "PL",          # pylint
-  "PT",          # flake8-pytest-style
-  "PTH",         # flake8-use-pathlib
-  "RET",         # flake8-return
-  "RUF",         # Ruff-specific
-  "SIM",         # flake8-simplify
-  "T20",         # flake8-print
-  "UP",          # pyupgrade
-  "YTT",         # flake8-2020
-  "EXE",         # flake8-executable
-  "NPY",         # NumPy specific rules
-  "PD",          # pandas-vet
+  "B", "I", "ARG", "C4", "EM", "ICN", "G",
+  "PGH","PIE","PL","PT","PTH","RET","RUF","SIM",
+  "T20","UP","YTT","EXE","NPY","PD"
 ]
-ignore = [
-  "PLR",    # Design related pylint codes
-]
+ignore = ["PLR"]
 isort.required-imports = ["from __future__ import annotations"]
 
 [tool.ruff.per-file-ignores]

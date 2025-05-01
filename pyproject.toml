@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "feelpp-project"
-version = "4.0.0-rc.5"
+version = "4.0.0-rc.6"
 description = "Feel++ Template Project"
 readme = "README.md"
 license = { file = "LICENSE" }

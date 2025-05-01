@@ -3,142 +3,196 @@ name: CI
 on:
   push:
     branches:
-      - '**' # Push events on all branches
-    paths-ignore:
-      - '.github/workflows/init.yml'
+      - '**'
     tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10 including semver
+      - 'v*'
 
 jobs:
 
   build_wheel:
-    runs-on: self-ubuntu-22.04
-    name: Build wheel
-    if: "!contains(github.event.head_commit.message, 'wheel skip')"
+    runs-on: self-${{ matrix.os }}
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    name: Build wheel package
+    if: "!contains(github.event.head_commit.message, 'skip wheel')"
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        lfs: true
-        submodules: 'recursive'
-    -
-      name: Create Virtual Environment
-      run: |
-        python3 -m venv .venv
-        source .venv/bin/activate
-        pip3 install -I -r requirements.txt
-    -
-      name: Compile
-      run: |
-        pip3 wheel --no-deps --wheel-dir dist .
-      env:
-        CXX: clang++
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+          clean: true
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        # Artifact name
-        name: wheel-artifacts
-        # Directory containing files to upload
-        path: dist/*.whl
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
 
+      - name: Install Python/Node Env
+        run: |
+          uv venv --system-site-packages
+          source .venv/bin/activate
+          uv pip install .[dev,test]    
+          npm install
+          npx downdoc README.adoc
 
-  docs:
-    runs-on: self-ubuntu-22.04
-    name: Build Antora Site
+      - name: Build wheel
+        run: |
+          source .venv/bin/activate
+          pipx run build
+          uv pip install dist/*.whl
+
+      - name: Python Tests
+        run: |
+          source .venv/bin/activate
+
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+          GIRDER_API_KEY: ${{ secrets.GIRDER }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheel-artifacts-${{ matrix.os }}
+          path: dist/*.whl
+
+  build_docs:
     needs: build_wheel
-    if: "!contains(github.event.head_commit.message, 'docs skip')"
+    runs-on: self-${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    name: Build & Deploy docs
+    if: "!contains(github.event.head_commit.message, 'skip docs')"
     steps:
-    - uses: actions/checkout@v4
-      with:
-        lfs: true
-        submodules: 'recursive'
-    - name: Install credentials
-      run: echo https://$GITHUB_OAUTH:@github.com > $HOME/.git-credentials
-      env:
-        GITHUB_OAUTH: ${{ secrets.CR_PAT_WORKFLOW }}
-    - name: Install NPM dependencies
-      run: npm install
-    - name: Download
-      uses: actions/download-artifact@v4
-      with:
-        # Artifact name
-        name: wheel-artifacts
-        path: dist/
-    - name: Install Python dependencies
-      run: |
-          python -m venv --system-site-packages .venv
-          source .venv/bin/activate
-          pip3 install -I -r requirements.txt
-          pip3 install dist/*.whl
-          tree .venv
-    - name: Build Antora Site
-      run: |
-          source .venv/bin/activate
-          npm run antora
-    - name: Deploy
-      if: ${{ github.ref_name == 'master' }}
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: public # The folder the action should deploy.
-  build_code:
-    runs-on: self-ubuntu-22.04
-    name: Build, Install, Package code
-    if: "!contains(github.event.head_commit.message, 'code skip')"
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        lfs: true
-        submodules: 'recursive'
-    -
-      name: Build
-      run: |
-        cmake --preset default
-        cmake --build --preset default
-    -
-      name: Check
-      run: |
-        ctest --preset default
-      env:
-        OMPI_ALLOW_RUN_AS_ROOT: 1
-        OMPI_ALLOW_RUN_AS_ROOT_CONFIRM: 1
-    -
-      name: Package
-      run: |
-        cmake --build --preset default -t package
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        # Artifact name
-        name: feelpp-project-artifacts
-        # Directory containing files to upload
-        path: build/default/assets/feelpp-project-*
-    - name: Upload Fin Datasets
-      uses: actions/upload-artifact@v4
-      with:
-        name: datasets
-        path: build/default/datasets/
-  deliver:
-    runs-on: self-ubuntu-22.04
-    needs: build_code
-    name: Build docker, tag and push
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+          clean: true
 
+      - name: Install credentials
+        run: echo "https://$GITHUB_OAUTH:@github.com" > $HOME/.git-credentials
+        env:
+          GITHUB_OAUTH: ${{ secrets.CR_PAT_WORKFLOW }}
+
+      - name: Download Wheels
+        uses: actions/download-artifact@v4
+        with:
+          name: wheel-artifacts-${{ matrix.os }}
+          path: dist/
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install Python deps
+        run: |
+          uv venv --system-site-packages
+          source .venv/bin/activate
+          uv pip install dist/*.whl
+
+      - name: Build Antora site
+        run: |
+          source .venv/bin/activate
+          npm install
+          npm run antora || true
+          npm run antora
+        env:
+          GIRDER_API_KEY: ${{ secrets.GIRDER }}
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master' && matrix.os == 'ubuntu-22.04'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: public
+
+  build_code:
+    needs: build_wheel
+    runs-on: self-${{ matrix.os }}
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    name: Build & Test C++ (deb)
+    if: "!contains(github.event.head_commit.message, 'skip build')"
     steps:
-    - uses: actions/checkout@v4
-      with:
-        lfs: true
-        submodules: 'recursive'
-    - name: Download
-      uses: actions/download-artifact@v4
-      with:
-        # Artifact name
-        name: feelpp-project-artifacts
-        path: artifacts/
-    -
-        name: Docker meta
-        id: meta
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+          clean: true
+
+      - name: Download Wheels
+        uses: actions/download-artifact@v4
+        with:
+          name: wheel-artifacts-${{ matrix.os }}
+          path: dist/
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install Python & Node Env
+        run: |
+          uv venv --system-site-packages
+          source .venv/bin/activate
+          uv pip install .[test]
+          uv pip install dist/*.whl
+          npm install
+          npx downdoc README.adoc
+
+      - name: Build C++ code
+        run: |
+          source .venv/bin/activate
+          cmake --preset default
+          cmake --build --preset default
+
+      - name: Run CTest
+        if: "!contains(github.event.head_commit.message, 'skip tests')"
+        run: |
+          source .venv/bin/activate
+          ctest --preset default
+        env:
+          OMPI_ALLOW_RUN_AS_ROOT: 1
+          OMPI_ALLOW_RUN_AS_ROOT_CONFIRM: 1
+          GIRDER_API_KEY: ${{ secrets.GIRDER }}
+
+      - name: Package .deb
+        run: |
+          cmake --build --preset default --target package
+
+      - name: Upload Debian artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-artifacts-${{ matrix.os }}
+          path: build/default/assets/feelpp-project-*
+
+  docker:
+    needs: build_code
+    runs-on: ubuntu-22.04
+    if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v') || contains(github.event.head_commit.message, '[build container]')
+    env:
+      CODENAME: jammy
+    name: Build & Push Docker
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          submodules: recursive
+
+      - name: Download Debian artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: deb-artifacts-ubuntu-22.04
+          path: artifacts/
+
+      - name: Copy LICENSE
+        run: cp LICENSE artifacts/
+
+      - id: meta
         uses: docker/metadata-action@v5
         with:
           images: |
@@ -148,65 +202,62 @@ jobs:
             type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-    -
-      name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
-    -
-      name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-    -
-      name: Login to GitHub Container Registry
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.CR_PAT }}
-    -
-      name: Build container image
-      uses: docker/build-push-action@v5
-      with:
-        context: artifacts
-        push: ${{ github.event_name != 'pull_request' }}
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-        file: ./Dockerfile
+          labels: |
+            org.opencontainers.image.source="https://github.com/feelpp/feelpp-project"
+            org.opencontainers.image.licenses="BSD-3-Clause"
+            org.opencontainers.image.title="feelpp-project"
+            org.opencontainers.image.description="Finite-element template project based on Feel++."
+
+      - name: Extract tag
+        id: tag_extractor
+        run: |
+          TAG=$(echo "${{ steps.meta.outputs.tags }}" | tr ' ' '\n' | head -n1)
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Build & Push
+        uses: docker/build-push-action@v6
+        with:
+          context: artifacts
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
   release:
-    runs-on: self-ubuntu-22.04
-    name: Release
     needs: [build_wheel, build_code]
-    if: startsWith(github.ref ,'refs/tags/v')
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
     steps:
       - uses: actions/checkout@v4
         with:
           lfs: true
-          submodules: 'recursive'      
-      - name: Download Deb Packages
+          submodules: recursive
+
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          # Artifact name
-          name: feelpp-project-artifacts
+          name: deb-artifacts-ubuntu-22.04
           path: artifacts/
-      - name: Download Wheel Packages
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
-          # Artifact name
-          name: wheel-artifacts
+          name: wheel-artifacts-ubuntu-22.04
           path: dist/
-      - name: Download Datasets
-        uses: actions/download-artifact@v4
-        with:
-          # Artifact name
-          name: datasets
-          path: datasets/
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             artifacts/*.deb
             dist/*.whl
-            datasets/*
           draft: false
-          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc')}}
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
           name: Release ${{ github.ref_name }}
           generate_release_notes: true
           tag_name: ${{ github.ref }}

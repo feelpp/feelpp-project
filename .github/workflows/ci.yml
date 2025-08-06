@@ -82,7 +82,7 @@ jobs:
           GITHUB_OAUTH: ${{ secrets.CR_PAT_WORKFLOW }}
 
       - name: Download Wheels
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: artifacts-wheel-${{ matrix.os }}
           path: dist/
@@ -135,7 +135,7 @@ jobs:
           clean: true
 
       - name: Download Wheels
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: artifacts-wheel-${{ matrix.os }}
           path: dist/
@@ -196,7 +196,7 @@ jobs:
           submodules: recursive
 
       - name: Download Debian artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: artifacts-deb-ubuntu-22.04
           path: artifacts/
@@ -254,7 +254,7 @@ jobs:
           submodules: recursive
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: artifacts/
           pattern: artifacts-*

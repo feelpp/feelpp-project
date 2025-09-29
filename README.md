@@ -26,14 +26,37 @@ A template repository to kickstart your finite-element applications with Feel++.
 
 ## Quick Start
 
-### Prerequisites
+### Installation via APT (Recommended)
+
+The easiest way to get started is to install the pre-built `feelpp-project` package from the Feel++ APT repository:
+
+```bash
+# Add Feel++ APT repository
+curl -fsSL https://feelpp.github.io/apt/feelpp.gpg | sudo gpg --dearmor -o /usr/share/keyrings/feelpp.gpg
+echo "deb [signed-by=/usr/share/keyrings/feelpp.gpg] https://feelpp.github.io/apt/stable noble feelpp-project" | sudo tee /etc/apt/sources.list.d/feelpp.list
+
+# Install feelpp-project
+sudo apt update
+sudo apt install feelpp-project
+```
+
+For development/testing versions, replace `stable` with `testing`:
+```bash
+echo "deb [signed-by=/usr/share/keyrings/feelpp.gpg] https://feelpp.github.io/apt/testing noble feelpp-project" | sudo tee /etc/apt/sources.list.d/feelpp.list
+```
+
+### Building from Source
+
+If you prefer to build from source:
+
+#### Prerequisites
 
 * CMake ≥ 3.21  
 * A C++ compiler (GCC or Clang) with MPI support  
 * Python 3.8+ and `pip`  
 * Docker (optional, for container builds)
 
-### Clone & Rename
+#### Clone & Rename
 
 If you used this as a template, rename the project metadata:
 ```bash
@@ -43,7 +66,19 @@ If you used this as a template, rename the project metadata:
 **📌 NOTE**\
 After renaming, verify URLs in `docs/site.yml` and `docs/package.json`.
 
-## Building
+### Docker Usage
+
+You can also run feelpp-project using Docker, which automatically uses the published APT packages:
+
+```bash
+# Run latest stable version
+docker run --rm -it ghcr.io/feelpp/feelpp-project:master
+
+# Run specific version  
+docker run --rm -it ghcr.io/feelpp/feelpp-project:v4.0.0
+```
+
+## Building from Source
 
 ### CMake Presets
 
@@ -57,15 +92,37 @@ cmake --build --preset default --target install
 
 `build/default` will contain the build artifacts and the build directory.
 
-## Continuous Integration
+### Creating Debian Packages
+
+To build .deb packages locally:
+
+```bash
+cmake --build --preset default --target package
+```
+
+The generated `.deb` files will be in `build/default/assets/`.
+
+## Continuous Integration & Distribution
 
 Our GitHub Actions workflow (`.github/workflows/ci.yml`) includes:
 
-* build_wheel: Python wheel compilation and artifact upload.
-* docs: Builds the Antora site, deploys to GitHub Pages on master.
-* build_code: CMake build, tests with ctest --preset default, packaging.
-* deliver: Docker image build & push to GHCR.
-* release: On tags vX.Y.Z, publishes binaries, wheels, datasets, and creates a GitHub release.
+* ***build_wheel***: Python wheel compilation and artifact upload.
+* ***build_docs***: Builds the Antora site, deploys to GitHub Pages on master.
+* ***build_code***: CMake build, tests with ctest --preset default, Debian packaging.
+* ***APT Publishing***: Automatic publication of .deb packages to Feel++ APT repository:
+  * `master` branch → `testing` channel
+  * Tagged releases → `stable` channel  
+  * Pull requests → `pr` channel
+* ***docker***: Docker image build & push to GHCR using published APT packages.
+* ***release***: On tags vX.Y.Z, publishes binaries, wheels, and creates a GitHub release.
+
+### APT Repository Structure
+
+The Feel++ APT repository provides packages for different channels:
+
+* ***Stable***: `https://feelpp.github.io/apt/stable/dists/noble/feelpp-project/`
+* ***Testing***: `https://feelpp.github.io/apt/testing/dists/noble/feelpp-project/`
+* ***PR***: `https://feelpp.github.io/apt/pr/dists/noble/feelpp-project/`
 
 ## Versioning & Release
 

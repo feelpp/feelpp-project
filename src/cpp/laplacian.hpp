@@ -458,7 +458,7 @@ Laplacian<Dim, Order>::assembleGradGrad( std::vector<std::string> const& markers
     auto a = form2( _test = Xh_, _trial = Xh_ );
     for( auto marker : markers )
     {
-        LOG( INFO ) << fmt::format( "assemble grad.grad on marker {} with coeffs: {}", marker, coeffs );
+        LOG( INFO ) << fmt::format( "assemble grad.grad on marker {} with coeffs: {}", fmt::streamed(marker), fmt::streamed(coeffs) );
         a += integrate( _range = markedelements( support( Xh_ ), marker ),
                         _expr = trans(constant<Dim,Dim>(coeffs) * trans(gradt( u_ ))) * trans(grad( v_ )) );
     }
@@ -474,13 +474,13 @@ Laplacian<Dim, Order>::assembleMass( std::vector<std::string> const& markers, do
     {
         if ( mesh_->markerNames().at(marker)[1] == Dim )
         {
-            LOG( INFO ) << fmt::format( "assemble mass on volume marker {} with coeff: {}", marker, coeff );
+            LOG( INFO ) << fmt::format( "assemble mass on volume marker {} with coeff: {}", fmt::streamed(marker), fmt::streamed(coeff)  );
             a += integrate( _range = markedelements( support( Xh_ ), marker ),
                         _expr = coeff * idt( u_ ) * id( v_ ) );
         }
         else if ( mesh_->markerNames().at(marker)[1] == Dim-1 )
         {
-            LOG( INFO ) << fmt::format( "assemble mass on face marker {} with coeff: {}", marker, coeff );
+            LOG( INFO ) << fmt::format( "assemble mass on face marker {} with coeff: {}", fmt::streamed(marker), fmt::streamed(coeff) );
             a += integrate( _range = markedfaces( support( Xh_ ), marker ),
                         _expr = coeff * idt( u_ ) * id( v_ ) );
         }
@@ -497,13 +497,13 @@ Laplacian<Dim, Order>::assembleFlux( std::vector<std::string> const& markers, do
     {
         if ( mesh_->markerNames().at(marker)[1] == Dim )
         {
-            LOG( INFO ) << fmt::format( "assemble flux on volume marker {} with coeff: {}", marker, coeff );
+            LOG( INFO ) << fmt::format( "assemble flux on volume marker {} with coeff: {}", fmt::streamed(marker), fmt::streamed(coeff) );
             l += integrate( _range = markedelements( support( Xh_ ), marker ),
                             _expr = coeff * id( v_ ) );
         }
         else
         {
-            LOG(INFO) << fmt::format("assemble flux on marker {} is a face marker with coeff: {}", marker, coeff);
+            LOG(INFO) << fmt::format("assemble flux on marker {} is a face marker with coeff: {}", fmt::streamed(marker), fmt::streamed(coeff) );
             l += integrate( _range = markedfaces( support( Xh_ ), marker ),
                             _expr = coeff * id( v_ ) );
         }
